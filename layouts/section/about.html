@@ -1,0 +1,20 @@
+{{ define "nav" }}
+  {{ partial "nav.html" . }}
+{{ end }}
+{{ define "main" }}
+  <header id="cover" class="flex flex-wrap justify-center items-center ph6 vw-100 bg-navy space-mono white">
+      <h1 class="mt6 mb4 pt5 f1 fw5 tracked-tight w-60">{{ .Title }}</h1>
+  </header>
+  <section class="flex flex-wrap justify-center items-center ph6 mv2 space-mono">
+    <div class="w-60 nested-copy-line-height nested-headline-line-height nested-img nested-links">
+      <div class="measure-wide">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+{{ end }}
+{{ define "js" }}
+  <script>
+    document.querySelector("#cover").style.backgroundImage = 'url(' + drawTiles(235, 65.8, 29.8) + ')';
+  </script>
+{{ end }}
