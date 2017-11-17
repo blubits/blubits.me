@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.0/css/tachyons.min.css"/>
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/global.css">
 
   <!-- Template-specific CSS -->
   {{ block "css" . }}
@@ -31,7 +31,7 @@
   {{ end }}
 
   <!-- Global JS -->
-  <script src="js/global.js"></script>
+  <script src="{{ .Site.BaseURL }}js/global.js"></script>
 
   <!-- Template-specific JavaScript -->
   {{ block "js" . }}
