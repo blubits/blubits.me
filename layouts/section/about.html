@@ -2,16 +2,8 @@
   {{ partial "nav.html" . }}
 {{ end }}
 {{ define "main" }}
-  <header id="cover" class="flex flex-wrap justify-center items-center ph4 ph5-m ph6-l vw-100 bg-navy space-mono white">
-    <h1 class="w-80 w-70-m w-50-l mt6 mb4 pt5 f1 fw5 tracked-tight">{{ .Title }}</h1>
-  </header>
-  <section class="flex flex-wrap justify-center items-center ph4 ph5-m ph6-l mv2 space-mono">
-    <div class="w-80 w-70-m w-50-l nested-copy-line-height nested-headline-line-height nested-img nested-links">
-      <div class="measure-wide">
-        {{ .Content }}
-      </div>
-    </div>
-  </section>
+  {{ partial "header.html" . }}
+  {{ partial "content.html" . }}
 {{ end }}
 {{ define "js" }}
   <script>
