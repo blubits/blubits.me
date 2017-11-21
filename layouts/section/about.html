@@ -15,6 +15,10 @@
 {{ end }}
 {{ define "js" }}
   <script>
-    document.querySelector("#cover").style.backgroundImage = 'url(' + drawTiles(235, 65.8, 29.8) + ')';
+    document.querySelector("#cover").style.backgroundImage = 'url(' + drawTiles(
+      {{ index .Params.color 0 | float }},
+      {{ index .Params.color 1 | float }}, 
+      {{ index .Params.color 2 | float }}
+    ) + ')';
   </script>
 {{ end }}
