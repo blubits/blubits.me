@@ -6,6 +6,7 @@
   {{ partial "content.html" . }}
 {{ end }}
 {{ define "js" }}
+  {{ with .Site.GetPage "section" "about" }}
   <script>
     document.querySelector("#cover").style.backgroundImage = 'url(' + drawTiles(
       {{ index .Params.color 0 | float }},
@@ -13,4 +14,5 @@
       {{ index .Params.color 2 | float }}
     ) + ')';
   </script>
+  {{ end }}
 {{ end }}
