@@ -1,8 +1,0 @@
-#!/bin/sh
-USER=maded
-HOST=blubits.me
-DIR=/home/maded/www  # might sometimes be empty!
-
-hugo && rsync -avz --delete public/ ${USER}@${HOST}:~/${DIR}
-
-exit 0

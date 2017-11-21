@@ -1,6 +1,9 @@
 # Hugo default output directory
 /public
 
+# Deploy script
+deploy
+
 ## OS Files
 # Windows
 Thumbs.db
