@@ -1,0 +1,11 @@
+{
+  "name": "blubits.me",
+  "version": "0.1.0",
+  "description": "Hugo-powered personal site for blubits",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maded Batara III (blubits)",
+  "license": "MIT"
+}
