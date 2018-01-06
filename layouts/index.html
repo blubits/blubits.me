@@ -1,47 +1,59 @@
-{{ define "main" }}
-<article class="mt5 mt6-l white space-mono">
+{{ define "css" }}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <header class="mh5 mh6-l mb5 white">
-    <h1 class="mb3 f1 f-subheadline-ns fw3 tracked-tight">Hi, I'm Maded!</h1>
-    <p class="ma0 f2 f1-ns measure lh-copy tracked-tight">
-      I <a href="about/" class="link dim white bb bw2 b--white tracked-tight i">build things for people</a>.
-    </p>
+  <style type="text/css">
+    body {
+      background: url("img/bg.jpg");
+      background-size: cover;
+      background-color: rgba(26, 35, 126, .90);
+      background-blend-mode: multiply;
+    }
+  </style>
+{{ end }}
+{{ define "main" }}
+<article class="mt5 pt4-ns sans-serif white-90">
+
+  <header class="ml5 ml6-l">
+    <img src="img/blubits-logo-white.svg" class="w3 h3">
   </header>
   
-  <section class="ma0 pv4 ph5 ph6-l bg-black-70">
+  <section class="ml5 ml6-l w-75">
+    <h1 class="inconsolata f2 f1-ns mb2">Hi! I'm <span class="light-blue">Maded</span>.</h1>
+    <p class="f5 f4-ns measure-narrow measure-ns lh-title mt3 mb2">I'm an eighteen-year old student, programmer, and writer.</p>
+    <p class="f5 f4-ns measure-narrow measure-ns lh-title mv2">Check out the stuff I do below.</p>
+  </section>
 
-    <p class="mt0 mb5 f4 f3-ns lh-double">
-      &#9193;
-      <a href="#" class="link dim white bb bw2 b--green tracked-tight">&#128188; work</a> &bull; 
-      <a href="#" class="link dim white bb bw2 b--silver tracked-tight">&#128300; lab</a> &bull; 
-      <a href="blog/" class="link dim white bb bw2 b--light-purple tracked-tight">&#128172; blog</a>
+  <section class="ml5 ml6-l mt4">
+    <ul class="list code-list pl4 mv2">
+      <li class="mv3 f3 inconsolata"><a href="about/" class="link white-90 bb bw1 pb1 b--light-blue hover-light-blue">&#128100; About me</a></li>
+      <li class="mv3 f3 inconsolata"><a href="#" class="link white-90 bb bw1 pb1 b--green hover-green">&#128188; Portfolio</a></li>
+      <li class="mv3 f3 inconsolata"><a href="#" class="link white-90 bb bw1 pb1 b--gold hover-gold">&#128230; Sandbox</a></li>
+      <li class="mv3 f3 inconsolata"><a href="blog/" class="link white-90 bb bw1 pb1 b--blue hover-blue">&#128172; Blog</a></li>
+    </ul>
+  </section>
+
+  <section class="ml5 ml6-l mt5 mb4 mb0-ns">
+    <p class="f6 lh-copy mv2 white-70 w-75 w-100-l">Connect with me here: <br class="dn-l">
+      <a href="mailto:maded@blubits.me" class="dib link f7 ml2 mv1 pv05 ph2 bg-white-90 black-90 ba br1 b--white-30 dim">
+        <i class="fa fa-envelope pr2"></i>Email
+      </a>
+      <a href="https://facebook.com/mnbatara3" class="dib link f7 ml2 mv1 pv05 ph2 bg-white-90 black-90 ba br1 b--white-30 dim">
+        <i class="fa fa-facebook-official pr2"></i>Facebook
+      </a>
+      <a href="https://twitter.com/blubits_" class="dib link f7 ml2 mv1 pv05 ph2 bg-white-90 black-90 ba br1 b--white-30 dim">
+        <i class="fa fa-twitter pr2"></i>Twitter
+      </a>
+      <a href="https://linkedin.com/in/mnbatara3" class="dib link f7 ml2 mv1 pv05 ph2 bg-white-90 black-90 ba br1 b--white-30 dim">
+        <i class="fa fa-linkedin pr2"></i>LinkedIn
+      </a>
+      <a href="https://github.com/blubits" class="dib link f7 ml2 mv1 pv05 ph2 bg-white-90 black-90 ba br1 b--white-30 dim">
+        <i class="fa fa-github pr2"></i>GitHub
+      </a>
     </p>
-
-    <p class="mv1 f6 lh-double white-80">
-      Want to talk? Send me an <a href="mailto:maded@blubits.me" class="link dim white-80 bb b--white-80">
-        e-mail</a>.
-    </p>
-
-    <p class="mt1 mb3 f6 lh-double white-80">
-      Or find me on
-      <a href="https://www.linkedin.com/in/mnbatara3/" class="link dim white-80 bb b--white-80">
-        LinkedIn</a>,
-      <a href="https://facebook.com/mnbatara3" class="link dim white-80 bb b--white-80">
-        Facebook</a>,
-      <a href="https://twitter.com/mnbatara3" class="link dim white-80 bb b--white-80">
-        Twitter</a>, or
-      <a href="https://github.com/blubits/" class="link dim white-80 bb b--white-80">
-        GitHub</a>. 
-    </p>
-
-    <p class="mv1 white-40 f7 lh-copy">&#128679; Site under construction. Check back in a few. &#128679;</p>
-    <p class="mv1 white-40 f7 lh-copy">Powered by <a href="https://hugo.io" class="link dim white-40 bb b--white-40">Hugo</a>.</p>
+    <p class="f6 lh-copy mv2 white-70">Photo credits: <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px;" href="https://unsplash.com/@jtkyber1?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Joey Kyber"><span style="display:inline-block;padding:2px 3px;"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white;" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px;">Joey Kyber</span></a></p>
+    <p class="f6 lh-copy mv2 white-70">Powered by <a href="https://gohugo.io" class="link white-70 underline dim">Hugo</a>.</p>
   </section>
 
 </article>
-{{ end }}
-{{ define "js" }}
-<script>
-  document.body.style.backgroundImage = 'url(' + drawTiles(235, 65.8, 29.8) + ')';
-</script>
 {{ end }}
