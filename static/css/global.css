@@ -2,10 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,500,500i,700');
 
-.rubik {
-    font-family: "rubik", sans-serif;
-}
-
 .inconsolata {
     font-family: "Inconsolata", monospace;
 }
@@ -14,13 +10,11 @@
     cursor: not-allowed;
 }
 
-.code-list li::before {
-    content: ">";
-    margin-right: 0.125em;
-    color: rgb(255, 255, 255, 0.4)
-}
-
 .pv05 {
     padding-top: 0.125rem;
     padding-bottom: 0.125rem;
+}
+
+.shadow-header {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .2);
 }
