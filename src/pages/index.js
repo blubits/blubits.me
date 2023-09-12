@@ -1,8 +1,6 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import ExtLink from '../components/extlink'
-import EmailLink from '../components/emaillink'
-
 
 const IndexPage = () => {
   return (
