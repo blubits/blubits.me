@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Header from './header.js'
+import Header from './header'
 
 const Layout = ({ pageTitle, children }) => {
   return (
