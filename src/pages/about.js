@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 
-const IndexPage = () => {
+const AboutPage = () => {
   return (
     <Layout>
       <p>This is a test paragraph</p>
@@ -14,9 +14,9 @@ export const Head = () => {
     <>
       <html lang="en" />
       <body className="bg-sky-950 text-white" />
-      <title>@blubits</title>
+      <title>About me | @blubits</title>
     </>
   )
 }
 
-export default IndexPage
+export default AboutPage
