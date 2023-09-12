@@ -13,7 +13,7 @@ export const Head = () => {
   return (
     <>
       <html lang="en" />
-      <body className="bg-sky-950 text-white" />
+      <body className="bg-sky-950 text-white font-sans" />
       <title>About me | @blubits</title>
     </>
   )

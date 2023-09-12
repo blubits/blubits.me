@@ -3,8 +3,8 @@ import Layout from '../components/layout'
 
 const IndexPage = () => {
   return (
-    <Layout>
-      <p>This is a test paragraph</p>
+    <Layout pageTitle={"Hi there!"}>
+      <p class="text-lg">I'm Maded, a developer, campaigner, and activist for digital rights and social justice.</p>
     </Layout>
   )
 }
