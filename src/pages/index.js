@@ -11,7 +11,7 @@ const IndexPage = () => {
       <p class="font-semibold mt-3 mb-2">Where am I right now?</p>
       <p>I'm with the <ExtLink to="https://cp-union.com">Computer Professionals' Union</ExtLink>, an organization of ICT professionals and advocates in the Philippines pushing for the use of technology for the benefit of the people. Digital rights or ICT4D advocate? <ExtLink to="mailto:maded@blubits.me">Come get in touch!</ExtLink></p>
       <p class="font-semibold mt-3 mb-2">Where can you follow me?</p>
-      <p>I'm most active on <ExtLink to="https://twitter.com/mnbatara3">Twitter</ExtLink> (but please don't DM me there, email me instead). I'm also on <ExtLink to="https://linkedin.com/in/mnbatara3">Twitter</ExtLink> and <ExtLink to="https://github.com/blubits">GitHub</ExtLink>.</p>
+      <p>I'm most active on <ExtLink to="https://twitter.com/mnbatara3">Twitter</ExtLink> (but please don't DM me there, email me instead). I'm also on <ExtLink to="https://linkedin.com/in/mnbatara3">LinkedIn</ExtLink> and <ExtLink to="https://github.com/blubits">GitHub</ExtLink>.</p>
       <p class="font-semibold mt-3 mb-2">How can you contact me?</p>
       <p><ExtLink to="mailto:hi@contact.blubits.me">Come say hi!</ExtLink></p>
     </Layout>
