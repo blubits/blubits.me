@@ -4,7 +4,8 @@
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.blubits.me`,
+    siteUrl: "https://www.blubits.me",
+    title: "@blubits"
   },
   plugins: [
     {
