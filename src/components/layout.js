@@ -3,7 +3,7 @@ import Header from './header'
 
 const Layout = ({ pageTitle, children }) => {
   return (
-    <div className="w-5/6 md:w-3/4 lg:w-1/2 mx-auto my-6 flex flex-col">
+    <div className="w-5/6 md:w-3/4 lg:w-1/2 mx-auto py-6 flex flex-col">
       <Header />
       <main>  
         <h1 className="text-4xl my-5 font-display font-semibold">{pageTitle}</h1>

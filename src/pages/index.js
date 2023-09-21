@@ -21,8 +21,8 @@ const IndexPage = () => {
 export const Head = () => {
   return (
     <>
-      <html lang="en" />
-      <body className="bg-sky-950 text-white" />
+      <html lang="en" className="bg-gradient-to-tr from-slate-950 to-sky-950 text-white h-screen" />
+      <body />
       <title>@blubits</title>
     </>
   )
