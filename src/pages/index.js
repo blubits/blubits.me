@@ -1,19 +1,27 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import ExtLink from '../components/extlink'
+import IndexCard from '../components/indexcard'
+import { MdPersonPinCircle, MdGridOn, MdEditSquare, MdContacts } from "react-icons/md";
 
 const IndexPage = () => {
   return (
     <Layout pageTitle={"Hi there!"}>
-      <p class="text-lg">I'm Maded, a developer, campaigner, and activist for digital rights and social justice.</p>
-      <p class="font-semibold mt-3 mb-2">What's going to be here?</p>
-      <p>I've moved my personal webpage from a hacky Notion page to one hosted on <ExtLink to="https://www.netlify.com/">Netlify</ExtLink> (finally!) and powered by <ExtLink to="https://www.gatsbyjs.com/">Gatsby</ExtLink>, <ExtLink to="https://react.dev/">React</ExtLink>, and <ExtLink to="https://tailwindcss.com/">Tailwind CSS</ExtLink> (as a way to learn the weeds of the JS-backed web development ecosystem). I'll add a "casual resume", list of projects, and maybe a blog here as we go along. This site is <ExtLink to="https://github.com/blubits/blubits.me">fully open source</ExtLink>, by the way.</p>
-      <p class="font-semibold mt-3 mb-2">Where am I right now?</p>
-      <p>I'm with the <ExtLink to="https://cp-union.com">Computer Professionals' Union</ExtLink>, an organization of ICT professionals and advocates in the Philippines pushing for the use of technology for the benefit of the people. Digital rights or ICT4D advocate? <ExtLink to="mailto:maded@blubits.me">Come get in touch!</ExtLink></p>
-      <p class="font-semibold mt-3 mb-2">Where can you follow me?</p>
-      <p>I'm most active on <ExtLink to="https://twitter.com/mnbatara3">Twitter</ExtLink> (but please don't DM me there, email me instead). I'm also on <ExtLink to="https://linkedin.com/in/mnbatara3">LinkedIn</ExtLink> and <ExtLink to="https://github.com/blubits">GitHub</ExtLink>.</p>
-      <p class="font-semibold mt-3 mb-2">How can you contact me?</p>
-      <p><ExtLink to="mailto:hi@contact.blubits.me">Come say hi!</ExtLink></p>
+      <p className="text-lg">I'm Maded, a developer, campaigner, and activist for digital rights and social justice.</p>
+      <div className="flex flex-wrap gap-4 place-content-center my-5">
+        <IndexCard title="About" description="More about me." background="bg-gradient-to-r from-gray-700 via-gray-900 to-black" text="text-white">
+          <MdPersonPinCircle size={32}></MdPersonPinCircle>
+        </IndexCard>
+        <IndexCard title="Projects" description="My work." background="bg-gradient-to-r from-green-200 via-green-300 to-blue-500" text="text-black">
+          <MdGridOn size={32}></MdGridOn>
+        </IndexCard>
+        <IndexCard title="Blog" description="Where I ramble." background="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900" text="text-white">
+          <MdEditSquare size={32}></MdEditSquare>
+        </IndexCard>
+        <IndexCard title="Contact" description="Find me online." background="bg-gradient-to-r from-emerald-500 to-lime-600" text="text-black">
+          <MdContacts size={32}></MdContacts>
+        </IndexCard>
+      </div>
     </Layout>
   )
 }
