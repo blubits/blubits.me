@@ -2,6 +2,7 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 
+// TODO: make theme-color dynamic
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.blubits.me",
@@ -22,8 +23,8 @@ module.exports = {
         name: `blubits.me`,
         short_name: `blubits.me`,
         start_url: `/`,
-        background_color: `#020617`,
-        theme_color: `#020617`,
+        background_color: `#f3f4f6`,
+        theme_color: `#f3f4f6`,
         display: `standalone`,
         icon: 'src/images/favicon-ty.png',
         icons: [
