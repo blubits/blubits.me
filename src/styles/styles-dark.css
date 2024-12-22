@@ -1,0 +1,3 @@
+a.extlink {
+    @apply text-amber-400 hover:text-amber-500 underline underline-offset-4;
+}

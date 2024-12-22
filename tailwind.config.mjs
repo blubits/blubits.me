@@ -5,7 +5,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+				sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
+				sanstight: ['Inter Tight Variable', ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},

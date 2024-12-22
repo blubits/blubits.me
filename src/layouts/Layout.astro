@@ -1,13 +1,25 @@
 ---
-import { string } from 'astro/zod';
-import '../styles/styles.css';
+import "../styles/styles.css";
+import "@fontsource-variable/inter-tight";
+import "@fontsource-variable/inter";
+import Logo from "../components/Logo.astro";
+import Navbar from "../components/Navbar.jsx";
 
 interface Props {
 	title: string;
 	background_color: string;
+	foreground_color: string;
+	logo_background_color: string;
+	logo_foreground_color: string;
 }
 
-const { title, background_color } = Astro.props;
+const {
+	title,
+	background_color = "bg-gradient-to-b from-white via-gray-50 to-gray-100",
+	foreground_color = "text-black",
+	logo_background_color = "bg-gray-200",
+	logo_foreground_color = "stroke-black",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -16,11 +28,35 @@ const { title, background_color } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class={background_color}>
+	<body
+		class:list={[
+			"h-screen w-10/12 lg:w-4/5 m-auto pt-14 md:pt-28",
+			background_color,
+			foreground_color,
+		]}
+	>
+		<Navbar client:load>
+			<Logo
+				class:list={[
+					"size-12 p-2", 
+					logo_background_color, logo_foreground_color,
+					"rounded-full hover:stroke-yellow-500 hover:bg-slate-700 hover:rounded-full"
+				]}
+			/>
+		</Navbar>
 		<slot />
+		<footer class="mt-12 mb-12">
+			<p class="text-xs">
+				&copy; 2024 @blubits. Powered by <a
+					href="https://astro.build/"
+					class="extlink">Astro</a
+				> and <a href="https://www.tailwindcss.com" class="extlink"
+					>Tailwind</a
+				>.
+			</p>
+		</footer>
 	</body>
 </html>

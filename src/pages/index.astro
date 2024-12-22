@@ -1,69 +1,68 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-import { Image } from "astro:assets";
-import Logo from "../components/Logo.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout
 	title="@blubits"
-	background_color="bg-gradient-to-r from-slate-900 to-slate-800"
+	background_color="bg-gradient-to-b from-white via-gray-50 to-gray-100"
 >
-	<main
-		class="w-11/12 lg:w-5/6 grid gap-12 grid-cols-1 lg:grid-cols-2 m-auto pt-28 text-white"
-	>
-		<section class="px-6 lg:px-0">
-			<a href="/">
-				<Logo
-					class="size-12 p-2 mb-8 stroke-white hover:stroke-yellow-500 hover:bg-slate-700 hover:rounded-full"
-				/>
-			</a>
-			<h1
-				class="text-6xl font-bold tracking-tight text-slate-200 leading-none"
-			>
-				Hi! I'm Maded.
-			</h1>
-			<p class="text-xl mt-8 leading-snug text-slate-200 max-w-prose">
-			</p>
-			<p class="text-xs mt-8">
-				&copy; 2024 @blubits. Powered by <a
-					href="https://astro.build/"
-					class="extlink">Astro</a
-				> and <a href="https://www.tailwindcss.com" class="extlink"
-					>Tailwind</a
-				>.
-			</p>
-			<p class="text-xs mt-2">
-				<a href="https://github.com/blubits/blubits.me" class="extlink"
-					>View on GitHub &rarr;</a
-				>
-			</p>
+	<main>
+		<h1
+			class="font-sanstight text-5xl md:text-6xl font-bold leading-none mb-8"
+		>
+			Hi! I'm Maded.
+		</h1>
+		<section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-12">
+			<Card
+				span="col-span-4 md:col-span-6 lg:col-span-8 md:row-span-2"
+				href="/tutoring"
+				background="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
+				text="text-white"
+				emoji="🎓"
+				emoji_size="text-5xl"
+				title="Get tutoring"
+				title_size="text-2xl"
+				description="Learn more about my tutorial services in mathematics and computer science."
+			/>
+			<Card
+				span="col-span-4 md:col-span-6 lg:col-span-4 md:row-span-1"
+				emoji="📓"
+				title="Subject notes"
+				description="My library of notes in various topics."
+				disabled
+			/>
+			<Card
+				span="col-span-2 md:col-span-3 lg:col-span-2 md:row-span-1"
+				emoji="💻"
+				title="Projects"
+				disabled
+			/>
+			<Card
+				span="col-span-2 md:col-span-3 lg:col-span-2 md:row-span-1"
+				background="bg-slate-200"
+				emoji="🦋"
+				title="Bluesky"
+			/>
 		</section>
-		<section>
-			<Card title="Ask for tutoring" href="tutoring/">
-				<p>
-					As a personal computer science and mathematics tutor, 
-					I break down complex topics in a way that's fit to you
-					and your learning style.
-					Learn more about my teaching methodology, what I teach, 
-					and how to reach out.
-				</p>
-			</Card>
-			<Card title="About" href="#" under_construction>
-				<p>
-					Learn more about me and my work.
-				</p>
-			</Card>
-			<Card title="Projects" href="#" under_construction>
-				<p>
-					Developer logs on some of my pet projects.
-				</p>
-			</Card>
-			<Card title="Blog" href="#" under_construction>
-				<p>
-					Random ramblings, thoughts, and ideas.
-				</p>
-			</Card>
+		<section class="text-sm mt-8 w-full md:w-auto md:mt-4 inline-flex flex-wrap gap-y-2 items-center space-x-2">
+			<p>Get in touch:</p>
+			<a href="mailto:hi@blubits.me" data-obfuscation="0" class="inline-flex items-center px-2 py-1 space-x-2 bg-blue-600 text-white font-medium text-sm rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none active:bg-blue-800 transition duration-300">
+				<Icon name="mdi:email" class="" />
+				<p>Email</p>
+			</a>
+			<a href="https://github.com/blubits/" class="inline-flex items-center px-2 py-1 space-x-2 bg-black text-white font-medium text-sm rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300">
+				<Icon name="mdi:github" class="" />
+				<p>GitHub</p>
+			</a>
+		</section>
+		<section class="text-sm mt-4 md:before:content-['•'] md:before:m-2 md:mt-4 inline-flex flex-wrap gap-y-2 items-center space-x-2">
+			<p>Source code on</p>
+			<a href="https://github.com/blubits/blubits.me" class="inline-flex items-center px-2 py-1 space-x-2 bg-black text-white font-medium text-sm rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300">
+				<Icon name="mdi:github" class="" />
+				<p>GitHub</p>
+			</a>
 		</section>
 	</main>
 </Layout>
