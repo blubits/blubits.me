@@ -2,16 +2,16 @@
 import Emoji from "astro-emoji";
 
 interface Props {
-	background: string;
-	text: string;
-	span: string;
-	emoji: string;
-	emoji_size: string;
-	title: string;
-	title_size: string;
-	description: string | undefined;
-	href: string | undefined;
-	disabled: boolean;
+	background?: string;
+	text?: string;
+	span?: string;
+	emoji?: string;
+	emoji_size?: string;
+	title?: string;
+	title_size?: string;
+	description?: string;
+	href?: string;
+	disabled?: boolean;
 }
 
 const {
@@ -22,7 +22,7 @@ const {
 	emoji_size = "text-3xl",
 	title = "Default title",
 	title_size = "text-xl",
-	description,
+	description = undefined,
 	href = undefined,
 	disabled = false
 } = Astro.props;
