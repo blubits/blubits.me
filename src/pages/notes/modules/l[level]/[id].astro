@@ -1,0 +1,90 @@
+---
+import { markdown } from "@astropub/md";
+import Layout from "@blubits/layouts/Layout.astro";
+import NotesPage from "@blubits/layouts/NotesPage.astro";
+import "@blubits/styles/styles-notes.css";
+import { Icon } from "astro-icon/components";
+import { getCollection, render } from "astro:content";
+import "katex/dist/katex.min.css";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("modules");
+  return posts.map((post) => ({
+    params: { level: post.data.id[0], id: post.data.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fullnames = {
+  oj: "Online Judge",
+};
+
+// TODO:
+// Figure out how to preparse Markdown, using remark/rehype plugins,
+// to filter out unneeded Obsidian stuff.
+---
+
+<Layout title={post.data.title}>
+  <NotesPage>
+    <main>
+      <section class="mb-8">
+        <div class="flex items-center gap-x-2 py-1 text-sm text-gray-400">
+          <p class="flex items-center gap-x-2">
+            <Icon name="material-symbols:book-2" />Module
+          </p>
+          <p>•</p>
+          <p
+            class="flex items-center rounded-sm bg-gray-500 bg-opacity-50 px-2 py-0.5 font-mono"
+          >
+            {post.data.id}
+          </p>
+        </div>
+        <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
+          {post.data.title}
+        </h2>
+      </section>
+
+      <section class="flex flex-col gap-16 lg:flex-row">
+        <div
+          class:list={[
+            "shrink-0 grow",
+            "prose prose-invert prose-p:text-white",
+            "prose-h1:text-xl prose-h1:font-bold",
+            "prose-a:text-lime-400 hover:prose-a:text-lime-500",
+            "prose-p:text-justify",
+            "[&>.footnotes]:text-sm",
+            "[&>.footnotes>h2]:text-md",
+            "prose-inline-code:rounded-sm prose-inline-code:bg-gray-500 prose-inline-code:bg-opacity-50 prose-inline-code:px-2 prose-inline-code:py-0.5",
+          ]}
+        >
+          <Content />
+        </div>
+        <div class="order-first shrink grow-0 lg:order-last">
+          <dl class="mt-4 flex flex-col gap-y-4 text-sm">
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">References</dt>
+              <dd>
+                {
+                  post.data.references.map((ref) => (
+                    <p class="">{markdown(ref)}</p>
+                  ))
+                }
+              </dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Module created</dt>
+              <dd>{post.data["date-created"].toISOString().split("T")[0]}</dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Last updated</dt>
+              <dd>{post.data["date-updated"].toISOString().split("T")[0]}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </main>
+  </NotesPage>
+</Layout>

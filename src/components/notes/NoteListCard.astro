@@ -1,0 +1,38 @@
+---
+import { markdown } from "@astropub/md";
+import NoteHorizontalDetailsContainer from "./NoteHorizontalDetailsContainer.astro";
+
+interface Props {
+    href?: string;
+    title?: string;
+    summary?: string;
+}
+
+const {
+    href,
+    title = "Default title",
+    summary
+} = Astro.props;
+---
+
+<a
+    href={href}
+    class:list={[
+        "group px-5 py-4 block",
+        "overflow-hidden rounded-lg",
+        "transition duration-100" ,
+        "hover:bg-white hover:text-gray-900"
+    ]}
+>
+    <NoteHorizontalDetailsContainer>
+        <slot name="details-top" />
+    </NoteHorizontalDetailsContainer>
+    <h3 class="text-lg font-semibold">{title}</h3>
+    <NoteHorizontalDetailsContainer>
+        <slot name="details-bottom" />
+    </NoteHorizontalDetailsContainer>
+    <div class="prose prose-p:text-white prose-p:text-sm group-hover:prose-p:text-gray-900 mt-2">
+        {markdown(summary)}
+    </div>
+</a>
+

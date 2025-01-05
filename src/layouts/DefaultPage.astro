@@ -1,0 +1,42 @@
+---
+import "@fontsource-variable/inter-tight";
+import "@fontsource-variable/inter";
+import Logo from "../components/Logo.astro";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+    background_color?: string;
+    foreground_color?: string;
+    logo_background_color?: string;
+    logo_foreground_color?: string;
+}
+
+const {
+    background_color = "bg-gradient-to-b from-white via-gray-50 to-gray-100",
+    foreground_color = "text-black",
+    logo_background_color = "bg-gray-200",
+    logo_foreground_color = "stroke-black",
+} = Astro.props;
+---
+
+<body
+    class:list={[
+        "w-10/12 lg:w-4/5 m-auto pt-14 md:pt-28 pb-14 bg-fixed",
+        background_color,
+        foreground_color,
+    ]}
+>
+    <Navbar client:load>
+        <Logo
+            class:list={[
+                "size-12 p-2",
+                logo_background_color,
+                logo_foreground_color,
+                "rounded-full hover:stroke-yellow-500 hover:bg-slate-700 hover:rounded-full",
+            ]}
+        />
+    </Navbar>
+    <slot />
+    <Footer />
+</body>

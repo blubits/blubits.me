@@ -1,0 +1,83 @@
+---
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import "katex/dist/katex.min.css";
+import InlineCode from "../components/InlineCode.astro";
+import NoteListCard from "../components/notes/NoteListCard.astro";
+import Layout from "../layouts/Layout.astro";
+import NotesPage from "../layouts/NotesPage.astro";
+import "../styles/styles-notes.css";
+
+const editorials = await getCollection("editorials");
+const modules = await getCollection("modules");
+
+const fullnames: { [key: string]: string } = {
+  oj: "Online Judge",
+};
+---
+
+<Layout title="Notes">
+  <NotesPage>
+    <main>
+      <section class="mt-8 grid grid-cols-4 gap-8 md:grid-cols-12">
+        <div class="col-span-4 md:col-span-6">
+          <h2 class="flex items-center gap-x-4 font-mono text-xl font-semibold">
+            <Icon
+              name="material-symbols:book-2"
+              class="text-2xl text-lime-400"
+            />Modules
+          </h2>
+          <div class="mt-4">
+            {
+              modules.map((post) => (
+                <NoteListCard
+                  href={`/notes/modules/l${post.data.id[0]}/${post.data.id}`}
+                  title={post.data.title}
+                  summary={post.data.summary}
+                >
+                  <Fragment slot="details-bottom">
+                    <InlineCode>{post.data.id}</InlineCode>
+                    <p>•</p>
+                    <p>
+                      {post.data["date-created"].toISOString().split("T")[0]}
+                    </p>
+                  </Fragment>
+                </NoteListCard>
+              ))
+            }
+          </div>
+        </div>
+        <div class="col-span-4 md:col-span-6">
+          <h2 class="flex items-center gap-x-4 font-mono text-xl font-semibold">
+            <Icon
+              name="mdi:graduation-cap"
+              class="text-2xl text-lime-400"
+            />Editorials
+          </h2>
+          <div class="mt-4">
+            {
+              editorials.map((post) => (
+                <NoteListCard
+                  href={`/notes/editorials/${post.data.platform}/${post.data.code}`}
+                  title={post.data.title}
+                  summary={post.data["problem-description"]}
+                >
+                  <Fragment slot="details-top">
+                    <p>{fullnames[post.data.platform]}</p>
+                    <p>•</p>
+                    <InlineCode>{post.data.code}</InlineCode>
+                  </Fragment>
+                  <Fragment slot="details-bottom">
+                    <p>
+                      {post.data["date-updated"].toISOString().split("T")[0]}
+                    </p>
+                  </Fragment>
+                </NoteListCard>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    </main>
+  </NotesPage>
+</Layout>

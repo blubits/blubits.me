@@ -1,0 +1,98 @@
+---
+import { markdown } from "@astropub/md";
+import NoteHorizontalDetailsContainer from "@blubits/components//notes/NoteHorizontalDetailsContainer.astro";
+import InlineCode from "@blubits/components/InlineCode.astro";
+import NoteBody from "@blubits/components/notes/NoteBody.astro";
+import Layout from "@blubits/layouts/Layout.astro";
+import NotesPage from "@blubits/layouts/NotesPage.astro";
+import "@blubits/styles/styles-notes.css";
+import { Icon } from "astro-icon/components";
+import { getCollection, render } from "astro:content";
+import "katex/dist/katex.min.css";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("editorials");
+  return posts.map((post) => ({
+    params: { platform: post.data.platform, code: post.data.code },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fullnames: { [key: string]: string } = {
+  oj: "Online Judge",
+};
+---
+
+<Layout title={post.data.title}>
+  <NotesPage>
+    <main>
+      <section class="mb-8">
+        <NoteHorizontalDetailsContainer>
+          <p class="flex items-center gap-x-2">
+            <Icon name="mdi:graduation-cap" />Editorial
+          </p>
+          <p>•</p>
+          <p class="flex items-center">{fullnames[post.data.platform]}</p>
+          <p>•</p>
+          <InlineCode>{post.data.code}</InlineCode>
+        </NoteHorizontalDetailsContainer>
+        <div class="flex items-center gap-x-2 py-1 text-sm text-gray-400"></div>
+        <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
+          {post.data.title}
+        </h2>
+      </section>
+
+      <section class="flex flex-col gap-16 lg:flex-row">
+        <NoteBody>
+          <Content />
+        </NoteBody>
+        <div class="order-first shrink grow-0 lg:order-last">
+          <a
+            class="flex items-center gap-x-2 text-lg text-lime-400 underline underline-offset-4 hover:text-lime-500"
+            href={post.data["problem-link"]}
+            >Problem link<Icon name="mdi:external-link" /></a
+          >
+          <dl class="mt-4 flex flex-col gap-y-4 text-sm">
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Description</dt>
+              <dd>{markdown(post.data["problem-description"])}</dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Solution</dt>
+              <dd>{markdown(post.data["solution-summary"])}</dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Running time</dt>
+              <dd>{markdown(post.data["running-time"])}</dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Tags</dt>
+              <dd>
+                <div class="flex flex-row flex-wrap items-start gap-1">
+                  {
+                    post.data.tags.map((tag) => (
+                      <p class="inline-block rounded-sm bg-gray-500 bg-opacity-50 px-2 py-0.5 font-mono text-xs">
+                        {tag}
+                      </p>
+                    ))
+                  }
+                </div>
+              </dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Module created</dt>
+              <dd>{post.data["date-created"].toISOString().split("T")[0]}</dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Last updated</dt>
+              <dd>{post.data["date-updated"].toISOString().split("T")[0]}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </main>
+  </NotesPage>
+</Layout>

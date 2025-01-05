@@ -33,7 +33,7 @@ const Navbar = (props) => {
             <nav className="flex items-center">
                 <ul className={`transition-all ease-in-out duration-300 overflow-hidden flex space-x-8 ${isOpen ? 'h-auto opacity-100' : 'h-0 opacity-0'} md:opacity-100 md:h-auto`}>
                     <li><a href="/tutoring">Tutoring</a></li>
-                    <li><a href="#">Notes</a></li>
+                    <li><a href="/notes">Notes</a></li>
                     <li><a href="#">Projects</a></li>
                 </ul>
             </nav>

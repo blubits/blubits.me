@@ -2,131 +2,154 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import "../styles/styles-dark.css";
+import DefaultPage from "../layouts/DefaultPage.astro";
 ---
 
-<Layout
-	title="@blubits"
-	background_color="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
-	foreground_color="text-white"
-	logo_background_color="bg-transparent"
-	logo_foreground_color="stroke-white"
->
-	<main>
-		<h1
-			class="font-sanstight text-5xl md:text-6xl font-bold leading-none mb-4"
-		>
-			Expert tutoring in mathematics and computer science.
-		</h1>
+<Layout title="Get tutorials">
+  <DefaultPage
+    background_color="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
+    foreground_color="text-white"
+    logo_background_color="bg-transparent"
+    logo_foreground_color="stroke-white"
+  >
+    <main>
+      <h1
+        class="font-sanstight text-5xl md:text-6xl font-bold leading-none mb-4"
+      >
+        Expert tutoring in mathematics and computer science.
+      </h1>
 
-		<section class="mb-16 text-xl flex gap-x-4 items-center">
-			<p>Need help now?</p>
-			<a href="mailto:tutoring@contact.blubits.me" data-obfuscation="0" class="inline-flex items-center px-4 py-2 space-x-2 shadow-md bg-amber-500 text-black font-medium text-xl rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300">
-				<p>Send an email</p>
-			</a>
-			<p>or</p>
-			<a href="https://www.teacheron.com/tutor/67qr" class="inline-flex items-center px-4 py-2 space-x-2 shadow-md bg-green-600 text-white font-medium text-xl rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300">
-				<p>Go to TeacherOn</p>
-			</a>
-		</section>
+      <section
+        class="mb-16 text-xl flex flex-col sm:flex-col md:flex-row gap-y-4 md:gap-x-4 md:items-center"
+      >
+        <div>
+          <p class="text-2xl md:text-xl">Need help now?</p>
+        </div>
+        <div class="flex gap-x-4 items-center">
+          <a
+            href="mailto:tutoring@contact.blubits.me"
+            data-obfuscation="0"
+            class="inline-flex items-center px-4 py-2 space-x-2 shadow-md bg-amber-500 text-black font-medium text-xl rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          >
+            <p>Send an email</p>
+          </a>
+          <p>or</p>
+          <a
+            href="https://www.teacheron.com/tutor/67qr"
+            class="inline-flex items-center px-4 py-2 space-x-2 shadow-md bg-green-600 text-white font-medium text-xl rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          >
+            <p>Go to TeacherOn</p>
+          </a>
+        </div>
+      </section>
 
-		<section class="grid gap-4 grid-cols-4 md:grid-cols-12">
-			<div class="col-span-4 md:col-span-5 max-w-prose">
-				<h2 class="text-2xl font-semibold mb-2">
-					Teaching that works.
-				</h2>
-				<p class="leading-normal max-w-prose">
-					When you get me as a tutor, you get results. My students
-					have gone on to pass and excel in their exams, succeed in
-					their classes, and even win competitions. We'll work
-					together to achieve the results you want.
-				</p>
-			</div>
-			<div class="col-span-4 md:col-span-5 md:col-end-12 max-w-prose">
-				<h2 class="text-2xl font-semibold mb-2">Tailored for you.</h2>
-				<p class="leading-normal max-w-prose">
-					My teaching style fits your needs and learning style. I
-					focus on breaking down topics into concepts that you
-					understand. I emphasize practice and application so you see
-					the big picture. And we'll go at a pace that you're
-					comfortable with.
-				</p>
-			</div>
-		</section>
+      <section class="grid gap-4 grid-cols-4 md:grid-cols-12">
+        <div class="col-span-4 md:col-span-5 max-w-prose">
+          <h2 class="text-2xl font-semibold mb-2">Teaching that works.</h2>
+          <p class="leading-normal max-w-prose">
+            When you get me as a tutor, you get results. My students have gone
+            on to pass and excel in their exams, succeed in their classes, and
+            even win competitions. We'll work together to achieve the results
+            you want.
+          </p>
+        </div>
+        <div class="col-span-4 md:col-span-5 md:col-end-12 max-w-prose">
+          <h2 class="text-2xl font-semibold mb-2">Tailored for you.</h2>
+          <p class="leading-normal max-w-prose">
+            My teaching style fits your needs and learning style. I focus on
+            breaking down topics into concepts that you understand. I emphasize
+            practice and application so you see the big picture. And we'll go at
+            a pace that you're comfortable with.
+          </p>
+        </div>
+      </section>
 
-		<section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-16">
-			<div class="col-span-4 md:col-span-12 max-w-prose">
-				<h2 class="text-4xl font-semibold mb-2">What I tutor</h2>
-			</div>
-			<Card
-				span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-				emoji="💻"
-				title="Programming"
-				description="Basic to advanced programming in Python, C++, SQL, HTML, CSS, JavaScript, and more."
-			/>
-			<Card
-				span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-2"
-				emoji="🏃"
-				title="Competitive programming"
-				description="Algorithmic thinking; data structures; problem-solving paradigms and strategies; graph theory; mathematics for computer science. From basic to intermediate levels."
-			/>
-			<Card
-				span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-				emoji="📈"
-				title="Calculus"
-				description="Limits; derivatives; integrals; sequences and series; parametric and polar calculus; vector calculus; multivariate calculus."
-			/>
-			<Card
-				span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
-				emoji="🧮"
-				title="Algorithms and data structures"
-				description="Sorting and searching; recursion; linked lists; trees; graph theory; dynamic programming; greedy algorithms; and more."
-			/>
-			<Card
-				span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
-				emoji="📊"
-				title="Statistics and data science"
-				description="Statistics; probability; machine learning; Python and Pandas; SQL; data visualization; and more."
-			/>
-			<Card
-				span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
-				emoji="⚙️"
-				title="Computer systems"
-				description="From NAND to Tetris. Logic gates and digital logic design; computer architecture and memory; operating systems; computer networks."
-			/>
-			<Card
-				span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-				emoji="📔"
-				title="IGSCE, IB, & AP Computer Science"
-				description="Let's pass your final papers and exams and develop your capstone projects together."
-			/>
-			<Card
-				span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-				emoji="👷"
-				title="Project execution"
-				description="Have a project you're struggling with? I can help you unblock."
-			/>
-		</section>
+      <section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-16">
+        <div class="col-span-4 md:col-span-12 max-w-prose">
+          <h2 class="text-4xl font-semibold mb-2">What I tutor</h2>
+        </div>
+        <Card
+          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
+          emoji="💻"
+          title="Programming"
+          description="Basic to advanced programming in Python, C++, SQL, HTML, CSS, JavaScript, and more."
+        />
+        <Card
+          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-2"
+          emoji="🏃"
+          title="Competitive programming"
+          description="Algorithmic thinking; data structures; problem-solving paradigms and strategies; graph theory; mathematics for computer science. From basic to intermediate levels."
+        />
+        <Card
+          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
+          emoji="📈"
+          title="Calculus"
+          description="Limits; derivatives; integrals; sequences and series; parametric and polar calculus; vector calculus; multivariate calculus."
+        />
+        <Card
+          span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
+          emoji="🧮"
+          title="Algorithms and data structures"
+          description="Sorting and searching; recursion; linked lists; trees; graph theory; dynamic programming; greedy algorithms; and more."
+        />
+        <Card
+          span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
+          emoji="📊"
+          title="Statistics and data science"
+          description="Statistics; probability; machine learning; Python and Pandas; SQL; data visualization; and more."
+        />
+        <Card
+          span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
+          emoji="⚙️"
+          title="Computer systems"
+          description="From NAND to Tetris. Logic gates and digital logic design; computer architecture and memory; operating systems; computer networks."
+        />
+        <Card
+          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
+          emoji="📔"
+          title="IGSCE, IB, & AP Computer Science"
+          description="Let's pass your final papers and exams and develop your capstone projects together."
+        />
+        <Card
+          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
+          emoji="👷"
+          title="Project execution"
+          description="Have a project you're struggling with? I can help you unblock."
+        />
+      </section>
 
-		<section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-16">
-			<h2 class="text-4xl font-semibold mb-2 col-span-4 md:col-span-12">Ready to succeed?</h2>
-			<p class="text-lg col-span-4 md:col-span-12">Ask me for help by emailing me using the links below, or directly email me at <span data-obfuscation="0" class="inline-block px-2 py-1 border border-gray-400 rounded-lg font-mono bg-gray-300 text-black">tutoring@login.blubits.me</span>.</p>
-			<Card
-				span="col-span-2 md:col-span-6 lg:col-span-6 md:row-span-1"
-				emoji="💬"
-				title="I need a one-on-one session"
-				background="bg-gradient-to-tr from-orange-600 via-orange-500 to-orange-400"
-				text="text-white"
-				href="mailto:tutoring@contact.blubits.me?subject=Request%20for%20one-on-one%20tutorial%20session&body=Purpose%20of%20tutoring%20(school%2Fwork%2Fetc.)%3A%20%5BInsert%20here%5D%0ASubject%3A%20%5BInsert%20here%5D%0ATopic(s)%3A%20%5BInsert%20here%5D%0A%20%0AWhere%20are%20you%20struggling%3F%20Indicate%20your%20experience%20with%20your%20professor%2C%20what%20aspects%20of%20the%20course%20you're%20struggling%20with%2C%20and%20whether%20or%20not%20you%20have%20upcoming%20exams.%0A%5BInsert%20here%5D%0A%0AWhen%20are%20your%20typical%20free%20times%3F%0A%5BInsert%20here%5D"
-			/>
-			<Card
-				span="col-span-2 md:col-span-6 lg:col-span-6 md:row-span-1"
-				emoji="📘"
-				title="I need homework or project help"
-				background="bg-gradient-to-tr from-green-600 via-green-500 to-green-400"
-				text="text-white"
-				href="mailto:tutoring@contact.blubits.me?subject=Request%20for%20project%20help&body=Purpose%20of%20tutoring%20(school%2Fwork%2Fetc.)%3A%20%5BInsert%20here%5D%0ASubject%3A%20%5BInsert%20here%5D%0A%20%0AWhere%20are%20you%20struggling%3F%20Describe%20the%20project%20or%20homework%20you%20need%20help%20with%20and%20what%20you're%20having%20difficulties%20with.%20Attach%20the%20project%20specifications%20in%20this%20email.%0A%5BInsert%20here%5D%0A%0AWhen%20are%20your%20typical%20free%20times%3F%0A%5BInsert%20here%5D"
-			/>
-			<p class="text-md col-span-4 md:col-span-12">Emails will open in your default email client on desktop or mobile.</p>
-		</section>
-	</main>
+      <section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-16">
+        <h2 class="text-4xl font-semibold mb-2 col-span-4 md:col-span-12">
+          Ready to succeed?
+        </h2>
+        <p class="text-lg col-span-4 md:col-span-12">
+          Ask me for help by emailing me using the links below, or directly
+          email me at <span
+            data-obfuscation="0"
+            class="inline-block px-2 py-1 border border-gray-400 rounded-lg font-mono bg-gray-300 text-black"
+            >tutoring@login.blubits.me</span
+          >.
+        </p>
+        <Card
+          span="col-span-2 md:col-span-6 lg:col-span-6 md:row-span-1"
+          emoji="💬"
+          title="I need a one-on-one session"
+          background="bg-gradient-to-tr from-orange-600 via-orange-500 to-orange-400"
+          text="text-white"
+          href="mailto:tutoring@contact.blubits.me?subject=Request%20for%20one-on-one%20tutorial%20session&body=Purpose%20of%20tutoring%20(school%2Fwork%2Fetc.)%3A%20%5BInsert%20here%5D%0ASubject%3A%20%5BInsert%20here%5D%0ATopic(s)%3A%20%5BInsert%20here%5D%0A%20%0AWhere%20are%20you%20struggling%3F%20Indicate%20your%20experience%20with%20your%20professor%2C%20what%20aspects%20of%20the%20course%20you're%20struggling%20with%2C%20and%20whether%20or%20not%20you%20have%20upcoming%20exams.%0A%5BInsert%20here%5D%0A%0AWhen%20are%20your%20typical%20free%20times%3F%0A%5BInsert%20here%5D"
+        />
+        <Card
+          span="col-span-2 md:col-span-6 lg:col-span-6 md:row-span-1"
+          emoji="📘"
+          title="I need homework or project help"
+          background="bg-gradient-to-tr from-green-600 via-green-500 to-green-400"
+          text="text-white"
+          href="mailto:tutoring@contact.blubits.me?subject=Request%20for%20project%20help&body=Purpose%20of%20tutoring%20(school%2Fwork%2Fetc.)%3A%20%5BInsert%20here%5D%0ASubject%3A%20%5BInsert%20here%5D%0A%20%0AWhere%20are%20you%20struggling%3F%20Describe%20the%20project%20or%20homework%20you%20need%20help%20with%20and%20what%20you're%20having%20difficulties%20with.%20Attach%20the%20project%20specifications%20in%20this%20email.%0A%5BInsert%20here%5D%0A%0AWhen%20are%20your%20typical%20free%20times%3F%0A%5BInsert%20here%5D"
+        />
+        <p class="text-md col-span-4 md:col-span-12">
+          Emails will open in your default email client on desktop or mobile.
+        </p>
+      </section>
+    </main>
+  </DefaultPage>
 </Layout>
