@@ -7,7 +7,7 @@
     "paths": {
       "@blubits/components/*": ["src/components/*"],
       "@blubits/layouts/*": ["src/layouts/*"],
-      "@blubits/styles/*": ["src/layouts/*"]
+      "@blubits/styles/*": ["src/styles/*"]
     }
   }, 
 }

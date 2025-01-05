@@ -32,7 +32,7 @@ const {
         <slot name="details-bottom" />
     </NoteHorizontalDetailsContainer>
     <div class="prose prose-p:text-white prose-p:text-sm group-hover:prose-p:text-gray-900 mt-2">
-        {markdown(summary)}
+        {summary && markdown(summary)}
     </div>
 </a>
 
