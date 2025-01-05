@@ -1,47 +1,45 @@
 ---
-import "../styles/styles-notes.css";
-import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/inter";
-import Logo from "../components/Logo.astro";
-import Navbar from "../components/Navbar.jsx";
+import "@fontsource-variable/inter-tight";
+import "../styles/styles-notes.css";
 import DefaultPage from "./DefaultPage.astro";
 
 interface Props {
-    background_color?: string;
-    foreground_color?: string;
-    logo_background_color?: string;
-    logo_foreground_color?: string;
+  background_color?: string;
+  foreground_color?: string;
+  logo_background_color?: string;
+  logo_foreground_color?: string;
 }
 
 const {
-    background_color = "bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700",
-    foreground_color = "text-white",
-    logo_background_color = "bg-transparent",
-    logo_foreground_color = "stroke-white",
+  background_color = "bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700",
+  foreground_color = "text-white",
+  logo_background_color = "bg-transparent",
+  logo_foreground_color = "stroke-white",
 } = Astro.props;
 ---
 
 <DefaultPage
-    background_color={background_color}
-    foreground_color={foreground_color}
-    logo_background_color={logo_background_color}
-    logo_foreground_color={logo_foreground_color}
+  background_color={background_color}
+  foreground_color={foreground_color}
+  logo_background_color={logo_background_color}
+  logo_foreground_color={logo_foreground_color}
 >
-    <section>
-        <h1
-        class="font-mono text-3xl md:text-4xl font-bold leading-none tracking-tighter mb-4"
-        >
-        Notes for <span class="text-lime-400">competitive programming</span>
-        </h1>
+  <section>
+    <h1
+      class="mb-4 font-mono text-3xl font-bold leading-none tracking-tighter md:text-4xl"
+    >
+      Notes for <span class="text-lime-400">competitive programming</span>
+    </h1>
 
-        <ul class="flex items-center gap-8 font-mono">
-        <li class="bg-lime-400 text-gray-900 py-0.5 px-2 rounded">Home</li>
-        <li>Curriculum</li>
-        <li>All modules</li>
-        <li>All editorials</li>
-        </ul>
+    <ul class="flex flex-wrap items-center gap-x-8 gap-y-2 font-mono">
+      <li class="flex-shrink-0 rounded bg-lime-400 px-2 py-0.5 text-gray-900">Home</li>
+      <li class="flex-shrink-0">Curriculum</li>
+      <li class="flex-shrink-0">All modules</li>
+      <li class="flex-shrink-0">All editorials</li>
+    </ul>
 
-        <div class="my-8 border-t border-gray-600"></div>
-    </section>
-    <slot />
+    <div class="my-8 border-t border-gray-600"></div>
+  </section>
+  <slot />
 </DefaultPage>
