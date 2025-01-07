@@ -11,7 +11,6 @@ interface Props {
 	title_size?: string;
 	description?: string;
 	href?: string;
-	disabled?: boolean;
 }
 
 const {
@@ -24,7 +23,6 @@ const {
 	title_size = "text-xl",
 	description = undefined,
 	href = undefined,
-	disabled = false
 } = Astro.props;
 ---
 
@@ -33,12 +31,11 @@ const {
 		"group block px-6 py-6 rounded-lg transition duration-300 hover:z-50",
 		background,
 		span,
-		disabled ? "cursor-not-allowed opacity-50 -z-50" : "hover:scale-105 hover:shadow-xl",
-		"active:bg-transparent"
+		!href ? "cursor-not-allowed opacity-50 -z-50" : "hover:scale-105 hover:shadow-xl",
 	]}
-	href={disabled ? undefined : href}
+	href={!href ? undefined : href}
 	data-obfuscation="0"
-	aria-disabled={disabled}
+	aria-disabled={!href}
 >
 	<div class="flex flex-col h-full gap-4">
 		<div class="grow">

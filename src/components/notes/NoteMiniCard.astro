@@ -1,0 +1,42 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  href?: string;
+  code?: string;
+  title?: string;
+  icon?: string;
+  background?: string;
+}
+
+const {
+  href,
+  code = "xx.xx",
+  title = "Sample",
+  icon = "material-symbols:book",
+  background = "bg-gray-100"
+} = Astro.props;
+---
+
+<a
+  class:list={[
+    "group block rounded-lg",
+    "px-4 py-4",
+    "text-white",
+    background, "bg-opacity-20",
+    "transition duration-300",
+    !href ? "cursor-not-allowed opacity-50 -z-50" : "hover:z-50 hover:scale-105 hover:shadow-xl",
+    "hover:bg-opacity-100 hover:text-black",
+    "col-span-2",
+
+  ]}
+  href={href}
+  aria-disabled={!href}
+>
+  <div class="flex items-center gap-x-2 pb-2">
+    <Icon name={icon} class="text-xl" />
+    <code class="rounded-sm text-xs">{code}</code>
+  </div>
+
+  <h2 class="text-md font-bold ">{title}</h2>
+</a>

@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import "katex/dist/katex.min.css";
 import InlineCode from "../components/InlineCode.astro";
 import NoteListCard from "../components/notes/NoteListCard.astro";
+import NoteMiniCard from "../components/notes/NoteMiniCard.astro";
 import Layout from "../layouts/Layout.astro";
 import NotesPage from "../layouts/NotesPage.astro";
 import "../styles/styles-notes.css";
@@ -19,6 +20,68 @@ const fullnames: { [key: string]: string } = {
 <Layout title="Notes">
   <NotesPage>
     <main>
+      <section class="mt-8 grid grid-cols-4 gap-x-8 gap-y-6 md:grid-cols-12">
+        <h2
+          class="col-span-4 font-mono text-2xl font-semibold tracking-tight md:col-span-12"
+        >
+          Competitive programming, from start to finish.
+        </h2>
+        <div class="col-span-4 md:col-span-6">
+          <p class="text-md leading-relaxed">
+            I've always found existing competitive programming material either
+            too dense and jargony, or uncomprehensive. My goal is to create a
+            personal resource of easy-to-follow modules that encompass the
+            breadth of competitive programming. I'm far from finishing these
+            sets, but I hope you find some of these modules useful.
+          </p>
+        </div>
+        <div class="col-span-4 space-y-4 md:col-span-6">
+          <div class="space-y-2">
+            <p class="text-sm font-bold uppercase tracking-wide">
+              Intro modules
+            </p>
+            <div class="grid grid-cols-4 gap-4">
+              <NoteMiniCard background="bg-blue-200" code="01.xx" title="Fundamentals" />
+              <NoteMiniCard background="bg-blue-200" code="02.xx" title="C++"/>
+              <NoteMiniCard background="bg-blue-200" code="03.xx" title="Data structures"/>
+              <NoteMiniCard background="bg-blue-200" code="03.xx" title="Math"/>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-bold uppercase tracking-wide">
+              Basic modules
+            </p>
+            <div class="grid grid-cols-4 gap-4">
+              <NoteMiniCard background="bg-green-200" code="11.xx" title="Data structures"/>
+              <NoteMiniCard background="bg-green-200" code="12.xx" title="Paradigms"/>
+              <NoteMiniCard background="bg-green-200" code="13.xx" title="Graph theory"/>
+              <NoteMiniCard background="bg-green-200" code="14.xx" title="Mathematics"/>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-bold uppercase tracking-wide">
+              Intermediate modules
+            </p>
+            <div class="grid grid-cols-4 gap-4">
+              <NoteMiniCard background="bg-yellow-200" code="21.xx" title="Data structures"/>
+              <NoteMiniCard background="bg-yellow-200" code="22.xx" title="Paradigms"/>
+              <NoteMiniCard background="bg-yellow-200" code="23.xx" title="Graph theory"/>
+              <NoteMiniCard background="bg-yellow-200" code="24.xx" title="Mathematics"/>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-bold uppercase tracking-wide">
+              Advanced modules
+            </p>
+            <div class="grid grid-cols-4 gap-4">
+              <NoteMiniCard background="bg-red-200" code="31.xx" title="Data structures"/>
+              <NoteMiniCard background="bg-red-200" code="32.xx" title="Paradigms"/>
+              <NoteMiniCard background="bg-red-200" code="33.xx" title="Graph theory"/>
+              <NoteMiniCard background="bg-red-200" code="34.xx" title="Mathematics"/>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="mt-8 grid grid-cols-4 gap-8 md:grid-cols-12">
         <div class="col-span-4 md:col-span-6">
           <h2 class="flex items-center gap-x-4 font-mono text-xl font-semibold">
@@ -29,7 +92,7 @@ const fullnames: { [key: string]: string } = {
           </h2>
           <div class="mt-4">
             {
-              modules.map((post) => (
+              modules.map((post: any) => (
                 <NoteListCard
                   href={`/notes/modules/l${post.data.id[0]}/${post.data.id}`}
                   title={post.data.title}
@@ -56,7 +119,7 @@ const fullnames: { [key: string]: string } = {
           </h2>
           <div class="mt-4">
             {
-              editorials.map((post) => (
+              editorials.map((post: any) => (
                 <NoteListCard
                   href={`/notes/editorials/${post.data.platform}/${post.data.code}`}
                   title={post.data.title}
