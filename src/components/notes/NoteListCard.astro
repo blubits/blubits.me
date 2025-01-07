@@ -17,11 +17,14 @@ const {
 
 <a
     href={href}
+    ontouchstart=""
     class:list={[
         "group px-5 py-4 block",
         "overflow-hidden rounded-lg",
-        "transition duration-100" ,
-        "hover:bg-white hover:text-gray-900"
+        "transition duration-100",
+        "bg-transparent",
+        "hover:bg-white hover:text-gray-900",
+        "active:bg-white active:text-gray-900"
     ]}
 >
     <NoteHorizontalDetailsContainer>
