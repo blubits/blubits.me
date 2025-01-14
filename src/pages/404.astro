@@ -1,0 +1,25 @@
+---
+import InlineCode from "@blubits/components/InlineCode.astro";
+import DefaultPage from "@blubits/layouts/DefaultPage.astro";
+import Layout from "@blubits/layouts/Layout.astro";
+import "@blubits/styles/styles.css";
+---
+
+<Layout>
+  <DefaultPage
+    background_color="bg-gradient-to-b from-red-100 via-red-50 to-gray-100"
+    foreground_color="text-gray-900"
+    logo_background_color="bg-transparent"
+    logo_foreground_color="stroke-gray-900"
+  >
+    <div class="flex flex-col items-center justify-center gap-y-4">
+      <img
+        src="/404.svg"
+        class="h-64 w-64"
+        alt="Sad version of blubits.me logo"
+      />
+      <h1 class="text-4xl font-bold">Page not found</h1>
+      <p>HTTP error code: <InlineCode>404</InlineCode></p>
+    </div>
+  </DefaultPage>
+</Layout>

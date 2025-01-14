@@ -1,8 +1,8 @@
 ---
-import "../styles/styles.css"
-import Layout from "../layouts/Layout.astro";
-import DefaultPage from "../layouts/DefaultPage.astro";
-import Card from "../components/Card.astro";
+import Card from "@blubits/components/Card.astro";
+import DefaultPage from "@blubits/layouts/DefaultPage.astro";
+import Layout from "@blubits/layouts/Layout.astro";
+import "@blubits/styles/styles.css";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -12,11 +12,11 @@ import { Icon } from "astro-icon/components";
   >
     <main>
       <h1
-        class="font-sanstight text-5xl md:text-6xl font-bold leading-none mb-8"
+        class="mb-8 font-sanstight text-5xl font-bold leading-none md:text-6xl"
       >
         Hi! I'm Maded.
       </h1>
-      <section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-12">
+      <section class="mt-12 grid grid-cols-4 gap-4 md:grid-cols-12">
         <Card
           span="col-span-4 md:col-span-6 lg:col-span-8 md:row-span-2"
           href="/tutoring"
@@ -34,7 +34,8 @@ import { Icon } from "astro-icon/components";
           title="cProg notes"
           description="Notes on algorithms, data structures, and more for competitive programming."
           href="/notes"
-          background="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700",
+          background="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700"
+          ,
           text="text-white"
         />
         <Card
@@ -50,32 +51,32 @@ import { Icon } from "astro-icon/components";
         />
       </section>
       <section
-        class="text-sm mt-8 w-full md:w-auto md:mt-4 inline-flex flex-wrap gap-y-2 items-center space-x-2"
+        class="mt-8 inline-flex w-full flex-wrap items-center gap-y-2 space-x-2 text-sm md:mt-4 md:w-auto"
       >
         <p>Get in touch:</p>
         <a
           href="mailto:hi@blubits.me"
           data-obfuscation="0"
-          class="inline-flex items-center px-2 py-1 space-x-2 bg-blue-600 text-white font-medium text-sm rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none active:bg-blue-800 transition duration-300"
+          class="inline-flex items-center space-x-2 rounded-lg bg-blue-600 px-2 py-1 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 active:bg-blue-800"
         >
           <Icon name="mdi:email" class="" />
           <p>Email</p>
         </a>
         <a
           href="https://github.com/blubits/"
-          class="inline-flex items-center px-2 py-1 space-x-2 bg-black text-white font-medium text-sm rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          class="inline-flex items-center space-x-2 rounded-lg bg-black px-2 py-1 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <Icon name="mdi:github" class="" />
           <p>GitHub</p>
         </a>
       </section>
       <section
-        class="text-sm mt-4 md:before:content-['•'] md:before:m-2 md:mt-4 inline-flex flex-wrap gap-y-2 items-center space-x-2"
+        class="mt-4 inline-flex flex-wrap items-center gap-y-2 space-x-2 text-sm md:mt-4 md:before:m-2 md:before:content-['•']"
       >
         <p>Source code on</p>
         <a
           href="https://github.com/blubits/blubits.me"
-          class="inline-flex items-center px-2 py-1 space-x-2 bg-black text-white font-medium text-sm rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          class="inline-flex items-center space-x-2 rounded-lg bg-black px-2 py-1 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <Icon name="mdi:github" class="" />
           <p>GitHub</p>

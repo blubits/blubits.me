@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+
+let path = Astro.url.pathname.split("/");
+path = path.slice(2, path.length);
+let base_path = "/notes";
+---
+
+<nav class:list={["my-8 flex", path.length == 0 ? "text-md" : "text-sm"]}>
+  {
+    path.length != 0 && (
+      <ol class="inline-flex items-center space-x-1 md:space-x-2">
+        <li>
+          <a href="/notes" class="inline-flex items-center">
+            <Icon name="mdi:book-open-variant" class="mr-2" />
+            Notes
+          </a>
+        </li>
+        {path.map((item) => {
+          base_path += "/" + item;
+          return (
+            <li class="inline-flex items-center text-sm">
+              <Icon name="mdi:chevron-right" class="mr-2" />
+              <a href={base_path}>{item}</a>
+            </li>
+          );
+        })}
+      </ol>
+    )
+  }
+  {
+    path.length === 0 && (
+      <div class="flex items-center space-x-1 md:space-x-2">
+        <Icon name="mdi:book-open-variant" />
+        <p>Go to:</p>
+        <a href="/notes/about" class="extlink">
+          Methodology
+        </a>
+        <p>•</p>
+        <a href="/notes/modules" class="extlink">
+          Curriculum
+        </a>
+        <p>•</p>
+        <a href="/notes/modules" class="extlink">
+          All editorials
+        </a>
+      </div>
+    )
+  }
+</nav>

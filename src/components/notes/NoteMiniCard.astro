@@ -14,7 +14,7 @@ const {
   code = "xx.xx",
   title = "Sample",
   icon = "material-symbols:book",
-  background = "bg-gray-100"
+  background = "bg-gray-100",
 } = Astro.props;
 ---
 
@@ -23,20 +23,25 @@ const {
     "group block rounded-lg",
     "px-4 py-4",
     "text-white",
-    background, "bg-opacity-20",
-    "transition duration-300",
-    !href ? "cursor-not-allowed opacity-50 -z-50" : "hover:z-50 hover:scale-105 hover:shadow-xl",
+    background,
+    "bg-opacity-20",
+    "transition-transform duration-300",
+    !href
+      ? "-z-50 cursor-not-allowed opacity-50"
+      : "hover:z-50 hover:scale-105 hover:shadow-xl",
     "hover:bg-opacity-100 hover:text-black",
     "col-span-2",
-
   ]}
   href={href}
   aria-disabled={!href}
 >
   <div class="flex items-center gap-x-2 pb-2">
     <Icon name={icon} class="text-xl" />
-    <code class="rounded-sm text-xs">{code}</code>
+    <code
+      class="rounded-sm border border-transparent bg-gray-100 bg-opacity-20 px-1 py-0.5 text-xs group-hover:border-gray-400 group-hover:bg-gray-300 group-hover:bg-opacity-100"
+      >{code}</code
+    >
   </div>
 
-  <h2 class="text-md font-bold ">{title}</h2>
+  <h2 class="text-md font-bold">{title}</h2>
 </a>

@@ -1,8 +1,9 @@
 ---
+import NotesNavbar from "@blubits/components/NotesNavbar.astro";
+import "@blubits/styles/styles-notes.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
-import "../styles/styles-notes.css";
 import DefaultPage from "./DefaultPage.astro";
 
 interface Props {
@@ -27,12 +28,14 @@ const {
   logo_foreground_color={logo_foreground_color}
 >
   <section>
-    <h1
-      class="mb-4 font-mono text-3xl font-bold leading-none tracking-tighter md:text-4xl"
-    >
-      Notes for <span class="text-lime-400">competitive programming</span>
+    <h1 class="mb-4 font-sanstight text-3xl font-bold leading-none md:text-4xl">
+      Notes for <span
+        class="mx-2 rounded-md bg-lime-600 px-4 py-2 font-mono text-gray-900"
+        >competitive programming</span
+      >
     </h1>
-    
+    <NotesNavbar />
+
     <div class="my-8 border-t border-gray-600"></div>
   </section>
   <slot />

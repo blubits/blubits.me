@@ -15,80 +15,93 @@ const modules = await getCollection("modules");
 const fullnames: { [key: string]: string } = {
   oj: "Online Judge",
 };
+
+const categories = [
+  {
+    title: "Introduction",
+    background: "bg-blue-200",
+    items: [
+      {
+        code: "01.xx",
+        title: "Fundamentals",
+        icon: "mdi:library-bookmark",
+        href: "/notes/01",
+      },
+      { code: "02.xx", title: "C++", icon: "mdi:language-cpp" },
+      { code: "03.xx", title: "Data structures", icon: "mdi:database" },
+      { code: "04.xx", title: "Math", icon: "mdi:math-compass-variant" },
+    ],
+  },
+  {
+    title: "Basic",
+    background: "bg-green-200",
+    items: [
+      { code: "11.xx", title: "Data structures", icon: "mdi:database" },
+      { code: "12.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
+      { code: "13.xx", title: "Graph theory", icon: "mdi:graph" },
+      { code: "14.xx", title: "Mathematics", icon: "mdi:math-compass-variant" },
+    ],
+  },
+  {
+    title: "Intermediate",
+    background: "bg-yellow-200",
+    items: [
+      { code: "21.xx", title: "Data structures", icon: "mdi:database" },
+      { code: "22.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
+      { code: "23.xx", title: "Graph theory", icon: "mdi:graph" },
+      { code: "24.xx", title: "Mathematics", icon: "mdi:math-compass-variant" },
+    ],
+  },
+  {
+    title: "Advanced",
+    background: "bg-red-200",
+    items: [
+      { code: "31.xx", title: "Data structures", icon: "mdi:database" },
+      { code: "32.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
+      { code: "33.xx", title: "Graph theory", icon: "mdi:graph" },
+      { code: "34.xx", title: "Mathematics", icon: "mdi:math-compass-variant" },
+    ],
+  },
+];
 ---
 
 <Layout title="Notes">
   <NotesPage>
     <main>
       <section class="mt-8 grid grid-cols-4 gap-x-8 gap-y-6 md:grid-cols-12">
-        <h2
-          class="col-span-4 font-mono text-2xl font-semibold tracking-tight md:col-span-12"
-        >
-          Competitive programming, from start to finish.
+        <h2 class="col-span-4 text-2xl font-semibold md:col-span-12">
+          All modules
         </h2>
-        <div class="col-span-4 md:col-span-6">
-          <p class="text-md leading-relaxed">
-            I've always found existing competitive programming material either
-            too dense and jargony, or uncomprehensive. My goal is to create a
-            personal resource of easy-to-follow modules that encompass the
-            breadth of competitive programming. I'm far from finishing these
-            sets, but I hope you find some of these modules useful.
-          </p>
-        </div>
-        <div class="col-span-4 space-y-4 md:col-span-6">
-          <div class="space-y-2">
-            <p class="text-sm font-bold uppercase tracking-wide">
-              Intro modules
-            </p>
-            <div class="grid grid-cols-4 gap-4">
-              <NoteMiniCard background="bg-blue-200" code="01.xx" title="Fundamentals" />
-              <NoteMiniCard background="bg-blue-200" code="02.xx" title="C++"/>
-              <NoteMiniCard background="bg-blue-200" code="03.xx" title="Data structures"/>
-              <NoteMiniCard background="bg-blue-200" code="03.xx" title="Math"/>
-            </div>
-          </div>
-          <div class="space-y-2">
-            <p class="text-sm font-bold uppercase tracking-wide">
-              Basic modules
-            </p>
-            <div class="grid grid-cols-4 gap-4">
-              <NoteMiniCard background="bg-green-200" code="11.xx" title="Data structures"/>
-              <NoteMiniCard background="bg-green-200" code="12.xx" title="Paradigms"/>
-              <NoteMiniCard background="bg-green-200" code="13.xx" title="Graph theory"/>
-              <NoteMiniCard background="bg-green-200" code="14.xx" title="Mathematics"/>
-            </div>
-          </div>
-          <div class="space-y-2">
-            <p class="text-sm font-bold uppercase tracking-wide">
-              Intermediate modules
-            </p>
-            <div class="grid grid-cols-4 gap-4">
-              <NoteMiniCard background="bg-yellow-200" code="21.xx" title="Data structures"/>
-              <NoteMiniCard background="bg-yellow-200" code="22.xx" title="Paradigms"/>
-              <NoteMiniCard background="bg-yellow-200" code="23.xx" title="Graph theory"/>
-              <NoteMiniCard background="bg-yellow-200" code="24.xx" title="Mathematics"/>
-            </div>
-          </div>
-          <div class="space-y-2">
-            <p class="text-sm font-bold uppercase tracking-wide">
-              Advanced modules
-            </p>
-            <div class="grid grid-cols-4 gap-4">
-              <NoteMiniCard background="bg-red-200" code="31.xx" title="Data structures"/>
-              <NoteMiniCard background="bg-red-200" code="32.xx" title="Paradigms"/>
-              <NoteMiniCard background="bg-red-200" code="33.xx" title="Graph theory"/>
-              <NoteMiniCard background="bg-red-200" code="34.xx" title="Mathematics"/>
-            </div>
-          </div>
+        <div class="col-span-4 space-y-4 md:col-span-12">
+          {
+            categories.map((category) => (
+              <div class="space-y-2">
+                <p class="text-sm font-bold uppercase tracking-wide">
+                  {category.title}
+                </p>
+                <div class="grid grid-cols-4 gap-4 md:grid-cols-8 lg:grid-cols-10">
+                  {category.items.map((item) => (
+                    <NoteMiniCard
+                      background={category.background}
+                      code={item.code}
+                      title={item.title}
+                      icon={item.icon}
+                      href={item.href}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))
+          }
         </div>
       </section>
       <section class="mt-8 grid grid-cols-4 gap-8 md:grid-cols-12">
         <div class="col-span-4 md:col-span-6">
-          <h2 class="flex items-center gap-x-4 font-mono text-xl font-semibold">
+          <h2 class="flex items-center gap-x-3 text-xl font-semibold">
             <Icon
               name="material-symbols:book-2"
               class="text-2xl text-lime-400"
-            />Modules
+            />Latest modules
           </h2>
           <div class="mt-4">
             {
@@ -111,11 +124,11 @@ const fullnames: { [key: string]: string } = {
           </div>
         </div>
         <div class="col-span-4 md:col-span-6">
-          <h2 class="flex items-center gap-x-4 font-mono text-xl font-semibold">
+          <h2 class="flex items-center gap-x-3 text-xl font-semibold">
             <Icon
               name="mdi:graduation-cap"
               class="text-2xl text-lime-400"
-            />Editorials
+            />Latest editorials
           </h2>
           <div class="mt-4">
             {
@@ -125,12 +138,12 @@ const fullnames: { [key: string]: string } = {
                   title={post.data.title}
                   summary={post.data["problem-description"]}
                 >
-                  <Fragment slot="details-top">
+                  <Fragment slot="details-top"></Fragment>
+                  <Fragment slot="details-bottom">
                     <p>{fullnames[post.data.platform]}</p>
                     <p>•</p>
                     <InlineCode>{post.data.code}</InlineCode>
-                  </Fragment>
-                  <Fragment slot="details-bottom">
+                    <p>•</p>
                     <p>
                       {post.data["date-updated"].toISOString().split("T")[0]}
                     </p>

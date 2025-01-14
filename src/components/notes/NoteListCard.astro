@@ -3,39 +3,35 @@ import { markdown } from "@astropub/md";
 import NoteHorizontalDetailsContainer from "./NoteHorizontalDetailsContainer.astro";
 
 interface Props {
-    href?: string;
-    title?: string;
-    summary?: string;
+  href?: string;
+  title?: string;
+  summary?: string;
 }
 
-const {
-    href,
-    title = "Default title",
-    summary
-} = Astro.props;
+const { href, title = "Default title", summary } = Astro.props;
 ---
 
 <a
-    href={href}
-    ontouchstart=""
-    class:list={[
-        "group px-5 py-4 block",
-        "overflow-hidden rounded-lg",
-        "transition duration-100",
-        "bg-transparent",
-        "hover:bg-white hover:text-gray-900",
-        "active:bg-white active:text-gray-900"
-    ]}
+  href={href}
+  ontouchstart=""
+  class:list={[
+    "group block px-5 py-4",
+    "overflow-hidden rounded-lg",
+    "bg-transparent",
+    "hover:bg-white hover:text-gray-900",
+    "active:bg-white active:text-gray-900",
+  ]}
 >
-    <NoteHorizontalDetailsContainer>
-        <slot name="details-top" />
-    </NoteHorizontalDetailsContainer>
-    <h3 class="text-lg font-semibold">{title}</h3>
-    <NoteHorizontalDetailsContainer>
-        <slot name="details-bottom" />
-    </NoteHorizontalDetailsContainer>
-    <div class="prose prose-p:text-white prose-p:text-sm group-hover:prose-p:text-gray-900 mt-2">
-        {summary && markdown(summary)}
-    </div>
+  <NoteHorizontalDetailsContainer>
+    <slot name="details-top" />
+  </NoteHorizontalDetailsContainer>
+  <h3 class="text-lg font-semibold">{title}</h3>
+  <NoteHorizontalDetailsContainer>
+    <slot name="details-bottom" />
+  </NoteHorizontalDetailsContainer>
+  <div
+    class="prose mt-2 prose-p:text-sm prose-p:text-white group-hover:prose-p:text-gray-900"
+  >
+    {summary && markdown(summary)}
+  </div>
 </a>
-

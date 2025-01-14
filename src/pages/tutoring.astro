@@ -1,8 +1,67 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import "../styles/styles-dark.css";
-import DefaultPage from "../layouts/DefaultPage.astro";
+import Card from "@blubits/components/Card.astro";
+import DefaultPage from "@blubits/layouts/DefaultPage.astro";
+import Layout from "@blubits/layouts/Layout.astro";
+import "@blubits/styles/styles-dark.css";
+
+const cardData = [
+  {
+    span: "col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1",
+    emoji: "💻",
+    title: "Programming",
+    description:
+      "Basic to advanced programming in Python, C++, SQL, HTML, CSS, JavaScript, and more.",
+  },
+  {
+    span: "col-span-4 md:col-span-6 lg:col-span-6 md:row-span-2",
+    emoji: "🏃",
+    title: "Competitive programming",
+    description:
+      "Algorithmic thinking; data structures; problem-solving paradigms and strategies; graph theory; mathematics for computer science. From basic to intermediate levels.",
+  },
+  {
+    span: "col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1",
+    emoji: "📈",
+    title: "Calculus",
+    description:
+      "Limits; derivatives; integrals; sequences and series; parametric and polar calculus; vector calculus; multivariate calculus.",
+  },
+  {
+    span: "col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1",
+    emoji: "🧮",
+    title: "Algorithms and data structures",
+    description:
+      "Sorting and searching; recursion; linked lists; trees; graph theory; dynamic programming; greedy algorithms; and more.",
+  },
+  {
+    span: "col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1",
+    emoji: "📊",
+    title: "Statistics and data science",
+    description:
+      "Statistics; probability; machine learning; Python and Pandas; SQL; data visualization; and more.",
+  },
+  {
+    span: "col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1",
+    emoji: "⚙️",
+    title: "Computer systems",
+    description:
+      "From NAND to Tetris. Logic gates and digital logic design; computer architecture and memory; operating systems; computer networks.",
+  },
+  {
+    span: "col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1",
+    emoji: "📔",
+    title: "IGSCE, IB, & AP Computer Science",
+    description:
+      "Let's pass your final papers and exams and develop your capstone projects together.",
+  },
+  {
+    span: "col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1",
+    emoji: "👷",
+    title: "Project execution",
+    description:
+      "Have a project you're struggling with? I can help you unblock.",
+  },
+];
 ---
 
 <Layout title="Get tutorials">
@@ -14,48 +73,48 @@ import DefaultPage from "../layouts/DefaultPage.astro";
   >
     <main>
       <h1
-        class="font-sanstight text-5xl md:text-6xl font-bold leading-none mb-4"
+        class="mb-4 font-sanstight text-5xl font-bold leading-none md:text-6xl"
       >
         Expert tutoring in mathematics and computer science.
       </h1>
 
       <section
-        class="mb-16 text-xl flex flex-col sm:flex-col md:flex-row gap-y-4 md:gap-x-4 md:items-center"
+        class="mb-16 flex flex-col gap-y-4 text-xl sm:flex-col md:flex-row md:items-center md:gap-x-4"
       >
         <div>
           <p class="text-2xl md:text-xl">Need help now?</p>
         </div>
-        <div class="flex gap-x-4 items-center">
+        <div class="flex items-center gap-x-4">
           <a
             href="mailto:tutoring@contact.blubits.me"
             data-obfuscation="0"
-            class="inline-flex items-center px-4 py-2 space-x-2 shadow-md bg-amber-500 text-black font-medium text-xl rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+            class="inline-flex items-center space-x-2 rounded-lg bg-amber-500 px-4 py-2 text-xl font-medium text-black shadow-md transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <p>Send an email</p>
           </a>
           <p>or</p>
           <a
             href="https://www.teacheron.com/tutor/67qr"
-            class="inline-flex items-center px-4 py-2 space-x-2 shadow-md bg-green-600 text-white font-medium text-xl rounded-lg hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+            class="inline-flex items-center space-x-2 rounded-lg bg-green-600 px-4 py-2 text-xl font-medium text-white shadow-md transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <p>Go to TeacherOn</p>
           </a>
         </div>
       </section>
 
-      <section class="grid gap-4 grid-cols-4 md:grid-cols-12">
-        <div class="col-span-4 md:col-span-5 max-w-prose">
-          <h2 class="text-2xl font-semibold mb-2">Teaching that works.</h2>
-          <p class="leading-normal max-w-prose">
+      <section class="grid grid-cols-4 gap-4 md:grid-cols-12">
+        <div class="col-span-4 max-w-prose md:col-span-5">
+          <h2 class="mb-2 text-2xl font-semibold">Teaching that works.</h2>
+          <p class="max-w-prose leading-normal">
             When you get me as a tutor, you get results. My students have gone
             on to pass and excel in their exams, succeed in their classes, and
             even win competitions. We'll work together to achieve the results
             you want.
           </p>
         </div>
-        <div class="col-span-4 md:col-span-5 md:col-end-12 max-w-prose">
-          <h2 class="text-2xl font-semibold mb-2">Tailored for you.</h2>
-          <p class="leading-normal max-w-prose">
+        <div class="col-span-4 max-w-prose md:col-span-5 md:col-end-12">
+          <h2 class="mb-2 text-2xl font-semibold">Tailored for you.</h2>
+          <p class="max-w-prose leading-normal">
             My teaching style fits your needs and learning style. I focus on
             breaking down topics into concepts that you understand. I emphasize
             practice and application so you see the big picture. And we'll go at
@@ -64,69 +123,22 @@ import DefaultPage from "../layouts/DefaultPage.astro";
         </div>
       </section>
 
-      <section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-16">
-        <div class="col-span-4 md:col-span-12 max-w-prose">
-          <h2 class="text-4xl font-semibold mb-2">What I tutor</h2>
+      <section class="mt-16 grid grid-cols-4 gap-4 md:grid-cols-12">
+        <div class="col-span-4 max-w-prose md:col-span-12">
+          <h2 class="mb-2 text-4xl font-semibold">What I tutor</h2>
         </div>
-        <Card
-          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-          emoji="💻"
-          title="Programming"
-          description="Basic to advanced programming in Python, C++, SQL, HTML, CSS, JavaScript, and more."
-        />
-        <Card
-          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-2"
-          emoji="🏃"
-          title="Competitive programming"
-          description="Algorithmic thinking; data structures; problem-solving paradigms and strategies; graph theory; mathematics for computer science. From basic to intermediate levels."
-        />
-        <Card
-          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-          emoji="📈"
-          title="Calculus"
-          description="Limits; derivatives; integrals; sequences and series; parametric and polar calculus; vector calculus; multivariate calculus."
-        />
-        <Card
-          span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
-          emoji="🧮"
-          title="Algorithms and data structures"
-          description="Sorting and searching; recursion; linked lists; trees; graph theory; dynamic programming; greedy algorithms; and more."
-        />
-        <Card
-          span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
-          emoji="📊"
-          title="Statistics and data science"
-          description="Statistics; probability; machine learning; Python and Pandas; SQL; data visualization; and more."
-        />
-        <Card
-          span="col-span-4 md:col-span-4 lg:col-span-4 md:row-span-1"
-          emoji="⚙️"
-          title="Computer systems"
-          description="From NAND to Tetris. Logic gates and digital logic design; computer architecture and memory; operating systems; computer networks."
-        />
-        <Card
-          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-          emoji="📔"
-          title="IGSCE, IB, & AP Computer Science"
-          description="Let's pass your final papers and exams and develop your capstone projects together."
-        />
-        <Card
-          span="col-span-4 md:col-span-6 lg:col-span-6 md:row-span-1"
-          emoji="👷"
-          title="Project execution"
-          description="Have a project you're struggling with? I can help you unblock."
-        />
+        {cardData.map((card) => <Card force_enable {...card} />)}
       </section>
 
-      <section class="grid gap-4 grid-cols-4 md:grid-cols-12 mt-16">
-        <h2 class="text-4xl font-semibold mb-2 col-span-4 md:col-span-12">
+      <section class="mt-16 grid grid-cols-4 gap-4 md:grid-cols-12">
+        <h2 class="col-span-4 mb-2 text-4xl font-semibold md:col-span-12">
           Ready to succeed?
         </h2>
-        <p class="text-lg col-span-4 md:col-span-12">
+        <p class="col-span-4 text-lg md:col-span-12">
           Ask me for help by emailing me using the links below, or directly
           email me at <span
             data-obfuscation="0"
-            class="inline-block px-2 py-1 border border-gray-400 rounded-lg font-mono bg-gray-300 text-black"
+            class="inline-block rounded-lg border border-gray-400 bg-gray-300 px-2 py-1 font-mono text-black"
             >tutoring@login.blubits.me</span
           >.
         </p>
