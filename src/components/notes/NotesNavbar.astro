@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 
 let path = Astro.url.pathname.split("/");
 path = path.slice(2, path.length);
+path = path.filter((item) => item != "");
 let base_path = "/notes";
 ---
 
