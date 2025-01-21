@@ -15,11 +15,10 @@ const { href, title = "Default title", summary } = Astro.props;
   href={href}
   ontouchstart=""
   class:list={[
-    "group block px-5 py-4",
+    "group block px-5 py-4 text-white",
     "overflow-hidden rounded-lg",
-    "bg-transparent",
-    "hover:bg-white hover:text-gray-900",
-    "active:bg-white active:text-gray-900",
+    "hover:bg-white hover:bg-opacity-5",
+    "active:bg-white active:bg-opacity-5",
   ]}
 >
   <NoteHorizontalDetailsContainer>
@@ -29,9 +28,7 @@ const { href, title = "Default title", summary } = Astro.props;
   <NoteHorizontalDetailsContainer>
     <slot name="details-bottom" />
   </NoteHorizontalDetailsContainer>
-  <div
-    class="prose mt-2 prose-p:text-sm prose-p:text-white group-hover:prose-p:text-gray-900"
-  >
+  <div class="prose mt-2 prose-p:text-sm prose-p:text-white">
     {summary && markdown(summary)}
   </div>
 </a>

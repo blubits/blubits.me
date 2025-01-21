@@ -5,6 +5,13 @@ let path = Astro.url.pathname.split("/");
 path = path.slice(2, path.length);
 path = path.filter((item) => item != "");
 let base_path = "/notes";
+
+let pretty: Record<string, string> = {
+  "modules": "Modules",
+  "l1": "Level 1",
+  "l2": "Level 2",
+  "l3": "Level 3",
+}
 ---
 
 <nav class:list={["my-8 flex", path.length == 0 ? "text-md" : "text-sm"]}>
@@ -19,12 +26,22 @@ let base_path = "/notes";
         </li>
         {path.map((item) => {
           base_path += "/" + item;
-          return (
-            <li class="inline-flex items-center text-sm">
-              <Icon name="mdi:chevron-right" class="mr-2" />
-              <a href={base_path}>{item}</a>
-            </li>
-          );
+          if (item.match(/^\d{2}\.\d{2}$/)) {
+            return (
+              <li class="inline-flex items-center text-sm">
+                <Icon name="mdi:chevron-right" class="mr-2" />
+                <a href={base_path}><span class="font-mono bg-gray-500 bg-opacity-50 px-2 py-0.5">{item}</span></a>
+              </li>
+            );
+          } else {
+            return (
+              <li class="inline-flex items-center text-sm">
+                <Icon name="mdi:chevron-right" class="mr-2" />
+                <a href={base_path}>{pretty[item]}</a>
+              </li>
+            );
+          }
+          
         })}
       </ol>
     )

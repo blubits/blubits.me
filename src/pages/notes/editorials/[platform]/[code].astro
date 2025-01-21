@@ -84,11 +84,11 @@ const fullnames: { [key: string]: string } = {
             </div>
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Module created</dt>
-              <dd>{post.data["date-created"].toISOString().split("T")[0]}</dd>
+              <dd class="rel-timestamp">{post.data["date-created"].toISOString()}</dd>
             </div>
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Last updated</dt>
-              <dd>{post.data["date-updated"].toISOString().split("T")[0]}</dd>
+              <dd class="rel-timestamp">{post.data["date-updated"].toISOString()}</dd>
             </div>
           </dl>
         </div>

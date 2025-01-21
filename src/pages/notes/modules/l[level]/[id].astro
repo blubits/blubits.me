@@ -39,7 +39,7 @@ const { Content } = await render(post);
         </h2>
       </section>
 
-      <section class="flex flex-col gap-16 lg:flex-row">
+      <section class="flex flex-col gap-16">
         <div
           class:list={[
             "shrink-0 grow",
@@ -54,7 +54,7 @@ const { Content } = await render(post);
         >
           <Content />
         </div>
-        <div class="order-first shrink grow-0 lg:order-last">
+        <div class="order-last shrink grow-0">
           <dl class="mt-4 flex flex-col gap-y-4 text-sm">
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">References</dt>
@@ -68,11 +68,11 @@ const { Content } = await render(post);
             </div>
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Module created</dt>
-              <dd>{post.data["date-created"].toISOString().split("T")[0]}</dd>
+              <dd class="rel-timestamp">{post.data["date-created"].toISOString()}</dd>
             </div>
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Last updated</dt>
-              <dd>{post.data["date-updated"].toISOString().split("T")[0]}</dd>
+              <dd class="rel-timestamp">{post.data["date-updated"].toISOString()}</dd>
             </div>
           </dl>
         </div>

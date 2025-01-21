@@ -26,32 +26,56 @@ const {
   href = undefined,
   force_enable = false,
 } = Astro.props;
+
+const containerClasses = [
+  "group block rounded-lg px-6 py-6 transition duration-300",
+  background,
+  span,
+  !href && !force_enable
+    ? "-z-50 cursor-not-allowed opacity-50"
+    : "hover:z-50 hover:scale-105 hover:shadow-xl",
+];
 ---
 
-<a
-  class:list={[
-    "group block rounded-lg px-6 py-6 transition duration-300 hover:z-50",
-    background,
-    span,
-    !href && !force_enable
-      ? "-z-50 cursor-not-allowed opacity-50"
-      : "hover:scale-105 hover:shadow-xl",
-  ]}
-  href={!href ? undefined : href}
-  data-obfuscation="0"
-  aria-disabled={!href}
->
-  <div class="flex h-full flex-col gap-4">
-    <div class="grow">
-      <Emoji symbol={emoji} class:list={[emoji_size]} />
+{href ? (
+  <a
+    class:list={containerClasses}
+    href={href}
+    data-obfuscation="0"
+    aria-disabled={!href}
+  >
+    <div class="flex h-full flex-col gap-4">
+      <div class="grow">
+        <Emoji symbol={emoji} class:list={[emoji_size]} />
+      </div>
+      <div class="grow-0">
+        <h2 class:list={["font-semibold", title_size, text]}>
+          {title}
+        </h2>
+        {description && (
+          <p class:list={["mt-2", text]}>
+            {description}
+          </p>
+        )}
+      </div>
     </div>
-    <div class="grow-0">
-      <h2 class:list={["font-semibold", title_size, text]}>
-        {title}
-      </h2>
-      <p class:list={["mt-2", text]}>
-        {description}
-      </p>
+  </a>
+) : (
+  <div class:list={containerClasses}>
+    <div class="flex h-full flex-col gap-4">
+      <div class="grow">
+        <Emoji symbol={emoji} class:list={[emoji_size]} />
+      </div>
+      <div class="grow-0">
+        <h2 class:list={["font-semibold", title_size, text]}>
+          {title}
+        </h2>
+        {description && (
+          <p class:list={["mt-2", text]}>
+            {description}
+          </p>
+        )}
+      </div>
     </div>
   </div>
-</a>
+)}

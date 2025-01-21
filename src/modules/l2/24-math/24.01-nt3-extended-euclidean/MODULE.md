@@ -74,10 +74,10 @@ $$
 From before, we know that $28 - 4 = m \times 8$, with $m = 3$. If we move the $4$ on the right side, then we get
 
 $$
-\begin{align}
+\begin{align*}
 28 - 3 \times 8 &= 4 \\
 1\times 28 + (-3) \times 8 &= 4
-\end{align}
+\end{align*}
 $$
 
 Note that this already gives us the exact formulas for Bezout's identity: $x = 1$ and $\displaystyle y = -3 = \frac{a - k}{b} = \frac{a - a \bmod b}{b}$. So we see that this formula for $m$ is somehow key to getting the correct values of $x$ and $y$.
@@ -101,41 +101,41 @@ $$
 where $x = 1, y = 0$. The row above states that $0 = 20 - 4 \times 5$, so we substitute that in:
 
 $$
-\begin{align}
+\begin{align*}
 1 \times 5 + 0 \times (20 - 4 \times 5) &= 5 \\
 1 \times 5 + (0 \times 20) - (0 \times 5) &= 5 \\
 0 \times 20 + 1 \times 5 &= 5
-\end{align}
+\end{align*}
 $$
 
 So as $(a, b)$ went from $(5, 0)$ back to $(20, 5)$, $(x, y)$ transitioned from $(1, 0) \to (0, 1)$. Let's repeat this transition:
 
 $$
-\begin{align}
+\begin{align*}
 0 \times 20 + 1 \times (45 - 2 \times 20) &= 5 \\
 0 \times 20 + (1 \times 45) - (2 \times 20) &= 5 \\
 1 \times 45 - 2 \times 20 &= 5
-\end{align}
+\end{align*}
 $$
 
 Let's repeat it again:
 
 $$
-\begin{align}
+\begin{align*}
 1 \times 45 - 2 \times (65 - 1 \times 45) &= 5 \\
 1 \times 45 - (2 \times 65) + (2 \times 45) &= 5 \\
 -2 \times 65 + 3 \times 45  &= 5 \\
-\end{align}
+\end{align*}
 $$
 
 And one last time:
 
 $$
-\begin{align}
+\begin{align*}
 - 2 \times 65 + 3 \times (305 - 4 \times 65) &= 5 \\
 -2 \times 65 + (3 \times 305) - (12 \times 65) &= 5 \\
 3 \times 305 - 14 \times 65 &= 5
-\end{align}
+\end{align*}
 $$
 
 So the transitions for $x, y$ are $(1, 0) \to (0, 1) \to (1, -2) \to (-2, 3) \to (3, -14)$, such that the final coefficients for Bezout's identity are $x = 3, y = -14$. It can be proven that this is the pair of values that minimizes $|x| + |y|$.
@@ -143,13 +143,13 @@ So the transitions for $x, y$ are $(1, 0) \to (0, 1) \to (1, -2) \to (-2, 3) \to
 In general, when we transition from $(a_i, b_i, x_i, y_i) \to (a_{i-1}, b_{i-1}, x_{i-1}, y_{i - 1})$, noting that $b_i = a_{i-1} - mb_{i - 1}$, we do the following transition:
 
 $$
-\begin{align}
+\begin{align*}
 & a_ix_i+b_iy_i=\gcd(a,b) \\
 &\to a_ix_i+y_i\left(a_{i - 1} - mb_{i - 1}\right)=\gcd(a,b)  \\
 &\to a_ix_i+y_ia_{i - 1} - y_imb_{i - 1}=\gcd(a,b) \\
 &\to b_{i-1}x_i+y_ia_{i - 1} - y_imb_{i - 1}=\gcd(a,b) \\
 &\to a_{i-1}y_i + b_{i-1}(x_i-my_i) = \gcd(a,b)
-\end{align}
+\end{align*}
 $$
 
 So at each step, we transition from $(x, y) \to (y, x - my)$. Recall that $\displaystyle m = \frac{a_{i-1} - a_{i-1} \bmod b_{i-1}}{b_{i-1}}$.
@@ -253,22 +253,22 @@ $$
 Now $r_2=r_0 \bmod r_1 = r_0 - m_1r_1$. If we substitute in the equations for $r_0$ and $r_1$ as above, we get:
 
 $$
-\begin{align}
+\begin{align*}
 r_2&=r_0-m_1r_1\\
 &= ax_0+by_0-m_1\left(ax_1+by_1\right) \\
 &= ax_0 - am_1x_1 + by_0-bm_1y_1 \\
 &= a(x_0-m_1x_1)+b(y_0-m_1y_1) \\
 &= ax_2+by_2
-\end{align}
+\end{align*}
 $$
 
 and thus $x_2 = x_0 - m_1x_1$, $y_2 = y_0-m_1y_1$. This holds for greater values of $i$, so in general, we have
 
 $$
-\begin{align}
+\begin{align*}
 x_{i+1} &= x_{i-1} - m_ix_i \\
 y_{i+1} &= y_{i-1} - m_iy_i
-\end{align}
+\end{align*}
 $$
 
 which exactly parallels the recurrence for $r_i$. We can easily implement this using the code below:

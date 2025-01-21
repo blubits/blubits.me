@@ -2,12 +2,11 @@
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import "katex/dist/katex.min.css";
-import InlineCode from "../components/InlineCode.astro";
-import NoteListCard from "../components/notes/NoteListCard.astro";
-import NoteMiniCard from "../components/notes/NoteMiniCard.astro";
 import Layout from "../layouts/Layout.astro";
 import NotesPage from "../layouts/NotesPage.astro";
 import "../styles/styles-notes.css";
+import NoteListItem from "@blubits/components/notes/NoteListItem.astro";
+import InlineCode from "@blubits/components/InlineCode.astro";
 
 const editorials = await getCollection("editorials");
 const modules = await getCollection("modules");
@@ -18,8 +17,10 @@ const fullnames: { [key: string]: string } = {
 
 const categories = [
   {
-    title: "Introduction",
-    background: "bg-blue-200",
+    title: "Introductory modules",
+    background_color_hover: "hover:bg-blue-300",
+    border_color: "border-blue-200",
+    border_color_hover: "hover:border-blue-400",
     items: [
       {
         code: "01.xx",
@@ -33,8 +34,10 @@ const categories = [
     ],
   },
   {
-    title: "Basic",
-    background: "bg-green-200",
+    title: "Basic modules",
+    background_color_hover: "hover:bg-green-300",
+    border_color: "border-green-200",
+    border_color_hover: "hover:border-green-400",
     items: [
       { code: "11.xx", title: "Data structures", icon: "mdi:database" },
       { code: "12.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
@@ -43,8 +46,10 @@ const categories = [
     ],
   },
   {
-    title: "Intermediate",
-    background: "bg-yellow-200",
+    title: "Intermediate modules",
+    background_color_hover: "hover:bg-yellow-300",
+    border_color: "border-yellow-200",
+    border_color_hover: "hover:border-yellow-400",
     items: [
       { code: "21.xx", title: "Data structures", icon: "mdi:database" },
       { code: "22.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
@@ -53,8 +58,10 @@ const categories = [
     ],
   },
   {
-    title: "Advanced",
-    background: "bg-red-200",
+    title: "Advanced modules",
+    background_color_hover: "hover:bg-red-300",
+    border_color: "border-red-200",
+    border_color_hover: "hover:border-red-400",
     items: [
       { code: "31.xx", title: "Data structures", icon: "mdi:database" },
       { code: "32.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
@@ -66,37 +73,44 @@ const categories = [
 ---
 
 <Layout title="Notes">
-  <NotesPage>
-    <main>
-      <section class="mt-8 grid grid-cols-4 gap-x-8 gap-y-6 md:grid-cols-12">
-        <h2 class="col-span-4 text-2xl font-semibold md:col-span-12">
-          All modules
-        </h2>
-        <div class="col-span-4 space-y-4 md:col-span-12">
-          {
-            categories.map((category) => (
-              <div class="space-y-2">
-                <p class="text-sm font-bold uppercase tracking-wide">
-                  {category.title}
-                </p>
-                <div class="grid grid-cols-4 gap-4 md:grid-cols-8 lg:grid-cols-10">
-                  {category.items.map((item) => (
-                    <NoteMiniCard
-                      background={category.background}
-                      code={item.code}
-                      title={item.title}
-                      icon={item.icon}
-                      href={item.href}
-                    />
-                  ))}
-                </div>
+  <NotesPage large>
+    <main class:list={["grid grid-cols-4 gap-12 md:grid-cols-12"]}>
+      <section class="col-span-4 space-y-8 md:col-span-12 lg:col-span-8">
+        {
+          categories.map((level) => (
+            <div class="grid grid-cols-2">
+              <div>
+                <h2 class="text-xl font-medium">{level.title}</h2>
               </div>
-            ))
-          }
-        </div>
+              <div class="flex flex-col">
+                {level.items.map((category) => (
+                  <a
+                    class:list={[
+                      "group block",
+                      "flex flex-row items-center gap-2",
+                      "px-4 py-2",
+                      "transition-all duration-100",
+                      level["background_color_hover"],
+                      "hover:bg-opacity-5",
+                      "border-l",
+                      level["border_color"],
+                      level["border_color_hover"],
+                    ]}
+                  >
+                    <Icon name={category.icon} class="shrink-0 text-2xl" />
+                    <h3 class="text-md shrink-0">{category.title}</h3>
+                    <code class="shrink rounded bg-gray-700 px-2 py-0.5 text-xs">
+                      {category.code}
+                    </code>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
       </section>
-      <section class="mt-8 grid grid-cols-4 gap-8 md:grid-cols-12">
-        <div class="col-span-4 md:col-span-6">
+      <section class="col-span-4 space-y-8 md:col-span-12 lg:col-span-4">
+        <div class="">
           <h2 class="flex items-center gap-x-3 text-xl font-semibold">
             <Icon
               name="material-symbols:book-2"
@@ -106,49 +120,19 @@ const categories = [
           <div class="mt-4">
             {
               modules.map((post: any) => (
-                <NoteListCard
+                <NoteListItem
                   href={`/notes/modules/l${post.data.id[0]}/${post.data.id}`}
                   title={post.data.title}
                   summary={post.data.summary}
                 >
-                  <Fragment slot="details-bottom">
+                  <Fragment slot="details-top">
+                    <p class="rel-timestamp">
+                      {post.data["date-created"].toISOString()}
+                    </p>
+                    <p>•</p>
                     <InlineCode>{post.data.id}</InlineCode>
-                    <p>•</p>
-                    <p>
-                      {post.data["date-created"].toISOString().split("T")[0]}
-                    </p>
                   </Fragment>
-                </NoteListCard>
-              ))
-            }
-          </div>
-        </div>
-        <div class="col-span-4 md:col-span-6">
-          <h2 class="flex items-center gap-x-3 text-xl font-semibold">
-            <Icon
-              name="mdi:graduation-cap"
-              class="text-2xl text-lime-400"
-            />Latest editorials
-          </h2>
-          <div class="mt-4">
-            {
-              editorials.map((post: any) => (
-                <NoteListCard
-                  href={`/notes/editorials/${post.data.platform}/${post.data.code}`}
-                  title={post.data.title}
-                  summary={post.data["problem-description"]}
-                >
-                  <Fragment slot="details-top"></Fragment>
-                  <Fragment slot="details-bottom">
-                    <p>{fullnames[post.data.platform]}</p>
-                    <p>•</p>
-                    <InlineCode>{post.data.code}</InlineCode>
-                    <p>•</p>
-                    <p>
-                      {post.data["date-updated"].toISOString().split("T")[0]}
-                    </p>
-                  </Fragment>
-                </NoteListCard>
+                </NoteListItem>
               ))
             }
           </div>

@@ -11,6 +11,7 @@ interface Props {
   foreground_color?: string;
   logo_background_color?: string;
   logo_foreground_color?: string;
+  dark_navbar?: boolean;
 }
 
 const {
@@ -18,6 +19,7 @@ const {
   foreground_color = "text-black",
   logo_background_color = "bg-gray-200",
   logo_foreground_color = "stroke-black",
+  dark_navbar = false,
 } = Astro.props;
 ---
 
@@ -28,7 +30,7 @@ const {
     foreground_color,
   ]}
 >
-  <Navbar client:load>
+  <Navbar dark={dark_navbar} client:only>
     <Logo
       class:list={[
         "size-12 p-2",

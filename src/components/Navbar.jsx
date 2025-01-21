@@ -1,5 +1,20 @@
 import { useState } from "react";
 
+const NavItem = ({ href, children, dark }) => {
+  const isActive = window.location.pathname === href;
+  const activeBg = dark ? "bg-white" : "bg-black"
+
+  return (
+    <li
+      className={`px-4 py-1 rounded ${
+        dark ? "hover:bg-white" : "hover:bg-black"
+      } hover:bg-opacity-5 ${isActive ? activeBg : "bg-transparent"} bg-opacity-20`}
+    >
+      <a href={href}>{children}</a>
+    </li>
+  );
+};
+
 const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,17 +51,17 @@ const Navbar = (props) => {
       </div>
       <nav className="flex items-center">
         <ul
-          className={`flex space-x-8 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "h-auto opacity-100" : "h-0 opacity-0"} md:h-auto md:opacity-100`}
+          className={`flex space-x-2 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "h-auto opacity-100" : "h-0 opacity-0"} md:h-auto md:opacity-100`}
         >
-          <li>
-            <a href="/tutoring">Tutoring</a>
-          </li>
-          <li>
-            <a href="/notes">Notes</a>
-          </li>
-          <li>
-            <a href="#">Projects</a>
-          </li>
+          <NavItem href="/tutoring" dark={props.dark}>
+            Tutoring
+          </NavItem>
+          <NavItem href="/notes" dark={props.dark}>
+            Notes
+          </NavItem>
+          <NavItem href="#" dark={props.dark}>
+            Projects
+          </NavItem>
         </ul>
       </nav>
     </header>
