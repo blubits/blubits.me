@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 const NavItem = ({ href, children, dark }) => {
-  const isActive = window.location.pathname === href;
+  console.log(window.location.pathname);
+  const isActive = window.location.pathname.replace(/^\/|\/$/g, '') === href.replace(/^\/|\/$/g, '');
   const activeBg = dark ? "bg-white" : "bg-black"
 
   return (
