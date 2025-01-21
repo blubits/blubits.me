@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const NavItem = ({ href, children, dark }) => {
-  console.log(window.location.pathname);
-  const isActive = window.location.pathname.replace(/^\/|\/$/g, '') === href.replace(/^\/|\/$/g, '');
-  const activeBg = dark ? "bg-white" : "bg-black"
+  const [isActive, setIsActive] = useState(false);
+  
+  useEffect(() => {
+    const currentPath = window.location.pathname.replace(/^\/|\/$/g, '');
+    const targetPath = href.replace(/^\/|\/$/g, '');
+    setIsActive(currentPath === targetPath);
+  }, [href]);
+
+  const activeBg = dark ? "bg-white" : "bg-black";
 
   return (
     <li
