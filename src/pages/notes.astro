@@ -137,6 +137,35 @@ const categories = [
             }
           </div>
         </div>
+        <div class="col-span-4 md:col-span-6">
+          <h2 class="flex items-center gap-x-3 text-xl font-semibold">
+            <Icon
+              name="mdi:graduation-cap"
+              class="text-2xl text-lime-400"
+            />Latest editorials
+          </h2>
+          <div class="mt-4">
+            {
+              editorials.map((post: any) => (
+                <NoteListItem
+                  href={`/notes/editorials/${post.data.platform}/${post.data.code}`}
+                  title={post.data.title}
+                  summary={post.data["problem-description"]}
+                >
+                  <Fragment slot="details-top">
+                    <p class="rel-timestamp">
+                      {post.data["date-updated"].toISOString()}
+                    </p>
+                    <p>•</p>
+                    <p>{fullnames[post.data.platform]}</p>
+                    <p>•</p>
+                    <InlineCode>{post.data.code}</InlineCode>
+                  </Fragment>
+                </NoteListItem>
+              ))
+            }
+          </div>
+        </div>
       </section>
     </main>
   </NotesPage>
