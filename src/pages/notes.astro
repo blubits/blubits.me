@@ -78,7 +78,7 @@ const categories = [
       <section class="col-span-4 space-y-8 md:col-span-12 lg:col-span-8">
         {
           categories.map((level) => (
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4">
               <div>
                 <h2 class="text-xl font-medium">{level.title}</h2>
               </div>
@@ -92,7 +92,7 @@ const categories = [
                       "transition-all duration-100",
                       level["background_color_hover"],
                       "hover:bg-opacity-5",
-                      "border-l",
+                      "border-l rounded-r",
                       level["border_color"],
                       level["border_color_hover"],
                     ]}
