@@ -13,6 +13,7 @@ const modules = await getCollection("modules");
 
 const fullnames: { [key: string]: string } = {
   oj: "Online Judge",
+  cf: "Codeforces"
 };
 
 const categories = [
@@ -156,7 +157,8 @@ const categories = [
                     <p class="rel-timestamp">
                       {post.data["date-updated"].toISOString()}
                     </p>
-                    <p>•</p>
+                  </Fragment>
+                  <Fragment slot="details-middle">
                     <p>{fullnames[post.data.platform]}</p>
                     <p>•</p>
                     <InlineCode>{post.data.code}</InlineCode>

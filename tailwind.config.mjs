@@ -6,8 +6,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
-				sanstight: ['Inter Tight Variable', ...defaultTheme.fontFamily.sans],
+				sans: ['Inter', ...defaultTheme.fontFamily.sans],
+				sanstight: ['Inter Tight', ...defaultTheme.fontFamily.sans],
 				mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
 			},
 			typography: {
@@ -18,7 +18,9 @@ export default {
 						},
 						'code::after': {
 							content: '""'
-						}
+						},
+						'blockquote p:first-of-type::before': null,
+            			'blockquote p:last-of-type::after': null,
 					}
 				}
 			}
