@@ -1,0 +1,45 @@
+---
+interface Props {
+  bg_color?: string;
+  classNames?: string;
+  isCode?: boolean;
+}
+
+const {
+  bg_color = "bg-white bg-opacity-10",
+  classNames = "font-sans",
+  isCode = false,
+} = Astro.props;
+---
+
+{
+  () => {
+    if (isCode) {
+      return (
+        <code
+          class:list={[
+            "inline-block",
+            "rounded-sm px-2 py-0.5",
+            bg_color,
+            classNames,
+          ]}
+        >
+          <slot />
+        </code>
+      );
+    } else {
+      return (
+        <p
+          class:list={[
+            "inline-flex items-center gap-x-2",
+            "rounded-sm px-2 py-0.5",
+            "bg-gray-500 bg-opacity-50",
+            classNames,
+          ]}
+        >
+          <slot />
+        </p>
+      );
+    }
+  }
+}

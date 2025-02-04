@@ -5,170 +5,23 @@ import "katex/dist/katex.min.css";
 import Layout from "../layouts/Layout.astro";
 import NotesPage from "../layouts/NotesPage.astro";
 import "../styles/styles-notes.css";
-import NoteListItem from "@blubits/components/notes/NoteListItem.astro";
-import InlineCode from "@blubits/components/InlineCode.astro";
+import NotePostItem from "@blubits/components/notes/NotePostItem.astro";
 
 const editorials = await getCollection("editorials");
 const modules = await getCollection("modules");
-
-const fullnames: { [key: string]: string } = {
-  oj: "Online Judge",
-  cf: "Codeforces"
-};
-
-const categories = [
-  {
-    title: "Introductory modules",
-    background_color_hover: "hover:bg-blue-300",
-    border_color: "border-blue-200",
-    border_color_hover: "hover:border-blue-400",
-    items: [
-      {
-        code: "01.xx",
-        title: "Fundamentals",
-        icon: "mdi:library-bookmark",
-        href: "/notes/01",
-      },
-      { code: "02.xx", title: "C++", icon: "mdi:language-cpp" },
-      { code: "03.xx", title: "Data structures", icon: "mdi:database" },
-      { code: "04.xx", title: "Math", icon: "mdi:math-compass-variant" },
-    ],
-  },
-  {
-    title: "Basic modules",
-    background_color_hover: "hover:bg-green-300",
-    border_color: "border-green-200",
-    border_color_hover: "hover:border-green-400",
-    items: [
-      { code: "11.xx", title: "Data structures", icon: "mdi:database" },
-      { code: "12.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
-      { code: "13.xx", title: "Graph theory", icon: "mdi:graph" },
-      { code: "14.xx", title: "Mathematics", icon: "mdi:math-compass-variant" },
-    ],
-  },
-  {
-    title: "Intermediate modules",
-    background_color_hover: "hover:bg-yellow-300",
-    border_color: "border-yellow-200",
-    border_color_hover: "hover:border-yellow-400",
-    items: [
-      { code: "21.xx", title: "Data structures", icon: "mdi:database" },
-      { code: "22.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
-      { code: "23.xx", title: "Graph theory", icon: "mdi:graph" },
-      { code: "24.xx", title: "Mathematics", icon: "mdi:math-compass-variant" },
-    ],
-  },
-  {
-    title: "Advanced modules",
-    background_color_hover: "hover:bg-red-300",
-    border_color: "border-red-200",
-    border_color_hover: "hover:border-red-400",
-    items: [
-      { code: "31.xx", title: "Data structures", icon: "mdi:database" },
-      { code: "32.xx", title: "Paradigms", icon: "mdi:code-block-braces" },
-      { code: "33.xx", title: "Graph theory", icon: "mdi:graph" },
-      { code: "34.xx", title: "Mathematics", icon: "mdi:math-compass-variant" },
-    ],
-  },
-];
+const all_posts = [...editorials, ...modules];
+all_posts.sort(
+  (a, b) => new Date(b.data["date-updated"]).getTime() - new Date(a.data["date-updated"]).getTime());
 ---
 
 <Layout title="Notes">
   <NotesPage large>
-    <main class:list={["grid grid-cols-4 gap-12 md:grid-cols-12"]}>
-      <section class="col-span-4 space-y-8 md:col-span-12 lg:col-span-8">
-        {
-          categories.map((level) => (
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4">
-              <div>
-                <h2 class="text-xl font-medium">{level.title}</h2>
-              </div>
-              <div class="flex flex-col">
-                {level.items.map((category) => (
-                  <a
-                    class:list={[
-                      "group block",
-                      "flex flex-row items-center gap-2",
-                      "px-4 py-2",
-                      "transition-all duration-100",
-                      level["background_color_hover"],
-                      "hover:bg-opacity-5",
-                      "border-l rounded-r",
-                      level["border_color"],
-                      level["border_color_hover"],
-                    ]}
-                  >
-                    <Icon name={category.icon} class="shrink-0 text-2xl" />
-                    <h3 class="text-md shrink-0">{category.title}</h3>
-                    <code class="shrink rounded bg-gray-700 px-2 py-0.5 text-xs">
-                      {category.code}
-                    </code>
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))
-        }
-      </section>
-      <section class="col-span-4 space-y-8 md:col-span-12 lg:col-span-4">
-        <div class="">
-          <h2 class="flex items-center gap-x-3 text-xl font-semibold">
-            <Icon
-              name="material-symbols:book-2"
-              class="text-2xl text-lime-400"
-            />Latest modules
-          </h2>
-          <div class="mt-4">
-            {
-              modules.map((post: any) => (
-                <NoteListItem
-                  href={`/notes/modules/l${post.data.id[0]}/${post.data.id}`}
-                  title={post.data.title}
-                  summary={post.data.summary}
-                >
-                  <Fragment slot="details-top">
-                    <p class="rel-timestamp">
-                      {post.data["date-created"].toISOString()}
-                    </p>
-                    <p>•</p>
-                    <InlineCode>{post.data.id}</InlineCode>
-                  </Fragment>
-                </NoteListItem>
-              ))
-            }
-          </div>
-        </div>
-        <div class="col-span-4 md:col-span-6">
-          <h2 class="flex items-center gap-x-3 text-xl font-semibold">
-            <Icon
-              name="mdi:graduation-cap"
-              class="text-2xl text-lime-400"
-            />Latest editorials
-          </h2>
-          <div class="mt-4">
-            {
-              editorials.map((post: any) => (
-                <NoteListItem
-                  href={`/notes/editorials/${post.data.platform}/${post.data.code}`}
-                  title={post.data.title}
-                  summary={post.data["problem-description"]}
-                >
-                  <Fragment slot="details-top">
-                    <p class="rel-timestamp">
-                      {post.data["date-updated"].toISOString()}
-                    </p>
-                  </Fragment>
-                  <Fragment slot="details-middle">
-                    <p>{fullnames[post.data.platform]}</p>
-                    <p>•</p>
-                    <InlineCode>{post.data.code}</InlineCode>
-                  </Fragment>
-                </NoteListItem>
-              ))
-            }
-          </div>
-        </div>
-      </section>
+    <main class:list={["flex flex-col"]}>
+      {
+        all_posts.map((post) => (
+          <NotePostItem post={post} />
+        ))
+      }
     </main>
   </NotesPage>
 </Layout>

@@ -1,0 +1,44 @@
+---
+import Chip from "@blubits/components/Chip.astro";
+import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"modules"> | CollectionEntry<"editorials">;
+}
+
+const { post } = Astro.props;
+---
+
+<a
+  class="grid grid-cols-6 gap-4 rounded px-4 py-2 hover:bg-white hover:bg-opacity-10"
+  href={`/notes/${post.collection}/${post.id}`}
+>
+  <div>
+    {
+      () => {
+        if (post.collection === "modules") {
+          return (
+            <Chip classNames="text-sm">
+              <Icon name="mdi:book-open-variant" /> Module
+            </Chip>
+          )
+        } else {
+          return (
+            <Chip classNames="text-sm">
+              <Icon name="mdi:graduation-cap" /> Editorial
+            </Chip>
+          );
+        }
+      }
+    }
+  </div>
+  <div class="col-span-4">
+    <h2 class="text-xl font-semibold">{post.data.title}</h2>
+  </div>
+  <div>
+    <p class="rel-timestamp text-sm">
+      {post.data["date-updated"].toISOString()}
+    </p>
+  </div>
+</a>
