@@ -1,5 +1,6 @@
 ---
 import Card from "@blubits/components/Card.astro";
+import Chip from "@blubits/components/Chip.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import "@blubits/styles/styles.css";
@@ -57,17 +58,19 @@ import { Icon } from "astro-icon/components";
         <a
           href="mailto:hi@blubits.me"
           data-obfuscation="0"
-          class="inline-flex items-center space-x-2 rounded-lg bg-blue-600 px-2 py-1 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 active:bg-blue-800"
         >
-          <Icon name="mdi:email" class="" />
-          <p>Email</p>
+          <Chip bg_color="bg-blue-500 text-white hover:bg-blue-700">
+            <Icon name="mdi:email" class="" />
+            <p>Email</p>
+          </Chip>  
         </a>
         <a
           href="https://github.com/blubits/"
-          class="inline-flex items-center space-x-2 rounded-lg bg-black px-2 py-1 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <Icon name="mdi:github" class="" />
-          <p>GitHub</p>
+          <Chip bg_color="bg-black text-gray-200 hover:text-white">
+            <Icon name="mdi:github" class="" />
+            <p>GitHub</p>
+          </Chip>  
         </a>
       </section>
       <section
@@ -76,10 +79,11 @@ import { Icon } from "astro-icon/components";
         <p>Source code on</p>
         <a
           href="https://github.com/blubits/blubits.me"
-          class="inline-flex items-center space-x-2 rounded-lg bg-black px-2 py-1 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <Icon name="mdi:github" class="" />
-          <p>GitHub</p>
+          <Chip bg_color="bg-black text-gray-200 hover:text-white">
+            <Icon name="mdi:github" class="" />
+            <p>GitHub</p>
+          </Chip>  
         </a>
       </section>
     </main>

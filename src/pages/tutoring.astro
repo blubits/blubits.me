@@ -1,5 +1,6 @@
 ---
 import Card from "@blubits/components/Card.astro";
+import Chip from "@blubits/components/Chip.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import "@blubits/styles/styles-dark.css";
@@ -89,16 +90,18 @@ const cardData = [
           <a
             href="mailto:tutoring@contact.blubits.me"
             data-obfuscation="0"
-            class="inline-flex items-center space-x-2 rounded-lg bg-amber-500 px-4 py-2 text-xl font-medium text-black shadow-md transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <p>Send an email</p>
+            <Chip large bg_color="bg-amber-600 hover:bg-amber-700">
+              <p>Send me an email</p>
+            </Chip>
           </a>
           <p>or</p>
           <a
             href="https://www.teacheron.com/tutor/67qr"
-            class="inline-flex items-center space-x-2 rounded-lg bg-green-600 px-4 py-2 text-xl font-medium text-white shadow-md transition duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
+          <Chip large bg_color="bg-green-600 hover:bg-green-700">
             <p>Go to TeacherOn</p>
+          </Chip>
           </a>
         </div>
       </section>
@@ -151,7 +154,7 @@ const cardData = [
           Ask me for help by emailing me using the links below, or directly
           email me at <span
             data-obfuscation="0"
-            class="inline-block rounded-lg bg-black bg-opacity-10 hover:bg-opacity-30 px-3 py-1 font-mono text-white"
+            class="ml-2 inline-block rounded bg-black bg-opacity-10 hover:bg-opacity-30 px-3 py-1 font-mono text-white"
             ><a href="mailto:tutoring@login.blubits.me">tutoring@login.blubits.me</a></span
           >.
         </p>

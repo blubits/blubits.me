@@ -27,7 +27,7 @@ const fullnames: { [key: string]: string } = {
 };
 ---
 
-<Layout title={post.data.title}>
+<Layout title={fullnames[post.data.platform] + " " + post.data.code + " | " + post.data.title}>
   <NotesPage>
     <main>
       <section class="mb-8">

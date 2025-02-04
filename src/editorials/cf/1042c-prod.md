@@ -18,7 +18,7 @@ tags:
 
 Let's deal with a simpler problem than what is asked for.
 
-> Given an list $L$, determine the subset $L'$ of $L$ that will give the maximum product.
+> Given a list $L$, determine the subset $L'$ of $L$ that will give the maximum product.
 
 Obviously, $L'$ must contain all positive elements of $L$. Since the product of two negative numbers is positive, then $L'$ must contain an even number of negative numbers. If there are an odd number of negative numbers, we exclude the one least in magnitude, i.e. the largest negative number.
 
