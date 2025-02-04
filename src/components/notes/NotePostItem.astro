@@ -1,5 +1,7 @@
 ---
+import { markdown } from "@astropub/md";
 import Chip from "@blubits/components/Chip.astro";
+import Details from "@blubits/components/Details.astro";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 
@@ -8,37 +10,73 @@ interface Props {
 }
 
 const { post } = Astro.props;
+
+const fullnames: { [key: string]: string } = {
+  oj: "Online Judge",
+  cf: "Codeforces",
+};
+
+let href = `/notes/${post.collection}/${post.id}`;
+if (post.collection === "modules") {
+  href = `/notes/${post.collection}/l${post.data.id[0]}/${post.data.id}`;
+}
 ---
 
 <a
-  class="grid grid-cols-6 gap-4 rounded px-4 py-2 hover:bg-white hover:bg-opacity-10"
-  href={`/notes/${post.collection}/${post.id}`}
+  class="-mx-4 grid grid-cols-2 gap-4 rounded px-4 py-4 hover:bg-white hover:bg-opacity-10 md:grid-cols-6 lg:m-0 lg:grid-cols-7"
+  href={href}
 >
-  <div>
-    {
-      () => {
-        if (post.collection === "modules") {
-          return (
-            <Chip classNames="text-sm">
-              <Icon name="mdi:book-open-variant" /> Module
-            </Chip>
-          )
-        } else {
-          return (
-            <Chip classNames="text-sm">
-              <Icon name="mdi:graduation-cap" /> Editorial
-            </Chip>
-          );
+  <div class="col-span-4 md:col-span-6 lg:col-span-1">
+    <Details direction="column" text_color="text-white">
+      {
+        () => {
+          if (post.collection === "modules") {
+            return (
+              <Chip classNames="text-sm" bg_color="bg-green-200 bg-opacity-20">
+                <Icon name="mdi:book-open-variant" /> Module
+              </Chip>
+            );
+          } else {
+            return (
+              <Chip classNames="text-sm" bg_color="bg-orange-200 bg-opacity-20">
+                <Icon name="mdi:graduation-cap" /> Editorial
+              </Chip>
+            );
+          }
         }
       }
-    }
+    </Details>
   </div>
-  <div class="col-span-4">
+  <div class="col-span-2 space-y-1 md:col-span-4">
     <h2 class="text-xl font-semibold">{post.data.title}</h2>
+    <div class="prose prose-sm prose-invert prose-p:text-white">
+      {
+        post.collection === "editorials"
+          ? markdown(post.data["problem-description"])
+          : markdown(post.data.summary)
+      }
+    </div>
   </div>
-  <div>
-    <p class="rel-timestamp text-sm">
-      {post.data["date-updated"].toISOString()}
-    </p>
+  <div class="col-span-4 md:col-span-2">
+    <Details direction="column">
+      <p class="rel-timestamp text-sm">
+        {post.data["date-created"].toISOString()}
+      </p>
+      {
+        () => {
+          if (post.collection === "modules") {
+            return <Chip isCode>{post.data.id}</Chip>;
+          } else {
+            return (
+              <Details>
+                <p>{fullnames[post.data.platform]}</p>
+                <p>•</p>
+                <Chip isCode>{post.data.code}</Chip>
+              </Details>
+            );
+          }
+        }
+      }
+    </Details>
   </div>
 </a>

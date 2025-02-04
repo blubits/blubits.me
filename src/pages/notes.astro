@@ -11,12 +11,12 @@ const editorials = await getCollection("editorials");
 const modules = await getCollection("modules");
 const all_posts = [...editorials, ...modules];
 all_posts.sort(
-  (a, b) => new Date(b.data["date-updated"]).getTime() - new Date(a.data["date-updated"]).getTime());
+  (a, b) => new Date(b.data["date-created"]).getTime() - new Date(a.data["date-created"]).getTime());
 ---
 
 <Layout title="Notes">
   <NotesPage large>
-    <main class:list={["flex flex-col"]}>
+    <main class:list={["flex flex-col space-y-4"]}>
       {
         all_posts.map((post) => (
           <NotePostItem post={post} />

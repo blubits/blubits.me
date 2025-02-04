@@ -1,5 +1,5 @@
 ---
-import InlineCode from "@blubits/components/InlineCode.astro";
+import Chip from "@blubits/components/Chip.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import "@blubits/styles/styles.css";
@@ -19,7 +19,7 @@ import "@blubits/styles/styles.css";
         alt="Sad version of blubits.me logo"
       />
       <h1 class="text-4xl font-bold">Page not found</h1>
-      <p>HTTP error code: <InlineCode>404</InlineCode></p>
+      <p>HTTP error code: <Chip isCode>404</Chip></p>
     </div>
   </DefaultPage>
 </Layout>

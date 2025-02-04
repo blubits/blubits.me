@@ -1,6 +1,6 @@
 ---
 import { markdown } from "@astropub/md";
-import NoteHorizontalDetailsContainer from "@blubits/components//notes/NoteHorizontalDetailsContainer.astro";
+import Details from "@blubits/components/Details.astro";
 import Chip from "@blubits/components/Chip.astro";
 import NoteBody from "@blubits/components/notes/NoteBody.astro";
 import Layout from "@blubits/layouts/Layout.astro";
@@ -31,7 +31,7 @@ const fullnames: { [key: string]: string } = {
   <NotesPage>
     <main>
       <section class="mb-8">
-        <NoteHorizontalDetailsContainer>
+        <Details>
           <p class="flex items-center gap-x-2">
             <Icon name="mdi:graduation-cap" />Editorial
           </p>
@@ -39,7 +39,7 @@ const fullnames: { [key: string]: string } = {
           <p class="flex items-center">{fullnames[post.data.platform]}</p>
           <p>•</p>
           <Chip isCode>{post.data.code}</Chip>
-        </NoteHorizontalDetailsContainer>
+        </Details>
         <div class="flex items-center gap-x-2 py-1 text-sm text-gray-400"></div>
         <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
           {post.data.title}

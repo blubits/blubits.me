@@ -7,7 +7,7 @@ interface Props {
 
 const {
   bg_color = "bg-white bg-opacity-10",
-  classNames = "font-sans",
+  classNames = "",
   isCode = false,
 } = Astro.props;
 ---
@@ -18,7 +18,7 @@ const {
       return (
         <code
           class:list={[
-            "inline-block",
+            "inline-flex items-center gap-x-2 font-mono self-start",
             "rounded-sm px-2 py-0.5",
             bg_color,
             classNames,
@@ -29,16 +29,16 @@ const {
       );
     } else {
       return (
-        <p
+        <span
           class:list={[
-            "inline-flex items-center gap-x-2",
+            "inline-flex items-center gap-x-2 self-start",
             "rounded-sm px-2 py-0.5",
-            "bg-gray-500 bg-opacity-50",
+            bg_color,
             classNames,
           ]}
         >
           <slot />
-        </p>
+        </span>
       );
     }
   }
