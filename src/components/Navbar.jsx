@@ -15,7 +15,7 @@ const NavItem = ({ href, children, dark }) => {
     <li
       className={`px-4 py-1 rounded ${
         dark ? "hover:bg-white" : "hover:bg-black"
-      } hover:bg-opacity-5 ${isActive ? activeBg : "bg-transparent"} bg-opacity-20`}
+      } ${isActive ? "hover:bg-opacity-30" : "hover:bg-opacity-5"} ${isActive ? activeBg : "bg-transparent"} bg-opacity-20`}
     >
       <a href={href}>{children}</a>
     </li>
