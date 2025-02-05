@@ -31,4 +31,13 @@ const modules = defineCollection({
   }),
 });
 
-export const collections = { editorials, modules };
+const projects = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./content/projects" }),
+  schema: z.object({
+    "date-created": z.date(),
+    "date-updated": z.date(),
+    tags: z.array(z.string()),
+  }),
+});
+
+export const collections = { editorials, modules, projects };
