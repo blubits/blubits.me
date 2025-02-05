@@ -66,7 +66,7 @@ const Navbar = (props) => {
           <NavItem href="/notes" dark={props.dark}>
             Notes
           </NavItem>
-          <NavItem href="#" dark={props.dark}>
+          <NavItem href="/projects" dark={props.dark}>
             Projects
           </NavItem>
         </ul>

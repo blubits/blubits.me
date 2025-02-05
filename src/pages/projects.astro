@@ -1,0 +1,26 @@
+---
+import DefaultPage from "@blubits/layouts/DefaultPage.astro";
+import Layout from "@blubits/layouts/Layout.astro";
+import "@blubits/styles/styles-dark.css";
+---
+
+<Layout>
+  <DefaultPage
+    background_color="bg-gradient-to-r from-blue-600 to-violet-600"
+    foreground_color="text-white"
+    logo_background_color="bg-transparent"
+    logo_foreground_color="stroke-white"
+  >
+    <main>
+      <h1
+        class="mb-8 font-sanstight text-5xl font-bold leading-none md:text-6xl"
+      >
+        Projects
+      </h1>
+
+      <section class="rounded-lg bg-yellow-500/50 py-2 text-center transition duration-300 hover:z-50 hover:scale-105">
+        <p class="text-lg font-semibold">📇 My manifesto: the year of projects</p>
+      </section>
+    </main>
+  </DefaultPage>
+</Layout>
