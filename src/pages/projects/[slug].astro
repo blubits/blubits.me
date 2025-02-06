@@ -1,0 +1,87 @@
+---
+import MarkdownBody from "@blubits/components/MarkdownBody.astro";
+import DefaultPage from "@blubits/layouts/DefaultPage.astro";
+import Layout from "@blubits/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("projects");
+  return posts.map((post) => ({
+    params: { slug: post.id.split("/").at(-2) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title}>
+  <DefaultPage
+    background_color="bg-gradient-to-r from-blue-600 to-violet-600"
+    foreground_color="text-white"
+    logo_background_color="bg-transparent"
+    logo_foreground_color="stroke-white"
+  >
+    <main>
+      <h1
+        class="mb-8 flex items-center gap-x-4 font-sanstight text-lg font-bold leading-none md:text-2xl"
+      >
+        <a href="/projects"
+          ><Icon
+            name="mdi:arrow-left"
+            class="h-8 w-8 rounded-full p-1 hover:bg-white/10"
+          /></a
+        > Projects
+      </h1>
+
+      <section class="mb-8">
+        <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
+          {post.data.title}
+        </h2>
+      </section>
+
+      <section class="flex flex-col gap-16 lg:flex-row">
+        <div>
+          {
+            post.data.image && (
+              <Image
+                src={post.data.image}
+                alt={post.data.title}
+                class="mb-4 w-full rounded-lg object-contain"
+              />
+            )
+          }
+          <MarkdownBody>
+            <Content />
+          </MarkdownBody>
+        </div>
+        <div class="shrink grow-0 min-w-72">
+          <dl class="mt-4 flex flex-col gap-y-4 text-sm">
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Last updated</dt>
+              <dd class="rel-timestamp">
+                {post.data["date-updated"].toISOString()}
+              </dd>
+            </div>
+            <div class="flex flex-col gap-y-2">
+              <dt class="font-semibold">Project started</dt>
+              <dd class="rel-timestamp">
+                {post.data["date-created"].toISOString()}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </main>
+    <script>
+      import { parseISO, formatDistanceToNow } from "date-fns";
+      Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
+        const relativeDate = formatDistanceToNow(parseISO(el.innerHTML.trim()));
+        el.innerHTML = `${relativeDate} ago`;
+      });
+    </script>
+  </DefaultPage>
+</Layout>

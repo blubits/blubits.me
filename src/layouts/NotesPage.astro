@@ -4,6 +4,7 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
 import DefaultPage from "./DefaultPage.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   background_color?: string;
@@ -39,11 +40,21 @@ const {
         large ? "text-3xl md:text-4xl" : "text-lg md:text-xl",
       ]}
     >
-      <span>Notes for <span
-        class:list={[
-          "text-lime-500 font-mono",
-        ]}>competitive programming</span
-      ></span>
+      {
+        !large && (
+          <a href="/notes">
+            <Icon
+              name="mdi:arrow-left"
+              class="h-8 w-8 rounded-full p-1 hover:bg-white/10"
+            />
+          </a>
+        )
+      }
+      <span
+        >Notes for <span class:list={["font-mono text-lime-500"]}
+          >competitive programming</span
+        ></span
+      >
     </h1>
   </section>
   <slot />
