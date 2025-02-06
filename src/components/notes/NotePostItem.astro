@@ -2,6 +2,7 @@
 import { markdown } from "@astropub/md";
 import Chip from "@blubits/components/Chip.astro";
 import Details from "@blubits/components/Details.astro";
+import PostItem from "@blubits/components/PostItem.astro";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 
@@ -22,69 +23,58 @@ if (post.collection === "modules") {
 }
 ---
 
-<a
-  class:list={[
-    "-mx-6 grid grid-cols-2 gap-4",
-    "rounded px-6 py-4",
-    "transition duration-300",
-    "hover:z-50 hover:scale-105 hover:bg-white/10 hover:shadow-xl",
-    "focus:z-50 focus:scale-105 focus:bg-white/10 focus:shadow-xl",
-    "active:z-50 active:scale-105 active:bg-white/10 active:shadow-xl",
-    "md:m-0 md:grid-cols-6 lg:grid-cols-7 lg:px-4",
-  ]}
-  href={href}
->
-  <div class="col-span-4 md:col-span-6 lg:col-span-1">
-    <Details direction="column" text_color="text-white">
-      {
-        () => {
-          if (post.collection === "modules") {
-            return (
-              <Chip classNames="text-sm" bg_color="bg-green-200 bg-opacity-20">
-                <Icon name="mdi:book-open-variant" /> Module
-              </Chip>
-            );
-          } else {
-            return (
-              <Chip classNames="text-sm" bg_color="bg-orange-200 bg-opacity-20">
-                <Icon name="mdi:graduation-cap" /> Editorial
-              </Chip>
-            );
-          }
-        }
-      }
-    </Details>
-  </div>
-  <div class="col-span-2 space-y-1 md:col-span-4">
-    <h2 class="text-xl font-semibold">{post.data.title}</h2>
-    <div class="prose prose-sm prose-invert prose-p:text-white">
-      {
-        post.collection === "editorials"
-          ? markdown(post.data["problem-description"])
-          : markdown(post.data.summary)
-      }
-    </div>
-  </div>
-  <div class="col-span-4 md:col-span-2">
+<PostItem href={href} title={post.data.title}>
+  <Fragment slot="details-left">
     <Details direction="column">
       <p class="rel-timestamp text-sm">
         {post.data["date-created"].toISOString()}
       </p>
+    </Details>
+  </Fragment>
+  <div
+    slot="description"
+    class="prose prose-sm prose-invert prose-p:text-white"
+  >
+    {
+      post.collection === "editorials"
+        ? markdown(post.data["problem-description"])
+        : markdown(post.data.summary)
+    }
+  </div>
+  <Fragment slot="details-right">
+    <Details direction="column">
       {
         () => {
           if (post.collection === "modules") {
-            return <Chip isCode>{post.data.id}</Chip>;
+            return (
+              <>
+                <Chip
+                  classNames="text-sm"
+                  bg_color="bg-green-200 bg-opacity-20 text-white"
+                >
+                  <Icon name="mdi:book-open-variant" /> Module
+                </Chip>
+              </>
+            );
           } else {
             return (
-              <Details>
-                <p>{fullnames[post.data.platform]}</p>
-                <p>•</p>
-                <Chip isCode>{post.data.code}</Chip>
-              </Details>
+              <>
+                <Chip
+                  classNames="text-sm"
+                  bg_color="bg-orange-200 bg-opacity-20 text-white"
+                >
+                  <Icon name="mdi:graduation-cap" /> Editorial
+                </Chip>
+                <Details>
+                  <p>{fullnames[post.data.platform]}</p>
+                  <p>•</p>
+                  <Chip isCode>{post.data.code}</Chip>
+                </Details>
+              </>
             );
           }
         }
       }
     </Details>
-  </div>
-</a>
+  </Fragment>
+</PostItem>

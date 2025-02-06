@@ -1,0 +1,31 @@
+---
+interface Props {
+  href: string;
+  title: string;
+}
+
+const { href, title } = Astro.props;
+---
+<a
+  class:list={[
+    "-mx-6 grid grid-cols-2 gap-4",
+    "rounded px-6 py-4",
+    "transition duration-300",
+    "hover:z-50 hover:scale-105 hover:bg-white/10 hover:shadow-xl",
+    "focus:z-50 focus:scale-105 focus:bg-white/10 focus:shadow-xl",
+    "active:z-50 active:scale-105 active:bg-white/10 active:shadow-xl",
+    "md:m-0 md:grid-cols-6 lg:grid-cols-7 lg:px-4",
+  ]}
+  href={href}
+>
+    <div class="col-span-4 md:col-span-6 lg:col-span-1">
+        <slot name="details-left" />
+    </div>
+    <div class="col-span-2 space-y-1 md:col-span-4">
+        <h2 class="text-xl font-semibold">{title}</h2>
+        <slot name="description" />
+    </div>
+    <div class="col-span-4 md:col-span-2">
+        <slot name="details-right" />
+    </div>
+</a>
