@@ -1,5 +1,6 @@
 ---
 import { markdown } from "@astropub/md";
+import MarkdownBody from "@blubits/components/MarkdownBody.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import NotesPage from "@blubits/layouts/NotesPage.astro";
 import "@blubits/styles/styles-notes.css";
@@ -40,20 +41,9 @@ const { Content } = await render(post);
       </section>
 
       <section class="flex flex-col gap-16">
-        <div
-          class:list={[
-            "shrink-0 grow",
-            "prose prose-invert prose-p:text-white",
-            "prose-h1:text-xl prose-h1:font-bold",
-            "prose-a:text-lime-400 hover:prose-a:text-lime-500",
-            "prose-p:text-justify",
-            "[&>.footnotes]:text-sm",
-            "[&>.footnotes>h2]:text-md",
-            "prose-inline-code:rounded-sm prose-inline-code:bg-gray-500 prose-inline-code:bg-opacity-50 prose-inline-code:px-2 prose-inline-code:py-0.5",
-          ]}
-        >
+        <MarkdownBody>
           <Content />
-        </div>
+        </MarkdownBody>
         <div class="order-last shrink grow-0">
           <dl class="mt-4 flex flex-col gap-y-4 text-sm">
             <div class="flex flex-col gap-y-2">

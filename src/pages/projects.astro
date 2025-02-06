@@ -1,7 +1,12 @@
 ---
+import Details from "@blubits/components/Details.astro";
+import PostItem from "@blubits/components/PostItem.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import "@blubits/styles/styles-dark.css";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
 ---
 
 <Layout>
@@ -18,9 +23,46 @@ import "@blubits/styles/styles-dark.css";
         Projects
       </h1>
 
-      <section class="rounded-lg bg-yellow-500/50 py-2 text-center transition duration-300 hover:z-50 hover:scale-105">
-        <p class="text-lg font-semibold">📇 My manifesto: the year of projects</p>
+      <section
+        class="my-4 rounded-lg bg-yellow-500/50 py-2 text-center transition duration-300 hover:z-50 hover:scale-105"
+      >
+        <p class="text-lg font-semibold">
+          📇 My manifesto: the year of projects
+        </p>
       </section>
+
+      <div>
+        {
+          projects.map((project) => (
+            <PostItem
+              href={`/projects/${project.id.split("/").at(-2)}`}
+              title={project.data.title}
+            >
+              <Fragment slot="details-left">
+                <Details direction="column" text_color="text-gray-300">
+                  <p class="rel-timestamp text-sm">
+                    {project.data["date-created"].toISOString()}
+                  </p>
+                </Details>
+              </Fragment>
+              <Fragment slot="image">
+                <img
+                  src={project.data.image}
+                  alt={project.data.title}
+                  class="mb-4 rounded-lg"
+                />
+              </Fragment>
+            </PostItem>
+          ))
+        }
+      </div>
     </main>
+    <script>
+      import { parseISO, formatDistanceToNow } from "date-fns";
+      Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
+        const relativeDate = formatDistanceToNow(parseISO(el.innerHTML.trim()));
+        el.innerHTML = `${relativeDate} ago`;
+      });
+    </script>
   </DefaultPage>
 </Layout>

@@ -32,11 +32,13 @@ const modules = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: "*/PROJECT.md", base: "./content/projects" }),
+  loader: glob({ pattern: "**/PROJECT.md", base: "./content/projects" }),
   schema: z.object({
+    title: z.string(),
     "date-created": z.date(),
     "date-updated": z.date(),
     tags: z.array(z.string()),
+    image: z.string()
   }),
 });
 

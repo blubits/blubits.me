@@ -1,6 +1,8 @@
 ---
+title: Test project
 date-created: 2025-02-05
 date-updated: 2025-02-05
+image: "project-assets/robot.jpg"
 tags:
     - python
     - flask
