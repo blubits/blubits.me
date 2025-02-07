@@ -1,6 +1,6 @@
 ---
-import { markdown } from "@astropub/md";
 import MarkdownBody from "@blubits/components/MarkdownBody.astro";
+import TableOfContents from "@blubits/components/TableOfContents.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import NotesPage from "@blubits/layouts/NotesPage.astro";
 import "@blubits/styles/styles-notes.css";
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <Layout title={post.data.title}>
@@ -40,21 +40,32 @@ const { Content } = await render(post);
         </h2>
       </section>
 
-      <section class="flex flex-col gap-16">
-        <MarkdownBody>
-          <Content />
-        </MarkdownBody>
-        <div class="order-last shrink grow-0">
+      <section class="flex flex-col gap-24 md:flex-row">
+        <div>
+          <MarkdownBody>
+            <Content />
+          </MarkdownBody>
           <dl class="mt-4 flex flex-col gap-y-4 text-sm">
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Module created</dt>
-              <dd class="rel-timestamp">{post.data["date-created"].toISOString()}</dd>
+              <dd class="rel-timestamp">
+                {post.data["date-created"].toISOString()}
+              </dd>
             </div>
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Last updated</dt>
-              <dd class="rel-timestamp">{post.data["date-updated"].toISOString()}</dd>
+              <dd class="rel-timestamp">
+                {post.data["date-updated"].toISOString()}
+              </dd>
             </div>
           </dl>
+        </div>
+        <div class="order-first grow md:order-last">
+          {
+            headings.length > 0 && (
+              <TableOfContents headings={headings} />
+            )
+          }
         </div>
       </section>
     </main>
