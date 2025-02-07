@@ -5,6 +5,8 @@ import Details from "@blubits/components/Details.astro";
 import PostItem from "@blubits/components/PostItem.astro";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
+import ModuleChip from "./ModuleChip.astro";
+import EditorialChip from "./EditorialChip.astro";
 
 interface Props {
   post: CollectionEntry<"modules"> | CollectionEntry<"editorials">;
@@ -47,24 +49,12 @@ if (post.collection === "modules") {
         () => {
           if (post.collection === "modules") {
             return (
-              <>
-                <Chip
-                  classNames="text-sm"
-                  bg_color="bg-green-200 bg-opacity-20 text-white"
-                >
-                  <Icon name="mdi:book-open-variant" /> Module
-                </Chip>
-              </>
+              <ModuleChip />
             );
           } else {
             return (
               <>
-                <Chip
-                  classNames="text-sm"
-                  bg_color="bg-orange-200 bg-opacity-20 text-white"
-                >
-                  <Icon name="mdi:graduation-cap" /> Editorial
-                </Chip>
+                <EditorialChip />
                 <Details>
                   <p>{fullnames[post.data.platform]}</p>
                   <p>•</p>

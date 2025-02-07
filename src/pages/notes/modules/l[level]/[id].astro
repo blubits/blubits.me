@@ -1,5 +1,6 @@
 ---
 import MarkdownBody from "@blubits/components/MarkdownBody.astro";
+import ModuleChip from "@blubits/components/notes/ModuleChip.astro";
 import TableOfContents from "@blubits/components/TableOfContents.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import NotesPage from "@blubits/layouts/NotesPage.astro";
@@ -23,17 +24,9 @@ const { Content, headings } = await render(post);
 <Layout title={post.data.title}>
   <NotesPage>
     <main>
-      <section class="mb-8">
+      <section class="mb-8 space-y-2">
         <div class="flex items-center gap-x-2 py-1 text-sm text-gray-400">
-          <p class="flex items-center gap-x-2">
-            <Icon name="material-symbols:book-2" />Module
-          </p>
-          <p>•</p>
-          <p
-            class="flex items-center rounded-sm bg-gray-500 bg-opacity-50 px-2 py-0.5 font-mono"
-          >
-            {post.data.id}
-          </p>
+          <ModuleChip />
         </div>
         <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
           {post.data.title}

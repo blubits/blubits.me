@@ -9,6 +9,7 @@ import "@blubits/styles/styles-notes.css";
 import { Icon } from "astro-icon/components";
 import { getCollection, render } from "astro:content";
 import "katex/dist/katex.min.css";
+import EditorialChip from "@blubits/components/notes/EditorialChip.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("editorials");
@@ -32,9 +33,7 @@ const fullnames: { [key: string]: string } = {
     <main>
       <section class="mb-8">
         <Details>
-          <p class="flex items-center gap-x-2">
-            <Icon name="mdi:graduation-cap" />Editorial
-          </p>
+          <EditorialChip />
           <p>•</p>
           <p class="flex items-center">{fullnames[post.data.platform]}</p>
           <p>•</p>
