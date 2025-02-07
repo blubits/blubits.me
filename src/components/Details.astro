@@ -9,8 +9,9 @@ const { direction = "row", text_color = "text-gray-400" } = Astro.props;
 
 <div
   class:list={[
-    direction === "row" ? "flex items-center gap-x-2" : "flex flex-col gap-y-1",
-    "text-sm",
+    "flex",
+    direction === "row" ? "items-center " : "flex-col",
+    "flex-wrap gap-x-2 gap-y-1 text-sm",
     text_color
   ]}
 >

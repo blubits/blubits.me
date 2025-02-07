@@ -26,7 +26,6 @@ const modules = defineCollection({
     title: z.string(),
     "date-created": z.date(),
     "date-updated": z.date(),
-    references: z.array(z.string()),
     summary: z.string().default("")
   }),
 });

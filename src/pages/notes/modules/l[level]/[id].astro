@@ -47,16 +47,6 @@ const { Content } = await render(post);
         <div class="order-last shrink grow-0">
           <dl class="mt-4 flex flex-col gap-y-4 text-sm">
             <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">References</dt>
-              <dd>
-                {
-                  post.data.references.map((ref) => (
-                    <p class="">{markdown(ref)}</p>
-                  ))
-                }
-              </dd>
-            </div>
-            <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Module created</dt>
               <dd class="rel-timestamp">{post.data["date-created"].toISOString()}</dd>
             </div>

@@ -1,17 +1,18 @@
 ---
 interface Props {
-  isDark?: boolean;
+  link_color?: string;
 }
 
-const { isDark = true } = Astro.props;
+const { link_color = "prose-a:text-lime-400 hover:prose-a:text-lime-500" } =
+  Astro.props;
 ---
 
 <div
   class:list={[
     "shrink-0 grow",
     "prose prose-invert prose-p:text-white",
-    "prose-h1:text-xl prose-h1:font-bold",
-    "prose-a:text-lime-400 hover:prose-a:text-lime-500",
+    link_color,
+    "prose-h5:text-md prose-h5:font-medium prose-h5:text-white prose-h5:underline prose-h5:underline-offset-4",
     "prose-p:text-justify",
     "prose-li:text-white",
     "[&>.footnotes]:text-sm",
