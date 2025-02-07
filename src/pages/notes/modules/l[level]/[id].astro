@@ -38,7 +38,7 @@ const { Content, headings } = await render(post);
           <MarkdownBody>
             <Content />
           </MarkdownBody>
-          <dl class="mt-4 flex flex-col gap-y-4 text-sm">
+          <dl class="mt-12 flex flex-col gap-y-4 text-sm text-gray-200">
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Module created</dt>
               <dd class="rel-timestamp">
@@ -53,7 +53,7 @@ const { Content, headings } = await render(post);
             </div>
           </dl>
         </div>
-        <div class="order-first grow md:order-last">
+        <div class="hidden grow lg:block lg:order-last">
           {
             headings.length > 0 && (
               <TableOfContents headings={headings} />
