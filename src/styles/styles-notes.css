@@ -1,13 +1,21 @@
-a.extlink {
-    @apply text-lime-400 hover:text-lime-500 underline underline-offset-4;
-}
+@layer base {
+    a {
+       /**
+        * iOS/iPadOS Safari stupidly changes the background color of links on tap.
+        * This property, as well as the ontouchstart="" attribute on `NoteListCard`, 
+        * disables the weird gray tint. The card should now be correctly white
+        * on click.
+        */
+        -webkit-tap-highlight-color: transparent;
+    }
 
-/**
- * iOS/iPadOS Safari stupidly changes the background color of links on tap.
- * This property, as well as the ontouchstart="" attribute on `NoteListCard`, 
- * disables the weird gray tint. The card should now be correctly white
- * on click.
- */
-a {
-    -webkit-tap-highlight-color: transparent;
+    a.extlink {
+        color: var(--color-lime-400);
+        text-decoration-line: underline;
+        text-underline-offset: 4px;
+    }
+
+    a.extlink:hover {
+        color: var(--color-lime-500);
+    }
 }

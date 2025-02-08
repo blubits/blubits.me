@@ -18,7 +18,7 @@ all_posts.sort(
 
 <Layout title="Notes">
   <NotesPage large>
-    <main class:list={["flex flex-col space-y-4"]}>
+    <main class:list={["flex flex-col gap-y-4"]}>
       {all_posts.map((post) => <NotePostItem post={post} />)}
     </main>
   </NotesPage>

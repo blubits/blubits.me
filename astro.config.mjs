@@ -1,5 +1,4 @@
 import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
 import markdownIntegration from "@astropub/md";
 import remarkCallout from "@r4ai/remark-callout";
 import icon from "astro-icon";
@@ -14,6 +13,8 @@ import remarkRemoveComments from "./remark-remove-comments.mjs";
 
 import expressiveCode from "astro-expressive-code";
 
+import tailwindcss from "@tailwindcss/vite";
+
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -27,8 +28,8 @@ export default defineConfig({
     ],
     rehypePlugins: [rehypeKatex],
   },
+
   integrations: [
-    tailwind(),
     icon(),
     react(),
     mailObfuscation(),
@@ -40,4 +41,8 @@ export default defineConfig({
       },
     }),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
