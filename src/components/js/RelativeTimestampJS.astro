@@ -1,0 +1,7 @@
+<script>
+    import { parseISO, formatDistanceToNow } from "date-fns";
+    Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
+        const relativeDate = formatDistanceToNow(parseISO(el.innerHTML.trim()));
+        el.innerHTML = `${relativeDate} ago`;
+    });
+</script>

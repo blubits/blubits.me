@@ -1,5 +1,7 @@
 ---
+import RelativeTimestampJS from "@blubits/components/js/RelativeTimestampJS.astro";
 import MarkdownBody from "@blubits/components/MarkdownBody.astro";
+import TableOfContents from "@blubits/components/TableOfContents.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
@@ -15,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <Layout title={post.data.title}>
@@ -57,9 +59,7 @@ const { Content } = await render(post);
           <MarkdownBody>
             <Content />
           </MarkdownBody>
-        </div>
-        <div class="shrink grow-0 min-w-72">
-          <dl class="mt-4 flex flex-col gap-y-4 text-sm">
+          <dl class="mt-12 flex flex-col gap-y-4 text-sm text-gray-200">
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Last updated</dt>
               <dd class="rel-timestamp">
@@ -74,14 +74,15 @@ const { Content } = await render(post);
             </div>
           </dl>
         </div>
+        <div class="hidden grow lg:block lg:order-last">
+          {
+            headings.length > 0 && (
+              <TableOfContents headings={headings} />
+            )
+          }
+        </div>
       </section>
     </main>
-    <script>
-      import { parseISO, formatDistanceToNow } from "date-fns";
-      Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
-        const relativeDate = formatDistanceToNow(parseISO(el.innerHTML.trim()));
-        el.innerHTML = `${relativeDate} ago`;
-      });
-    </script>
+    <RelativeTimestampJS />
   </DefaultPage>
 </Layout>

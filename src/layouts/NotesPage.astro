@@ -5,6 +5,7 @@ import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
 import DefaultPage from "./DefaultPage.astro";
 import { Icon } from "astro-icon/components";
+import RelativeTimestampJS from "@blubits/components/js/RelativeTimestampJS.astro";
 
 interface Props {
   background_color?: string;
@@ -58,11 +59,5 @@ const {
     </h1>
   </section>
   <slot />
-  <script>
-    import { parseISO, formatDistanceToNow } from "date-fns";
-    Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
-      const relativeDate = formatDistanceToNow(parseISO(el.innerHTML.trim()));
-      el.innerHTML = `${relativeDate} ago`;
-    });
-  </script>
+  <RelativeTimestampJS />
 </DefaultPage>
