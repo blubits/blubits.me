@@ -72,9 +72,9 @@ const fullnames: { [key: string]: string } = {
             </div>
           </dl>
         </div>
-        <div class="order-first flex flex-col gap-y-4 lg:order-last">
+        <div class="order-first flex flex-col gap-y-8 lg:order-last">
           <div
-            class="order-last max-w-96 rounded bg-gradient-to-b from-lime-500/20 to-lime-500/10 p-4 lg:order-first"
+            class="order-last max-w-96 rounded bg-gradient-to-b from-lime-500/20 to-lime-500/10 p-4 pr-12 lg:order-first"
           >
             <dl class="text-md flex flex-col gap-y-4">
               <div class="flex flex-col gap-y-2">
@@ -89,31 +89,37 @@ const fullnames: { [key: string]: string } = {
               </div>
             </dl>
           </div>
-          <h3
-            class="text-xs font-semibold uppercase tracking-widest text-gray-400"
-          >
-            Problem link
-          </h3>
-          <a
-            class:list={[
-              "inline-flex items-center gap-x-2 text-lime-400 underline underline-offset-4 hover:text-lime-500",
-            ]}
-            href={post.data["problem-link"]}
-            >On {fullnames[post.data.platform]}<Icon name="mdi:external-link" /></a
-          >
-          <h3
-            class="text-xs font-semibold uppercase tracking-widest text-gray-400"
-          >
-            Tags
-          </h3>
-          <div class="flex flex-row flex-wrap items-start gap-1">
-            {
-              post.data.tags.map((tag) => (
-                <Chip isCode classNames="text-sm">
-                  {tag}
-                </Chip>
-              ))
-            }
+          <div class="flex flex-col gap-y-2">
+            <h3
+              class="text-xs font-semibold uppercase tracking-widest text-gray-400"
+            >
+              Problem link
+            </h3>
+            <a
+              class:list={[
+                "inline-flex items-center gap-x-2 text-lime-400 underline underline-offset-4 hover:text-lime-500",
+              ]}
+              href={post.data["problem-link"]}
+              >On {fullnames[post.data.platform]}<Icon
+                name="mdi:external-link"
+              /></a
+            >
+          </div>
+          <div class="flex flex-col gap-y-2">
+            <h3
+              class="text-xs font-semibold uppercase tracking-widest text-gray-400"
+            >
+              Tags
+            </h3>
+            <div class="flex flex-row flex-wrap items-start gap-1">
+              {
+                post.data.tags.map((tag) => (
+                  <Chip isCode classNames="text-sm">
+                    {tag}
+                  </Chip>
+                ))
+              }
+            </div>
           </div>
         </div>
       </section>

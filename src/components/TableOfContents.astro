@@ -18,6 +18,7 @@ const { headings } = Astro.props;
         <li>
           <a
             class:list={[
+
               "inline-block",
               "text-gray-300",
               "border-l border-gray-600",
@@ -26,6 +27,7 @@ const { headings } = Astro.props;
               heading.depth === 2 || heading.text == "References"
                 ? "pl-4"
                 : "pl-8",
+              "aria-[current='page']:border-white aria-[current='page']:font-semibold aria-[current='page']:text-white",
             ]}
             href={`#${heading.slug}`}
           >
@@ -36,3 +38,31 @@ const { headings } = Astro.props;
     }
   </ul>
 </div>
+<script>
+/**
+ * Add aria-current attribute to currently-focused header.
+ * Don't remove the attribute if the header isn't in focus;
+ * only change it when another header is in focus.
+ * All headers are contained in the #markdown-body element.
+ */
+
+
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      document
+        .querySelector("a[aria-current='page']")
+        ?.removeAttribute("aria-current");
+      document
+        .querySelector(`a[href="#${entry.target.id}"]`)
+        ?.setAttribute("aria-current", "page");
+    }
+  });
+});
+
+document.querySelectorAll("h2, h3, h4, h5, h6").forEach((section) => {
+  observer.observe(section);
+});
+
+</script>
