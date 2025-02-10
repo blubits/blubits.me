@@ -10,10 +10,13 @@ import { remarkObsidianLink } from "remark-obsidian-link";
 import remarkRemoveFirstH1 from "./remark-remove-heading.mjs";
 import remarkTikzjax from "./remark-tikzjax.ts";
 import remarkRemoveComments from "./remark-remove-comments.mjs";
+import { readFile } from "fs/promises"
 
 import expressiveCode from "astro-expressive-code";
 
 import tailwindcss from "@tailwindcss/vite";
+
+import favicons from "astro-favicons";
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,6 +42,17 @@ export default defineConfig({
       styleOverrides: {
         codeFontFamily: "JetBrains Mono",
       },
+    }),
+    favicons({
+      input: {
+        favicons: [
+          await readFile("public/favicon-ty.png"),
+          await readFile("public/favicon-xs.png"),
+          await readFile("public/favicon-sm.png"),
+          await readFile("public/favicon-md.png"),
+          await readFile("public/favicon-lg.png"),
+        ],
+      }
     }),
   ],
 
