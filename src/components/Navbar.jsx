@@ -63,6 +63,9 @@ const Navbar = (props) => {
         <ul
           className={`flex space-x-2 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "h-auto opacity-100" : "h-0 opacity-0"} md:h-auto md:opacity-100`}
         >
+          <NavItem href="/about" dark={props.dark}>
+            About
+          </NavItem>
           <NavItem href="/tutoring" dark={props.dark}>
             Tutoring
           </NavItem>

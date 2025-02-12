@@ -1,5 +1,9 @@
 ---
 import memojiImage from "@blubits/assets/memoji.webp";
+import sampleThumb from "@blubits/assets/sample_thumb.jpg";
+import CardItem from "@blubits/components/CardItem.astro";
+import CardThumbIcon from "@blubits/components/CardThumbIcon.astro";
+import CardThumbImage from "@blubits/components/CardThumbImage.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import "@blubits/styles/styles.css";
@@ -31,8 +35,8 @@ import { Image } from "astro:assets";
           </p>
           <p class="max-w-xl text-lg leading-normal">
             I graduated with a degree in computer science from the University of
-            the Philippines. When I'm not coding, I like to get out and explore.
-            (I'm a public transportation nerd.)
+            the Philippines. When I'm not coding, I like to walk around and
+            explore.
           </p>
         </div>
         <div
@@ -42,55 +46,45 @@ import { Image } from "astro:assets";
         </div>
       </div>
 
-      <section class="items-top mt-12 grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-8 gap-y-12">
-        <div class="col-span-4 md:col-span-2 flex">
-          <p class="leading-normal font-semibold tracking-wide uppercase">
-            What I do
-          </p>
-        </div>
-        <div class="col-span-4 md:col-span-6 lg:col-span-8 flex gap-8">
-          <div
-            class:list={[
-              "flex flex-col gap-4",
-              "-my-6 rounded px-6 py-6",
-              "transition duration-300 ease-in-out",
-              "hover:scale-105 hover:bg-blue-500/90 hover:text-white hover:shadow-xl",
-              "active:scale-105 active:bg-blue-500/90 active:text-white active:shadow-xl",
-            ]}
+      <section
+      >
+        <div
+          class="mt-12 flex flex-row flex-nowrap gap-8 overflow-x-auto"
+        >
+          <CardItem
+            title="Sample title"
+            description="Lorem ipsum dolor sit amet."
           >
-            <Image
-              src="https://picsum.photos/seed/picsum/300/200"
-              width="300"
-              height="200"
-              alt="Sample thumbnail"
-              class="rounded object-cover"
+            <CardThumbImage
+              slot="thumbnail"
+              src={sampleThumb}
+              alt="Sample title"
             />
-            <div class="flex flex-col gap-2">
-              <h2 class="text-xl font-semibold">Title</h2>
-              <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-          </div>
-          <div
-            class:list={[
-              "flex flex-col gap-4",
-              "-my-6 rounded px-6 py-6",
-              "transition duration-300 ease-in-out",
-              "hover:scale-105 hover:bg-blue-500/90 hover:text-white hover:shadow-xl",
-              "active:scale-105 active:bg-blue-500/90 active:text-white active:shadow-xl",
-            ]}
+          </CardItem>
+          <CardItem
+            title="Sample title"
+            description="Lorem ipsum dolor sit amet."
           >
-            <Image
-              src="https://picsum.photos/seed/picsum2/300/200"
-              width="300"
-              height="200"
-              alt="Sample thumbnail"
-              class="rounded object-cover"
-            />
-            <div class="flex flex-col gap-2">
-              <h2 class="text-xl font-semibold">Title</h2>
-              <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-          </div>
+            <CardThumbIcon slot="thumbnail" icon_name="mdi:account" />
+          </CardItem>
+          <CardItem
+            title="Sample title"
+            description="Lorem ipsum dolor sit amet."
+          >
+            <CardThumbIcon slot="thumbnail" icon_name="mdi:account" />
+          </CardItem>
+          <CardItem
+            title="Sample title"
+            description="Lorem ipsum dolor sit amet."
+          >
+            <CardThumbIcon slot="thumbnail" icon_name="mdi:account" />
+          </CardItem>
+          <CardItem
+            title="Sample title"
+            description="Lorem ipsum dolor sit amet."
+          >
+            <CardThumbIcon slot="thumbnail" icon_name="mdi:account" />
+          </CardItem>
         </div>
       </section>
     </main>
