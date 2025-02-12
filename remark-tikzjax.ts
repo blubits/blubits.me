@@ -45,9 +45,7 @@ const remarkTikzjax: RemarkPlugin = () => async (tree) => {
       const svg = await convertTikz(node.value);
       node.type = "html";
       node.value = svg;
-      console.log("Processed TikZ block:", node.value);
     } catch (err) {
-      console.error("Failed to process TikZ block:", err);
     }
   }
 };

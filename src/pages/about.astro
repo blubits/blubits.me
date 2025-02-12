@@ -1,0 +1,98 @@
+---
+import memojiImage from "@blubits/assets/memoji.webp";
+import DefaultPage from "@blubits/layouts/DefaultPage.astro";
+import Layout from "@blubits/layouts/Layout.astro";
+import "@blubits/styles/styles.css";
+import { Image } from "astro:assets";
+---
+
+<Layout>
+  <DefaultPage
+    background_color="bg-gradient-to-r from-cyan-100 to-blue-200"
+    foreground_color="text-gray-900"
+    logo_background_color="bg-transparent"
+    logo_foreground_color="stroke-gray-900"
+  >
+    <main>
+      <h1
+        class="font-sanstight mb-8 text-5xl leading-none font-bold md:text-6xl"
+      >
+        Hi! I'm Maded.
+      </h1>
+      <div class="flex flex-col gap-6 md:flex-row">
+        <div class="flex flex-col gap-6">
+          <h2 class="font-sanstight text-2xl font-semibold">
+            I tell stories and solve problems through code.
+          </h2>
+          <p class="max-w-xl text-lg leading-normal">
+            Someday I hope to do something that changes the system to be for the
+            good of the many, not the few. But right now, I'm a freelance tutor
+            and developer, with years of experience helping others succeed.
+          </p>
+          <p class="max-w-xl text-lg leading-normal">
+            I graduated with a degree in computer science from the University of
+            the Philippines. When I'm not coding, I like to get out and explore.
+            (I'm a public transportation nerd.)
+          </p>
+        </div>
+        <div
+          class="order-first flex grow flex-col md:order-last md:items-center md:justify-center"
+        >
+          <Image src={memojiImage} class="w-64" alt="Memoji of Maded" />
+        </div>
+      </div>
+
+      <section class="items-top mt-12 grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-8 gap-y-12">
+        <div class="col-span-4 md:col-span-2 flex">
+          <p class="leading-normal font-semibold tracking-wide uppercase">
+            What I do
+          </p>
+        </div>
+        <div class="col-span-4 md:col-span-6 lg:col-span-8 flex gap-8">
+          <div
+            class:list={[
+              "flex flex-col gap-4",
+              "-my-6 rounded px-6 py-6",
+              "transition duration-300 ease-in-out",
+              "hover:scale-105 hover:bg-blue-500/90 hover:text-white hover:shadow-xl",
+              "active:scale-105 active:bg-blue-500/90 active:text-white active:shadow-xl",
+            ]}
+          >
+            <Image
+              src="https://picsum.photos/seed/picsum/300/200"
+              width="300"
+              height="200"
+              alt="Sample thumbnail"
+              class="rounded object-cover"
+            />
+            <div class="flex flex-col gap-2">
+              <h2 class="text-xl font-semibold">Title</h2>
+              <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+          </div>
+          <div
+            class:list={[
+              "flex flex-col gap-4",
+              "-my-6 rounded px-6 py-6",
+              "transition duration-300 ease-in-out",
+              "hover:scale-105 hover:bg-blue-500/90 hover:text-white hover:shadow-xl",
+              "active:scale-105 active:bg-blue-500/90 active:text-white active:shadow-xl",
+            ]}
+          >
+            <Image
+              src="https://picsum.photos/seed/picsum2/300/200"
+              width="300"
+              height="200"
+              alt="Sample thumbnail"
+              class="rounded object-cover"
+            />
+            <div class="flex flex-col gap-2">
+              <h2 class="text-xl font-semibold">Title</h2>
+              <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </DefaultPage>
+</Layout>
