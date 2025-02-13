@@ -1,8 +1,8 @@
 ---
-import Footer from "@blubits/components/Footer.astro";
-import Logo from "@blubits/components/Logo.astro";
-import Navbar from "@blubits/components/Navbar.jsx";
-import Container from "@blubits/components/containers/Container.astro";
+import Footer from "@blubits/components/nav/Footer.astro";
+import Logo from "@blubits/components/nav/Logo.astro";
+import Navbar from "@blubits/components/nav/Navbar.jsx";
+import Container from "@blubits/layouts/containers/Container.astro";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
@@ -47,7 +47,7 @@ const {
   <main>
     <slot />
   </main>
-  
+
   <Container>
     <Footer />
   </Container>

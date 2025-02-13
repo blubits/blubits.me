@@ -1,0 +1,25 @@
+---
+import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
+---
+
+<ContainerFull class="relative">
+  <div
+    class:list={[
+      "absolute top-4 left-0",
+      "-z-50 h-88 w-full",
+      "bg-white/20 ring-1 ring-black/5 backdrop-blur-3xl",
+      "inset-shadow-sm",
+    ]}
+  >
+  </div>
+
+  <div
+    class:list={[
+      "hide-scrollbar",
+      "flex h-96 snap-x flex-row items-center",
+      "overflow-x-visible overflow-y-scroll scroll-smooth",
+    ]}
+  >
+    <slot name="cards" />
+  </div>
+</ContainerFull>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// TODO: Use target: instead of programmatic setting.
 const NavItem = ({ href, children, dark }) => {
   const [isActive, setIsActive] = useState(false);
 
