@@ -21,7 +21,6 @@ const blogposts = await getCollection("blogposts")
       </h1>
     </Container>
     <ContainerFull>
-      {blogposts.map((post) => <PostItem title={post.data.title} />)}
     </ContainerFull>
 </DefaultPage>
 </Layout>
