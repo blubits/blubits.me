@@ -5,9 +5,7 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "@blubits/components/*": ["src/components/*"],
-      "@blubits/layouts/*": ["src/layouts/*"],
-      "@blubits/styles/*": ["src/styles/*"]
+      "@blubits/*": ["src/*"]
     }
   }, 
 }

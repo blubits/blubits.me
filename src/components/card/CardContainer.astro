@@ -1,0 +1,32 @@
+---
+import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
+
+interface Props {
+    height?: string;
+    card_height?: string;
+}
+
+const { height = "h-96", card_height = "h-88" } = Astro.props;
+---
+
+<ContainerFull class="relative">
+  <div
+    class:list={[
+      "absolute top-4 left-0",
+      "-z-50 w-full", card_height,
+      "bg-white/20 ring-1 ring-black/5 backdrop-blur-3xl",
+      "inset-shadow-sm",
+    ]}
+  >
+  </div>
+
+  <div
+    class:list={[
+      "hide-scrollbar", height,
+      "flex not-visited:snap-x flex-row items-center",
+      "overflow-x-visible overflow-y-scroll scroll-smooth",
+    ]}
+  >
+    <slot name="cards" />
+  </div>
+</ContainerFull>

@@ -1,8 +1,10 @@
 ---
 import { markdown } from "@astropub/md";
-import Details from "@blubits/components/Details.astro";
 import Chip from "@blubits/components/Chip.astro";
-import NoteBody from "@blubits/components/notes/NoteBody.astro";
+import Details from "@blubits/components/Details.astro";
+import MarkdownBody from "@blubits/components/MarkdownBody.astro";
+import EditorialChip from "@blubits/components/notes/EditorialChip.astro";
+import Container from "@blubits/layouts/containers/Container.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import NotesPage from "@blubits/layouts/NotesPage.astro";
 import "@blubits/styles/styles-notes.css";
@@ -23,75 +25,106 @@ const { Content } = await render(post);
 
 const fullnames: { [key: string]: string } = {
   oj: "Online Judge",
-  cf: "Codeforces"
+  cf: "Codeforces",
 };
 ---
 
-<Layout title={fullnames[post.data.platform] + " " + post.data.code + " | " + post.data.title}>
-  <NotesPage>
-    <main>
+<Layout
+  title={"Editorial: " +
+    fullnames[post.data.platform] +
+    " " +
+    post.data.code +
+    " | " +
+    post.data.title}
+>
+  <NotesPage background_color="bg-slate-50">
+    <Container>
       <section class="mb-8">
         <Details>
-          <p class="flex items-center gap-x-2">
-            <Icon name="mdi:graduation-cap" />Editorial
-          </p>
+          <EditorialChip />
           <p>•</p>
           <p class="flex items-center">{fullnames[post.data.platform]}</p>
           <p>•</p>
           <Chip isCode>{post.data.code}</Chip>
         </Details>
-        <div class="flex items-center gap-x-2 py-1 text-sm text-gray-400"></div>
+        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600">
+        </div>
         <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
           {post.data.title}
         </h2>
       </section>
 
       <section class="flex flex-col gap-16 lg:flex-row">
-        <NoteBody>
-          <Content />
-        </NoteBody>
-        <div class="order-first shrink grow-0 lg:order-last">
-          <a
-            class="flex items-center gap-x-2 text-lg text-lime-400 underline underline-offset-4 hover:text-lime-500"
-            href={post.data["problem-link"]}
-            >Problem link<Icon name="mdi:external-link" /></a
-          >
-          <dl class="mt-4 flex flex-col gap-y-4 text-sm">
+        <div>
+          <MarkdownBody>
+            <Content />
+          </MarkdownBody>
+          <dl class="mt-12 flex flex-col gap-y-4 text-sm text-slate-600">
             <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">Description</dt>
-              <dd>{markdown(post.data["problem-description"])}</dd>
-            </div>
-            <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">Solution</dt>
-              <dd>{markdown(post.data["solution-summary"])}</dd>
-            </div>
-            <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">Running time</dt>
-              <dd>{markdown(post.data["running-time"])}</dd>
-            </div>
-            <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">Tags</dt>
-              <dd>
-                <div class="flex flex-row flex-wrap items-start gap-1">
-                  {
-                    post.data.tags.map((tag) => (
-                      <Chip isCode classNames="text-xs">{tag}</Chip>
-                    ))
-                  }
-                </div>
+              <dt class="font-semibold">Module created</dt>
+              <dd class="rel-timestamp">
+                {post.data["date-created"].toISOString()}
               </dd>
             </div>
             <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">Module created</dt>
-              <dd class="rel-timestamp">{post.data["date-created"].toISOString()}</dd>
-            </div>
-            <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Last updated</dt>
-              <dd class="rel-timestamp">{post.data["date-updated"].toISOString()}</dd>
+              <dd class="rel-timestamp">
+                {post.data["date-updated"].toISOString()}
+              </dd>
             </div>
           </dl>
         </div>
+        <div class="order-first flex flex-col gap-y-8 lg:order-last">
+          <div
+            class="order-last max-w-96 rounded bg-gradient-to-b from-lime-600 to-lime-700 p-4 pr-12 text-white lg:order-first"
+          >
+            <dl class="text-md flex flex-col gap-y-4">
+              <div class="flex flex-col gap-y-2">
+                <dt class="inline-flex items-center gap-x-2 font-semibold">
+                  <Icon name="mdi:information" /> Solution summary
+                </dt>
+                <dd>{markdown(post.data["solution-summary"])}</dd>
+              </div>
+              <div class="flex flex-row gap-x-2">
+                <dt class="font-medium">Running time</dt>
+                <dd>{markdown(post.data["running-time"])}</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="flex flex-col gap-y-2">
+            <h3
+              class="text-xs font-semibold tracking-widest text-slate-600 uppercase"
+            >
+              Problem link
+            </h3>
+            <a
+              class:list={[
+                "inline-flex items-center gap-x-2 text-lime-600 underline underline-offset-4 hover:text-lime-700",
+              ]}
+              href={post.data["problem-link"]}
+              >On {fullnames[post.data.platform]}<Icon
+                name="mdi:external-link"
+              /></a
+            >
+          </div>
+          <div class="flex flex-col gap-y-2">
+            <h3
+              class="text-xs font-semibold tracking-widest text-slate-600 uppercase"
+            >
+              Tags
+            </h3>
+            <div class="flex flex-row flex-wrap items-start gap-1">
+              {
+                post.data.tags.map((tag) => (
+                  <Chip isCode classNames="text-sm">
+                    {tag}
+                  </Chip>
+                ))
+              }
+            </div>
+          </div>
+        </div>
       </section>
-    </main>
+    </Container>
   </NotesPage>
 </Layout>

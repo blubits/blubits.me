@@ -1,10 +1,11 @@
 ---
+import Footer from "@blubits/components/nav/Footer.astro";
+import Logo from "@blubits/components/nav/Logo.astro";
+import Navbar from "@blubits/components/nav/Navbar.jsx";
+import Container from "@blubits/layouts/containers/Container.astro";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
-import Footer from "../components/Footer.astro";
-import Logo from "../components/Logo.astro";
-import Navbar from "../components/Navbar.jsx";
 
 interface Props {
   background_color?: string;
@@ -15,9 +16,9 @@ interface Props {
 }
 
 const {
-  background_color = "bg-gradient-to-b from-white via-gray-50 to-gray-100",
+  background_color = "bg-gradient-to-b from-gray-100 via-slate-50 to-white",
   foreground_color = "text-black",
-  logo_background_color = "bg-gray-200",
+  logo_background_color = "bg-slate-200",
   logo_foreground_color = "stroke-black",
   dark_navbar = false,
 } = Astro.props;
@@ -25,21 +26,29 @@ const {
 
 <body
   class:list={[
-    "m-auto w-10/12 bg-fixed pb-14 pt-14 md:pt-28 lg:w-4/5",
+    "m-auto min-h-screen pt-14 pb-14 md:pt-28",
     background_color,
     foreground_color,
   ]}
 >
-  <Navbar dark={dark_navbar} client:load>
-    <Logo
-      class:list={[
-        "size-12 p-2",
-        logo_background_color,
-        logo_foreground_color,
-        "rounded-full hover:rounded-full hover:bg-slate-700 hover:stroke-yellow-500",
-      ]}
-    />
-  </Navbar>
-  <slot />
-  <Footer />
+  <Container>
+    <Navbar dark={dark_navbar} client:load>
+      <Logo
+        class:list={[
+          "size-12 p-2",
+          logo_background_color,
+          logo_foreground_color,
+          "rounded-full hover:rounded-full hover:bg-slate-700 hover:stroke-yellow-500",
+        ]}
+      />
+    </Navbar>
+  </Container>
+
+  <main>
+    <slot />
+  </main>
+
+  <Container>
+    <Footer />
+  </Container>
 </body>

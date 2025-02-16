@@ -1,0 +1,68 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<div class="sticky top-16 flex flex-col gap-y-4">
+  <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-600">
+    On this page
+  </h3>
+  <ul class="text-md flex flex-col gap-0">
+    {
+      headings.map((heading) => (
+        <li>
+          <a
+            class:list={[
+
+              "inline-block",
+              "text-slate-600",
+              "border-l border-slate-200",
+              "hover:border-black hover:text-black",
+              "py-1",
+              heading.depth === 2 || heading.text == "References"
+                ? "pl-4"
+                : "pl-8",
+              " aria-[current='page']:border-black aria-[current='page']:font-semibold aria-[current='page']:text-black",
+            ]}
+            href={`#${heading.slug}`}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+<script>
+/**
+ * Add aria-current attribute to currently-focused header.
+ * Don't remove the attribute if the header isn't in focus;
+ * only change it when another header is in focus.
+ * All headers are contained in the #markdown-body element.
+ */
+
+
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      document
+        .querySelector("a[aria-current='page']")
+        ?.removeAttribute("aria-current");
+      document
+        .querySelector(`a[href="#${entry.target.id}"]`)
+        ?.setAttribute("aria-current", "page");
+    }
+  });
+});
+
+document.querySelectorAll("h2, h3, h4, h5, h6").forEach((section) => {
+  observer.observe(section);
+});
+
+</script>

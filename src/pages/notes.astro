@@ -1,27 +1,26 @@
 ---
-import { Icon } from "astro-icon/components";
+import NotePostItem from "@blubits/components/notes/NotePostItem.astro";
 import { getCollection } from "astro:content";
 import "katex/dist/katex.min.css";
 import Layout from "../layouts/Layout.astro";
 import NotesPage from "../layouts/NotesPage.astro";
 import "../styles/styles-notes.css";
-import NotePostItem from "@blubits/components/notes/NotePostItem.astro";
+import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
 
 const editorials = await getCollection("editorials");
 const modules = await getCollection("modules");
 const all_posts = [...editorials, ...modules];
 all_posts.sort(
-  (a, b) => new Date(b.data["date-created"]).getTime() - new Date(a.data["date-created"]).getTime());
+  (a, b) =>
+    new Date(b.data["date-created"]).getTime() -
+    new Date(a.data["date-created"]).getTime(),
+);
 ---
 
 <Layout title="Notes">
   <NotesPage large>
-    <main class:list={["flex flex-col space-y-4"]}>
-      {
-        all_posts.map((post) => (
-          <NotePostItem post={post} />
-        ))
-      }
-    </main>
+    <ContainerFull>
+      {all_posts.map((post) => <NotePostItem post={post} />)}
+    </ContainerFull>
   </NotesPage>
 </Layout>

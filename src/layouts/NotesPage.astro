@@ -4,6 +4,9 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
 import DefaultPage from "./DefaultPage.astro";
+import { Icon } from "astro-icon/components";
+import RelativeTimestampJS from "@blubits/js/RelativeTimestampJS.astro";
+import Container from "./containers/Container.astro";
 
 interface Props {
   background_color?: string;
@@ -14,9 +17,9 @@ interface Props {
 }
 
 const {
-  background_color = "bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700",
-  foreground_color = "text-white",
-  logo_background_color = "bg-transparent",
+  background_color = "bg-gradient-to-b from-lime-100 via-slate-50 to-white",
+  foreground_color = "text-black",
+  logo_background_color = "bg-lime-600",
   logo_foreground_color = "stroke-white",
   large = false,
 } = Astro.props;
@@ -29,29 +32,29 @@ const {
   logo_foreground_color={logo_foreground_color}
   dark_navbar
 >
-  <section>
+  <Container>
     <h1
       class:list={[
         "inline-flex flex-wrap items-center",
         large ? "mb-12 gap-x-4" : "mb-6 gap-x-2",
         "font-sanstight",
         large ? "font-bold" : "font-semibold",
-        large ? "text-3xl md:text-4xl" : "text-lg md:text-xl",
+        large ? "text-5xl md:text-6xl" : "text-lg md:text-xl",
       ]}
     >
-      <span>Notes for <span
-        class:list={[
-          "text-lime-500 font-mono",
-        ]}>competitive programming</span
-      ></span>
+      {
+        !large && (
+          <a href="/notes">
+            <Icon
+              name="mdi:arrow-left"
+              class="h-8 w-8 rounded-full p-1 hover:bg-white/10"
+            />
+          </a>
+        )
+      }
+      <span>Notes for competitive programming</span>
     </h1>
-  </section>
+  </Container>
   <slot />
-  <script>
-    import { parseISO, formatDistanceToNow } from "date-fns";
-    Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
-      const relativeDate = formatDistanceToNow(parseISO(el.innerHTML.trim()));
-      el.innerHTML = `${relativeDate} ago`;
-    });
-  </script>
+  <RelativeTimestampJS />
 </DefaultPage>

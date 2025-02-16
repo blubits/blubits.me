@@ -1,21 +1,25 @@
 import { useState, useEffect } from "react";
 
+// TODO: Use target: instead of programmatic setting.
 const NavItem = ({ href, children, dark }) => {
   const [isActive, setIsActive] = useState(false);
-  
+
   useEffect(() => {
-    const currentPath = window.location.pathname.replace(/^\/|\/$/g, '');
-    const targetPath = href.replace(/^\/|\/$/g, '');
+    const currentPath = window.location.pathname.replace(/^\/|\/$/g, "");
+    const targetPath = href.replace(/^\/|\/$/g, "");
     setIsActive(currentPath === targetPath);
   }, [href]);
 
-  const activeBg = dark ? "bg-white" : "bg-black";
+  const activeBg = dark ? "bg-white/20" : "bg-black/20";
+  let hoverBg = dark ? "hover:bg-white/5" : "hover:bg-black/5";
+
+  if (isActive) {
+    hoverBg = dark ? "hover:bg-white/30" : "hover:bg-black/30";
+  }
 
   return (
     <li
-      className={`px-4 py-1 rounded ${
-        dark ? "hover:bg-white" : "hover:bg-black"
-      } ${isActive ? "hover:bg-opacity-30" : "hover:bg-opacity-5"} ${isActive ? activeBg : "bg-transparent"} bg-opacity-20`}
+      className={`rounded px-4 py-1 ${isActive ? activeBg : "bg-transparent"} ${hoverBg}`}
     >
       <a href={href}>{children}</a>
     </li>
@@ -65,9 +69,6 @@ const Navbar = (props) => {
           </NavItem>
           <NavItem href="/notes" dark={props.dark}>
             Notes
-          </NavItem>
-          <NavItem href="#" dark={props.dark}>
-            Projects
           </NavItem>
         </ul>
       </nav>

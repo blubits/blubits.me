@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  icon_name?: string;
+  icon_color?: string;
+  emoji?: string;
+  bg_color?: string;
+}
+
+const { icon_name, icon_color = "text-white hover:text-white", emoji = "📓", bg_color = "bg-black" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "h-full w-full flex items-center justify-center",
+    "rounded object-cover",
+    bg_color
+  ]}
+>
+  {
+    icon_name ? (
+      <Icon name={icon_name} class:list={[icon_color, "h-16 w-16"]} />
+    ) : (
+      <p class="text-8xl">{emoji}</p>
+    )
+  }
+</div>

@@ -1,91 +1,100 @@
 ---
-import Card from "@blubits/components/Card.astro";
-import Chip from "@blubits/components/Chip.astro";
+import memojiImage from "@blubits/assets/memoji.webp";
+import sampleThumb from "@blubits/assets/sample_thumb.jpg";
+import CardContainer from "@blubits/components/card/CardContainer.astro";
+import CardItem from "@blubits/components/card/CardItem.astro";
+import CardThumbIcon from "@blubits/components/card/CardThumbIcon.astro";
+import CardThumbImage from "@blubits/components/card/CardThumbImage.astro";
+import Container from "@blubits/layouts/containers/Container.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import "@blubits/styles/styles.css";
-import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
-  <DefaultPage
-    background_color="bg-gradient-to-b from-white via-gray-50 to-gray-100"
-  >
-    <main>
+  <DefaultPage>
+    <Container>
       <h1
-        class="mb-8 font-sanstight text-5xl font-bold leading-none md:text-6xl"
+        class="font-sanstight mb-8 text-5xl leading-none font-bold md:text-6xl"
       >
-        Hi! I'm Maded.
+        Hi there! I'm Maded.
       </h1>
-      <section class="mt-12 grid grid-cols-4 gap-4 md:grid-cols-12">
-        <Card
-          span="col-span-4 md:col-span-6 lg:col-span-8 md:row-span-2"
+      <div class="flex flex-col gap-6 md:flex-row">
+        <div class="flex flex-col gap-6">
+          <h2 class="font-sanstight text-2xl font-semibold">
+            I tell stories and solve problems through code.
+          </h2>
+          <p class="max-w-xl text-lg leading-normal">
+            Someday I hope to do something that changes the system to be for the
+            good of the many, not the few. But right now, I'm a freelance tutor
+            and developer, with years of experience helping others succeed.
+          </p>
+          <p class="max-w-xl text-lg leading-normal">
+            I graduated with a degree in computer science from the University of
+            the Philippines. When I'm not coding, I like to walk around and
+            explore.
+          </p>
+        </div>
+        <div
+          class="order-first flex grow flex-col md:order-last md:items-center md:justify-center"
+        >
+          <Image src={memojiImage} class="w-64" alt="Memoji of Maded" />
+        </div>
+      </div>
+    </Container>
+
+    <Container class="mt-16">
+      <h2 class="text-2xl font-semibold">What I'm working on</h2>
+    </Container>
+
+    <CardContainer>
+      <Fragment slot="cards">
+        <CardItem
+          title="Tutoring"
+          description="Helping you succeed in math and computer science."
           href="/tutoring"
-          background="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
-          text="text-white"
-          emoji="🎓"
-          emoji_size="text-5xl"
-          title="Get tutoring"
-          title_size="text-2xl"
-          description="Learn more about my tutorial services in mathematics and computer science."
-        />
-        <Card
-          span="col-span-4 md:col-span-6 lg:col-span-4 md:row-span-1"
-          emoji="📓"
-          title="cProg notes"
-          description="Notes on algorithms, data structures, and more for competitive programming."
+        >
+          <CardThumbIcon
+            slot="thumbnail"
+            icon_name="mdi:graduation-cap"
+            bg_color="bg-gradient-to-tr from-blue-600 via-blue-500 to-blue-400"
+            icon_color="text-white"
+          />
+        </CardItem>
+        <CardItem
+          title="Compet prog notes"
+          description="On data structures, algorithms, and more."
           href="/notes"
-          background="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700"
-          ,
-          text="text-white"
-        />
-        <Card
-          span="col-span-2 md:col-span-3 lg:col-span-2 md:row-span-1"
-          emoji="💻"
-          title="Projects"
-        />
-        <Card
-          span="col-span-2 md:col-span-3 lg:col-span-2 md:row-span-1"
-          background="bg-slate-200"
-          emoji="🦋"
-          title="Bluesky"
-        />
-      </section>
-      <section
-        class="mt-8 inline-flex w-full flex-wrap items-center gap-y-2 space-x-2 text-sm md:mt-4 md:w-auto"
-      >
-        <p>Get in touch:</p>
-        <a
-          href="mailto:hi@blubits.me"
-          data-obfuscation="0"
         >
-          <Chip bg_color="bg-blue-500 text-white hover:bg-blue-700">
-            <Icon name="mdi:email" class="" />
-            <p>Email</p>
-          </Chip>  
-        </a>
-        <a
-          href="https://github.com/blubits/"
-        >
-          <Chip bg_color="bg-black text-gray-200 hover:text-white">
-            <Icon name="mdi:github" class="" />
-            <p>GitHub</p>
-          </Chip>  
-        </a>
-      </section>
-      <section
-        class="mt-4 inline-flex flex-wrap items-center gap-y-2 space-x-2 text-sm md:mt-4 md:before:m-2 md:before:content-['•']"
-      >
-        <p>Source code on</p>
-        <a
-          href="https://github.com/blubits/blubits.me"
-        >
-          <Chip bg_color="bg-black text-gray-200 hover:text-white">
-            <Icon name="mdi:github" class="" />
-            <p>GitHub</p>
-          </Chip>  
-        </a>
-      </section>
-    </main>
+          <CardThumbIcon
+            slot="thumbnail"
+            bg_color="bg-gradient-to-tr from-lime-700 via-lime-600 to-lime-500"
+            icon_name="mdi:code"
+          />
+        </CardItem>
+        <CardItem title="Under construction" description="More to come later.">
+          <CardThumbImage
+            slot="thumbnail"
+            src={sampleThumb}
+            alt="Sample thumbnail"
+          />
+        </CardItem>
+        <CardItem title="Under construction" description="More to come later.">
+          <CardThumbImage
+            slot="thumbnail"
+            src={sampleThumb}
+            alt="Sample thumbnail"
+          />
+        </CardItem>
+        <CardItem title="Under construction" description="More to come later.">
+          <CardThumbImage
+            slot="thumbnail"
+            src={sampleThumb}
+            alt="Sample thumbnail"
+          />
+        </CardItem>
+      </Fragment>
+    </CardContainer>
   </DefaultPage>
 </Layout>

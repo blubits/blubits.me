@@ -1,0 +1,45 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  href?: string;
+  text_color?: string;
+  bg_color?: string;
+  height?: string;
+}
+
+const {
+  title,
+  description,
+  href,
+  text_color = "text-black hover:text-black active:text-black",
+  bg_color = "bg-transparent hover:bg-white active:bg-white",
+  height = "h-88",
+} = Astro.props;
+---
+
+<a
+  class:list={[
+    "z-50 flex flex-col gap-4", height,
+    "rounded px-6 py-6",
+    "snap-start",
+    "scroll-ml-2 first:ml-2",
+    "md:scroll-ml-10 md:first:ml-10",
+    "lg:scroll-ml-26 lg:first:ml-26",
+    "transition duration-300 ease-in-out",
+    text_color, bg_color,
+    "hover:z-50 hover:scale-102 hover:shadow",
+    "active:z-50 active:scale-102 active:shadow",
+    "cursor-pointer",
+  ]}
+  href={href}
+  ontouchstart=""
+>
+  <div class="aspect-4/3 h-48 object-cover">
+    <slot name="thumbnail" />
+  </div>
+  <div class="flex flex-col gap-2">
+    <h2 class="text-xl font-semibold">{title}</h2>
+    <p class="text-md">{description}</p>
+  </div>
+</a>
