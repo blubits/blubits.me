@@ -3,7 +3,7 @@ interface Props {
   link_color?: string;
 }
 
-const { link_color = "prose-a:text-lime-400 hover:prose-a:text-lime-500" } =
+const { link_color = "prose-a:text-lime-600 hover:prose-a:text-lime-700" } =
   Astro.props;
 ---
 
@@ -11,14 +11,13 @@ const { link_color = "prose-a:text-lime-400 hover:prose-a:text-lime-500" } =
   id="markdown-body"
   class:list={[
     "shrink-0 grow",
-    "prose prose-invert prose-p:text-white",
+    "prose prose-slate",
     link_color,
-    "prose-h5:text-md prose-h5:font-medium prose-h5:text-white prose-h5:underline prose-h5:underline-offset-4",
+    "prose-h5:text-md prose-h5:font-medium prose-h5:underline prose-h5:underline-offset-4",
     "prose-p:text-justify",
-    "prose-li:text-white",
     "[&>.footnotes]:text-sm",
     "[&>.footnotes>h2]:text-md",
-    "prose-inline-code:rounded-sm prose-inline-code:bg-gray-500/50 prose-inline-code:px-2 prose-inline-code:py-0.5",
+    "prose-inline-code:rounded-sm prose-inline-code:bg-slate-300 prose-inline-code:px-2 prose-inline-code:py-0.5",
   ]}
 >
   <slot />

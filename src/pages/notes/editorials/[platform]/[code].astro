@@ -37,7 +37,7 @@ const fullnames: { [key: string]: string } = {
     " | " +
     post.data.title}
 >
-  <NotesPage>
+  <NotesPage background_color="bg-slate-50">
     <Container>
       <section class="mb-8">
         <Details>
@@ -47,7 +47,8 @@ const fullnames: { [key: string]: string } = {
           <p>•</p>
           <Chip isCode>{post.data.code}</Chip>
         </Details>
-        <div class="flex items-center gap-x-2 py-1 text-sm text-gray-400"></div>
+        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600">
+        </div>
         <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
           {post.data.title}
         </h2>
@@ -58,7 +59,7 @@ const fullnames: { [key: string]: string } = {
           <MarkdownBody>
             <Content />
           </MarkdownBody>
-          <dl class="mt-12 flex flex-col gap-y-4 text-sm text-gray-200">
+          <dl class="mt-12 flex flex-col gap-y-4 text-sm text-slate-600">
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Module created</dt>
               <dd class="rel-timestamp">
@@ -75,7 +76,7 @@ const fullnames: { [key: string]: string } = {
         </div>
         <div class="order-first flex flex-col gap-y-8 lg:order-last">
           <div
-            class="order-last max-w-96 rounded bg-gradient-to-b from-lime-500/20 to-lime-500/10 p-4 pr-12 lg:order-first"
+            class="order-last max-w-96 rounded bg-gradient-to-b from-lime-600 to-lime-700 p-4 pr-12 text-white lg:order-first"
           >
             <dl class="text-md flex flex-col gap-y-4">
               <div class="flex flex-col gap-y-2">
@@ -92,13 +93,13 @@ const fullnames: { [key: string]: string } = {
           </div>
           <div class="flex flex-col gap-y-2">
             <h3
-              class="text-xs font-semibold tracking-widest text-gray-400 uppercase"
+              class="text-xs font-semibold tracking-widest text-slate-600 uppercase"
             >
               Problem link
             </h3>
             <a
               class:list={[
-                "inline-flex items-center gap-x-2 text-lime-400 underline underline-offset-4 hover:text-lime-500",
+                "inline-flex items-center gap-x-2 text-lime-600 underline underline-offset-4 hover:text-lime-700",
               ]}
               href={post.data["problem-link"]}
               >On {fullnames[post.data.platform]}<Icon
@@ -108,7 +109,7 @@ const fullnames: { [key: string]: string } = {
           </div>
           <div class="flex flex-col gap-y-2">
             <h3
-              class="text-xs font-semibold tracking-widest text-gray-400 uppercase"
+              class="text-xs font-semibold tracking-widest text-slate-600 uppercase"
             >
               Tags
             </h3>

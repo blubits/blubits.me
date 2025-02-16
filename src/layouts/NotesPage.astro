@@ -17,10 +17,10 @@ interface Props {
 }
 
 const {
-  background_color = "bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700",
-  foreground_color = "text-white",
-  logo_background_color = "bg-transparent",
-  logo_foreground_color = "stroke-lime-500",
+  background_color = "bg-gradient-to-b from-lime-100 via-slate-50 to-white",
+  foreground_color = "text-black",
+  logo_background_color = "bg-lime-600",
+  logo_foreground_color = "stroke-white",
   large = false,
 } = Astro.props;
 ---
@@ -52,11 +52,7 @@ const {
           </a>
         )
       }
-      <span
-        >Notes for <span class:list={["font-mono text-lime-500"]}
-          >competitive programming</span
-        ></span
-      >
+      <span>Notes for competitive programming</span>
     </h1>
   </Container>
   <slot />

@@ -10,12 +10,12 @@
     }
 
     a.extlink {
-        color: var(--color-lime-400);
+        color: var(--color-lime-600);
         text-decoration-line: underline;
         text-underline-offset: 4px;
     }
 
     a.extlink:hover {
-        color: var(--color-lime-500);
+        color: var(--color-lime-700);
     }
 }

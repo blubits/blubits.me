@@ -9,7 +9,7 @@ const { headings } = Astro.props;
 ---
 
 <div class="sticky top-16 flex flex-col gap-y-4">
-  <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400">
+  <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-600">
     On this page
   </h3>
   <ul class="text-md flex flex-col gap-0">
@@ -20,14 +20,14 @@ const { headings } = Astro.props;
             class:list={[
 
               "inline-block",
-              "text-gray-300",
-              "border-l border-gray-600",
-              "hover:border-white hover:text-white",
+              "text-slate-600",
+              "border-l border-slate-200",
+              "hover:border-black hover:text-black",
               "py-1",
               heading.depth === 2 || heading.text == "References"
                 ? "pl-4"
                 : "pl-8",
-              "aria-[current='page']:border-white aria-[current='page']:font-semibold aria-[current='page']:text-white",
+              " aria-[current='page']:border-black aria-[current='page']:font-semibold aria-[current='page']:text-black",
             ]}
             href={`#${heading.slug}`}
           >
