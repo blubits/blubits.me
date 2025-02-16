@@ -4,6 +4,7 @@ import Chip from "@blubits/components/Chip.astro";
 import Details from "@blubits/components/Details.astro";
 import MarkdownBody from "@blubits/components/MarkdownBody.astro";
 import EditorialChip from "@blubits/components/notes/EditorialChip.astro";
+import Container from "@blubits/layouts/containers/Container.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import NotesPage from "@blubits/layouts/NotesPage.astro";
 import "@blubits/styles/styles-notes.css";
@@ -37,7 +38,7 @@ const fullnames: { [key: string]: string } = {
     post.data.title}
 >
   <NotesPage>
-    <main>
+    <Container>
       <section class="mb-8">
         <Details>
           <EditorialChip />
@@ -91,7 +92,7 @@ const fullnames: { [key: string]: string } = {
           </div>
           <div class="flex flex-col gap-y-2">
             <h3
-              class="text-xs font-semibold uppercase tracking-widest text-gray-400"
+              class="text-xs font-semibold tracking-widest text-gray-400 uppercase"
             >
               Problem link
             </h3>
@@ -107,7 +108,7 @@ const fullnames: { [key: string]: string } = {
           </div>
           <div class="flex flex-col gap-y-2">
             <h3
-              class="text-xs font-semibold uppercase tracking-widest text-gray-400"
+              class="text-xs font-semibold tracking-widest text-gray-400 uppercase"
             >
               Tags
             </h3>
@@ -123,6 +124,6 @@ const fullnames: { [key: string]: string } = {
           </div>
         </div>
       </section>
-    </main>
+    </Container>
   </NotesPage>
 </Layout>

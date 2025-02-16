@@ -5,7 +5,7 @@ import CardThumbIcon from "@blubits/components/card/CardThumbIcon.astro";
 import Container from "@blubits/layouts/containers/Container.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
-import "@blubits/styles/styles-dark.css";
+import "@blubits/styles/styles.css";
 
 const cardData = [
   {
@@ -69,9 +69,8 @@ const cardData = [
 
 <Layout title="Get tutorials">
   <DefaultPage
-    background_color="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
-    foreground_color="text-white"
-    logo_background_color="bg-transparent"
+    background_color="bg-gradient-to-b from-blue-200 via-gray-50 to-white"
+    logo_background_color="bg-blue-500"
     logo_foreground_color="stroke-white"
   >
     <Container>
@@ -82,17 +81,17 @@ const cardData = [
       </h1>
 
       <section
-        class="mb-16 flex flex-col gap-y-4 text-xl sm:flex-col md:flex-row md:items-center md:gap-x-4"
+        class="mb-16 flex flex-col flex-wrap items-center md:items-start gap-y-4 text-xl sm:flex-col md:flex-row md:gap-x-4"
       >
         <a
           data-obfuscation="0"
           href="mailto:tutoring@login.blubits.me"
-          class="rounded-4xl bg-rose-500 px-6 py-2 shadow transition duration-300 hover:scale-102"
+          class="inline-block rounded-4xl bg-blue-500 text-white px-6 py-2 transition duration-300 hover:scale-102"
           >Send me an email</a
         >
         <a
           href="https://www.teacheron.com/tutor/67qr"
-          class="rounded-4xl border border-white px-6 py-2 text-white shadow transition duration-300 hover:scale-102 hover:border-transparent hover:bg-rose-500 hover:shadow"
+          class="inline-block rounded-4xl border border-black px-6 py-2 transition duration-300 hover:scale-102 hover:border-transparent hover:text-white hover:bg-blue-500 hover:shadow"
           >Go to TeacherOn</a
         >
       </section>
@@ -109,10 +108,10 @@ const cardData = [
             <CardItem
               title={card.title}
               description={card.description}
-              text_color="text-white hover:text-black"
+              text_color=""
               height="h-108"
             >
-              <CardThumbIcon slot="thumbnail" emoji={card.emoji} bg_color="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-600" />
+              <CardThumbIcon slot="thumbnail" emoji={card.emoji} bg_color="bg-gradient-to-tr from-blue-600 via-blue-500 to-blue-400" />
             </CardItem>
           ))
         }

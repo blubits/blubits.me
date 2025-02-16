@@ -5,6 +5,7 @@ import "katex/dist/katex.min.css";
 import Layout from "../layouts/Layout.astro";
 import NotesPage from "../layouts/NotesPage.astro";
 import "../styles/styles-notes.css";
+import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
 
 const editorials = await getCollection("editorials");
 const modules = await getCollection("modules");
@@ -18,8 +19,8 @@ all_posts.sort(
 
 <Layout title="Notes">
   <NotesPage large>
-    <main class:list={["flex flex-col gap-y-4"]}>
+    <ContainerFull>
       {all_posts.map((post) => <NotePostItem post={post} />)}
-    </main>
+    </ContainerFull>
   </NotesPage>
 </Layout>

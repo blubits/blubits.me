@@ -6,6 +6,7 @@ import "@fontsource-variable/jetbrains-mono";
 import DefaultPage from "./DefaultPage.astro";
 import { Icon } from "astro-icon/components";
 import RelativeTimestampJS from "@blubits/js/RelativeTimestampJS.astro";
+import Container from "./containers/Container.astro";
 
 interface Props {
   background_color?: string;
@@ -19,7 +20,7 @@ const {
   background_color = "bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-700",
   foreground_color = "text-white",
   logo_background_color = "bg-transparent",
-  logo_foreground_color = "stroke-white",
+  logo_foreground_color = "stroke-lime-500",
   large = false,
 } = Astro.props;
 ---
@@ -31,14 +32,14 @@ const {
   logo_foreground_color={logo_foreground_color}
   dark_navbar
 >
-  <section>
+  <Container>
     <h1
       class:list={[
         "inline-flex flex-wrap items-center",
         large ? "mb-12 gap-x-4" : "mb-6 gap-x-2",
         "font-sanstight",
         large ? "font-bold" : "font-semibold",
-        large ? "text-3xl md:text-4xl" : "text-lg md:text-xl",
+        large ? "text-5xl md:text-6xl" : "text-lg md:text-xl",
       ]}
     >
       {
@@ -57,7 +58,7 @@ const {
         ></span
       >
     </h1>
-  </section>
+  </Container>
   <slot />
   <RelativeTimestampJS />
 </DefaultPage>

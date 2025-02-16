@@ -16,7 +16,7 @@ interface Props {
 }
 
 const {
-  background_color = "bg-gradient-to-b from-white via-gray-50 to-gray-100",
+  background_color = "bg-gradient-to-b from-gray-100 via-gray-50 to-white",
   foreground_color = "text-black",
   logo_background_color = "bg-gray-200",
   logo_foreground_color = "stroke-black",
@@ -26,7 +26,7 @@ const {
 
 <body
   class:list={[
-    "m-auto bg-fixed pt-14 pb-14 md:pt-28",
+    "m-auto min-h-screen pt-14 pb-14 md:pt-28",
     background_color,
     foreground_color,
   ]}

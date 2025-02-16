@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import "katex/dist/katex.min.css";
+import Layout from "../layouts/Layout.astro";
+import "../styles/styles-notes.css";
+import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
+import DefaultPage from "@blubits/layouts/DefaultPage.astro";
+import PostItem from "@blubits/components/PostItem.astro";
+import Container from "@blubits/layouts/containers/Container.astro";
+
+const blogposts = await getCollection("blogposts")
+---
+
+<Layout title="Blog">
+  <DefaultPage>
+    <Container>
+        <h1
+            class="font-sanstight mb-8 text-5xl leading-none font-bold md:text-6xl"
+        >
+        Blog
+      </h1>
+    </Container>
+    <ContainerFull>
+      {blogposts.map((post) => <PostItem title={post.data.title} />)}
+    </ContainerFull>
+</DefaultPage>
+</Layout>
