@@ -48,7 +48,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "eslint": "^9.17.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-astro-organize-imports": "^0.4.11",
     "prettier-plugin-tailwindcss": "^0.6.11",
