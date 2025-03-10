@@ -20,7 +20,7 @@
     "@iconify-json/material-symbols": "^1.2.14",
     "@iconify-json/mdi": "^1.2.2",
     "@r4ai/remark-callout": "^0.6.2",
-    "@tailwindcss/vite": "^4.0.9",
+    "@tailwindcss/vite": "^4.0.12",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.2",
     "astro": "^5.2.5",
