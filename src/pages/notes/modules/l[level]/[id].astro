@@ -34,7 +34,7 @@ const { Content, headings } = await render(post);
         </h2>
       </section>
 
-      <section class="flex flex-col gap-24 md:flex-row">
+      <section class="flex flex-col gap-16 lg:flex-row xl:justify-between">
         <div>
           <MarkdownBody>
             <Content />
@@ -54,7 +54,7 @@ const { Content, headings } = await render(post);
             </div>
           </dl>
         </div>
-        <div class="hidden grow lg:block lg:order-last">
+        <div class="hidden mr-40 lg:block lg:order-last">
           {
             headings.length > 0 && (
               <TableOfContents headings={headings} />

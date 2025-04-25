@@ -27,7 +27,7 @@ const { headings } = Astro.props;
               heading.depth === 2 || heading.text == "References"
                 ? "pl-4"
                 : "pl-8",
-              " aria-[current='page']:border-black aria-[current='page']:font-semibold aria-[current='page']:text-black",
+              " aria-[current='page']:border-black aria-[current='page']:underline aria-[current='page']:text-black",
             ]}
             href={`#${heading.slug}`}
           >

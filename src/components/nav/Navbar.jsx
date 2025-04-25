@@ -35,7 +35,7 @@ const Navbar = (props) => {
 
   return (
     <header
-      className={`flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0 ${isOpen ? "mb-12" : "mb-4"} md:mb-8`}
+      className={`-z-50 mx-auto flex max-w-7xl flex-col space-y-4 rounded-4xl bg-black/5 px-8 py-2 shadow backdrop-blur md:flex-row md:items-center md:justify-between md:space-y-0 ${isOpen ? "mb-12" : "mb-4"} md:mb-16`}
     >
       <div className="flex items-center space-x-2">
         <a href="/">{props.children}</a>

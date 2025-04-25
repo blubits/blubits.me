@@ -20,25 +20,28 @@ const {
 
 <a
   class:list={[
+    "bg-transparent",
     "z-50 flex flex-col gap-4", height,
-    "rounded px-6 py-6",
+    "rounded py-6 px-6",
     "snap-start",
-    "scroll-ml-2 first:ml-2",
-    "md:scroll-ml-10 md:first:ml-10",
-    "lg:scroll-ml-26 lg:first:ml-26",
     "transition duration-300 ease-in-out",
     text_color, bg_color,
-    "hover:z-50 hover:scale-102 hover:shadow",
-    "active:z-50 active:scale-102 active:shadow",
+    "hover:z-50 hover:scale-105 hover:shadow",
+    "active:z-50 active:scale-105 active:shadow",
     "cursor-pointer",
+    "first:ml-2 scroll-ml-2",
+    "md:first:ml-10 md:scroll-ml-10",
+    "lg:first:ml-26 lg:scroll-ml-26",
+    "2xl:scroll-ml-[calc(((100vw-80rem)/2)-24px)]",
+    "2xl:first:ml-[calc(((100vw-80rem)/2)-24px)]"
   ]}
   href={href}
   ontouchstart=""
 >
-  <div class="aspect-4/3 h-48 object-cover">
+  <div class="h-48 w-64 object-cover">
     <slot name="thumbnail" />
   </div>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 w-64">
     <h2 class="text-xl font-semibold">{title}</h2>
     <p class="text-md">{description}</p>
   </div>
