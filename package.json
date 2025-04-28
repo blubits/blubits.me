@@ -23,7 +23,7 @@
     "@tailwindcss/vite": "^4.0.9",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.2",
-    "astro": "^5.7.5",
+    "astro": "^5.7.6",
     "astro-emoji": "^1.2.0",
     "astro-expressive-code": "^0.38.3",
     "astro-favicons": "^3.1.5",
