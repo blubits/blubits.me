@@ -1,5 +1,5 @@
 ---
-import "@blubits/styles/styles-notes.css";
+import "@blubits/styles/themes.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
@@ -7,31 +7,22 @@ import DefaultPage from "./DefaultPage.astro";
 import { Icon } from "astro-icon/components";
 import RelativeTimestampJS from "@blubits/js/RelativeTimestampJS.astro";
 import Container from "./containers/Container.astro";
+import type { ThemeConfig } from "@blubits/types/theme";
 
 interface Props {
-  background_color?: string;
-  foreground_color?: string;
-  logo_background_color?: string;
-  logo_foreground_color?: string;
+  theme?: ThemeConfig['name'];
+  customTheme?: Partial<ThemeConfig>;
   large?: boolean;
 }
 
 const {
-  background_color = "bg-gradient-to-b from-lime-100 via-slate-50 to-white",
-  foreground_color = "text-black",
-  logo_background_color = "bg-lime-600",
-  logo_foreground_color = "stroke-white",
+  theme = 'notes',
+  customTheme,
   large = false,
 } = Astro.props;
 ---
 
-<DefaultPage
-  background_color={background_color}
-  foreground_color={foreground_color}
-  logo_background_color={logo_background_color}
-  logo_foreground_color={logo_foreground_color}
-  dark_navbar
->
+<DefaultPage theme={theme} customTheme={customTheme}>
   <Container>
     <h1
       class:list={[

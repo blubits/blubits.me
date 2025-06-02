@@ -3,8 +3,8 @@ import { markdown } from "@astropub/md";
 import Chip from "@blubits/components/Chip.astro";
 import Details from "@blubits/components/Details.astro";
 import PostItem from "@blubits/components/PostItem.astro";
-import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
+import { generateEditorialUrl, generateModuleUrl, getPlatformDisplayName } from "@blubits/utils/content";
 import ModuleChip from "./ModuleChip.astro";
 import EditorialChip from "./EditorialChip.astro";
 
@@ -14,15 +14,9 @@ interface Props {
 
 const { post } = Astro.props;
 
-const fullnames: { [key: string]: string } = {
-  oj: "Online Judge",
-  cf: "Codeforces",
-};
-
-let href = `/notes/${post.collection}/${post.id}`;
-if (post.collection === "modules") {
-  href = `/notes/${post.collection}/l${post.data.id[0]}/${post.data.id}`;
-}
+const href = post.collection === "modules" 
+  ? generateModuleUrl(post)
+  : generateEditorialUrl(post);
 ---
 
 <PostItem href={href} title={post.data.title}>
@@ -56,9 +50,9 @@ if (post.collection === "modules") {
               <>
                 <EditorialChip />
                 <Details>
-                  <p>{fullnames[post.data.platform]}</p>
+                  <p>{getPlatformDisplayName(post.data.platform)}</p>
                   <p>•</p>
-                  <Chip isCode>{post.data.code}</Chip>
+                  <Chip variant="code">{post.data.code}</Chip>
                 </Details>
               </>
             );

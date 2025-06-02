@@ -1,20 +1,15 @@
 ---
 import NotePostItem from "@blubits/components/notes/NotePostItem.astro";
 import { getCollection } from "astro:content";
+import { sortPostsByDate } from "@blubits/utils/content";
 import "katex/dist/katex.min.css";
 import Layout from "../layouts/Layout.astro";
 import NotesPage from "../layouts/NotesPage.astro";
-import "../styles/styles-notes.css";
 import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
 
 const editorials = await getCollection("editorials");
 const modules = await getCollection("modules");
-const all_posts = [...editorials, ...modules];
-all_posts.sort(
-  (a, b) =>
-    new Date(b.data["date-created"]).getTime() -
-    new Date(a.data["date-created"]).getTime(),
-);
+const all_posts = sortPostsByDate([...editorials, ...modules]);
 ---
 
 <Layout title="Notes">

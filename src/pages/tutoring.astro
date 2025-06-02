@@ -5,7 +5,6 @@ import CardThumbIcon from "@blubits/components/card/CardThumbIcon.astro";
 import Container from "@blubits/layouts/containers/Container.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
-import "@blubits/styles/styles.css";
 
 const cardData = [
   {
@@ -68,11 +67,7 @@ const cardData = [
 ---
 
 <Layout title="Get tutorials">
-  <DefaultPage
-    background_color="bg-gradient-to-b from-blue-200 via-slate-50 to-white"
-    logo_background_color="bg-blue-500"
-    logo_foreground_color="stroke-white"
-  >
+  <DefaultPage theme="tutoring">
     <Container>
       <h1
         class="font-sanstight mb-4 text-5xl leading-none font-bold md:text-6xl"
@@ -108,8 +103,7 @@ const cardData = [
             <CardItem
               title={card.title}
               description={card.description}
-              text_color=""
-              height="h-108"
+              customHeight="h-108"
             >
               <CardThumbIcon slot="thumbnail" emoji={card.emoji} bg_color="bg-gradient-to-tr from-blue-600 via-blue-500 to-blue-400" />
             </CardItem>

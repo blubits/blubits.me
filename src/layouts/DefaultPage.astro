@@ -3,42 +3,43 @@ import Footer from "@blubits/components/nav/Footer.astro";
 import Logo from "@blubits/components/nav/Logo.astro";
 import Navbar from "@blubits/components/nav/Navbar.jsx";
 import Container from "@blubits/layouts/containers/Container.astro";
+import { themes, type ThemeConfig } from "@blubits/types/theme";
+import { LOGO_STYLES } from "@blubits/constants/ui";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/jetbrains-mono";
 
 interface Props {
-  background_color?: string;
-  foreground_color?: string;
-  logo_background_color?: string;
-  logo_foreground_color?: string;
-  dark_navbar?: boolean;
+  theme?: ThemeConfig['name'];
+  customTheme?: Partial<ThemeConfig>;
 }
 
 const {
-  background_color = "bg-gradient-to-b from-gray-100 via-slate-50 to-white",
-  foreground_color = "text-black",
-  logo_background_color = "bg-slate-200",
-  logo_foreground_color = "stroke-black",
-  dark_navbar = false,
+  theme = 'default',
+  customTheme,
 } = Astro.props;
+
+const themeConfig = customTheme 
+  ? { ...themes[theme], ...customTheme }
+  : themes[theme];
 ---
 
 <body
   class:list={[
     "m-auto min-h-screen pt-8 pb-12 md:pt-16",
-    background_color,
-    foreground_color,
+    themeConfig.background,
+    themeConfig.foreground,
+    `theme-${themeConfig.name}`,
   ]}
 >
   <Container>
-    <Navbar dark={dark_navbar} client:load>
+    <Navbar dark={themeConfig.darkNavbar} client:load>
       <Logo
         class:list={[
-          "size-12 p-2",
-          logo_background_color,
-          logo_foreground_color,
-          "rounded-full hover:rounded-full hover:bg-slate-700 hover:stroke-yellow-500",
+          LOGO_STYLES.base,
+          themeConfig.logoBackground,
+          themeConfig.logoForeground,
+          LOGO_STYLES.hover,
         ]}
       />
     </Navbar>

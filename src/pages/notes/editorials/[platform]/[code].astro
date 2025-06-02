@@ -7,7 +7,7 @@ import EditorialChip from "@blubits/components/notes/EditorialChip.astro";
 import Container from "@blubits/layouts/containers/Container.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import NotesPage from "@blubits/layouts/NotesPage.astro";
-import "@blubits/styles/styles-notes.css";
+import "@blubits/styles/themes.css";
 import { Icon } from "astro-icon/components";
 import { getCollection, render } from "astro:content";
 import "katex/dist/katex.min.css";
@@ -37,7 +37,7 @@ const fullnames: { [key: string]: string } = {
     " | " +
     post.data.title}
 >
-  <NotesPage background_color="bg-slate-50">
+  <NotesPage customTheme={{ background: "bg-slate-50" }}>
     <Container>
       <section class="mb-8">
         <Details>
@@ -45,7 +45,7 @@ const fullnames: { [key: string]: string } = {
           <p>•</p>
           <p class="flex items-center">{fullnames[post.data.platform]}</p>
           <p>•</p>
-          <Chip isCode>{post.data.code}</Chip>
+          <Chip variant="code">{post.data.code}</Chip>
         </Details>
         <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600">
         </div>
@@ -116,7 +116,7 @@ const fullnames: { [key: string]: string } = {
             <div class="flex flex-row flex-wrap items-start gap-1">
               {
                 post.data.tags.map((tag) => (
-                  <Chip isCode classNames="text-sm">
+                  <Chip variant="code" className="text-sm">
                     {tag}
                   </Chip>
                 ))

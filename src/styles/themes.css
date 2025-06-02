@@ -1,0 +1,47 @@
+@layer base {
+    :root {
+        --link-color-default: var(--color-blue-600);
+        --link-color-notes: var(--color-lime-600);
+        --link-color-dark: var(--color-amber-400);
+        --link-hover-default: var(--color-blue-500);
+        --link-hover-notes: var(--color-lime-700);
+        --link-hover-dark: var(--color-amber-500);
+    }
+
+    a {
+        /**
+         * iOS/iPadOS Safari stupidly changes the background color of links on tap.
+         * This property, as well as the ontouchstart="" attribute on components, 
+         * disables the weird gray tint. The card should now be correctly white
+         * on click.
+         */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    a.extlink {
+        color: var(--link-color, var(--link-color-default));
+        text-decoration-line: underline;
+        text-underline-offset: 4px;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    a.extlink:hover {
+        color: var(--link-hover, var(--link-hover-default));
+    }
+    
+    /* Theme variants */
+    .theme-default {
+        --link-color: var(--link-color-default);
+        --link-hover: var(--link-hover-default);
+    }
+    
+    .theme-notes {
+        --link-color: var(--link-color-notes);
+        --link-hover: var(--link-hover-notes);
+    }
+    
+    .theme-dark {
+        --link-color: var(--link-color-dark);
+        --link-hover: var(--link-hover-dark);
+    }
+}

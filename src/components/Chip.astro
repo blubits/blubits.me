@@ -1,29 +1,40 @@
 ---
+import { CHIP_SIZES } from '@blubits/constants/ui';
+
 interface Props {
-  bg_color?: string;
-  classNames?: string;
-  isCode?: boolean;
-  large?: boolean;
+  backgroundColor?: string;
+  className?: string;
+  variant?: 'default' | 'code';
+  size?: 'small' | 'large';
 }
 
 const {
-  bg_color = "bg-slate-300",
-  classNames = "",
-  isCode = false,
-  large = false,
+  backgroundColor = "bg-slate-300",
+  className = "",
+  variant = 'default',
+  size = 'small',
 } = Astro.props;
+
+const sizeConfig = CHIP_SIZES[size];
+const isCode = variant === 'code';
 ---
 
 {
   () => {
+    const baseClasses = [
+      "inline-flex items-center gap-x-2 self-start",
+      sizeConfig.padding,
+      sizeConfig.borderRadius,
+      backgroundColor,
+      className,
+    ];
+
     if (isCode) {
       return (
         <code
           class:list={[
-            "inline-flex items-center gap-x-2 font-mono self-start",
-            large ? "rounded-lg px-4 py-2" : "rounded-sm px-2 py-0.5",
-            bg_color,
-            classNames,
+            ...baseClasses,
+            "font-mono",
           ]}
         >
           <slot />
@@ -33,10 +44,8 @@ const {
       return (
         <span
           class:list={[
-            "inline-flex items-center gap-x-2 self-start",
-            large ? "rounded px-4 py-2 shadow-sm" : "rounded-sm px-2 py-0.5",
-            bg_color,
-            classNames,
+            ...baseClasses,
+            size === 'large' && 'shadow' in sizeConfig && sizeConfig.shadow,
           ]}
         >
           <slot />

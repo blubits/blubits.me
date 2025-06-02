@@ -5,8 +5,7 @@ import TableOfContents from "@blubits/components/TableOfContents.astro";
 import Container from "@blubits/layouts/containers/Container.astro";
 import Layout from "@blubits/layouts/Layout.astro";
 import NotesPage from "@blubits/layouts/NotesPage.astro";
-import "@blubits/styles/styles-notes.css";
-import { Icon } from "astro-icon/components";
+import "@blubits/styles/themes.css";
 import { getCollection, render } from "astro:content";
 import "katex/dist/katex.min.css";
 
@@ -23,7 +22,7 @@ const { Content, headings } = await render(post);
 ---
 
 <Layout title={post.data.title}>
-  <NotesPage background_color="bg-slate-50">
+  <NotesPage customTheme={{ background: "bg-slate-50" }}>
     <Container>
       <section class="mb-8 space-y-2">
         <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600">

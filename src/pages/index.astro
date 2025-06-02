@@ -8,14 +8,15 @@ import CardThumbImage from "@blubits/components/card/CardThumbImage.astro";
 import Container from "@blubits/layouts/containers/Container.astro";
 import DefaultPage from "@blubits/layouts/DefaultPage.astro";
 import Layout from "@blubits/layouts/Layout.astro";
-import "@blubits/styles/styles.css";
 import { Image } from "astro:assets";
 ---
 
 <Layout>
   <DefaultPage
-    background_color="bg-grid"
-    logo_background_color="bg-transparent"
+    customTheme={{
+      background: "bg-grid",
+      logoBackground: "bg-transparent",
+    }}
   >
     <Container>
       <h1
@@ -76,21 +77,33 @@ import { Image } from "astro:assets";
             icon_name="mdi:code"
           />
         </CardItem>
-        <CardItem title="Under construction" description="More to come later.">
+        <CardItem 
+          title="Under construction" 
+          description="More to come later."
+          theme="disabled"
+        >
           <CardThumbImage
             slot="thumbnail"
             src={sampleThumb}
             alt="Sample thumbnail"
           />
         </CardItem>
-        <CardItem title="Under construction" description="More to come later.">
+        <CardItem 
+          title="Under construction" 
+          description="More to come later."
+          theme="disabled"
+        >
           <CardThumbImage
             slot="thumbnail"
             src={sampleThumb}
             alt="Sample thumbnail"
           />
         </CardItem>
-        <CardItem title="Under construction" description="More to come later.">
+        <CardItem 
+          title="Under construction" 
+          description="More to come later."
+          theme="disabled"
+        >
           <CardThumbImage
             slot="thumbnail"
             src={sampleThumb}
