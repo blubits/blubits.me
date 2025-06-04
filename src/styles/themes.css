@@ -8,6 +8,26 @@
         --link-hover-dark: var(--color-amber-500);
     }
 
+    body {
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.04) 0%, transparent 50%),
+            linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.95) 50%, rgba(248, 250, 252, 0.9) 100%),
+            repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(148, 163, 184, 0.03) 1px, rgba(148, 163, 184, 0.03) 2px);
+        background-attachment: fixed;
+    }
+
+    .dark body {
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+            linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.98) 50%, rgba(17, 24, 39, 0.95) 100%),
+            repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(75, 85, 99, 0.1) 1px, rgba(75, 85, 99, 0.1) 2px);
+        background-attachment: fixed;
+    }
+
     a {
         /**
          * iOS/iPadOS Safari stupidly changes the background color of links on tap.
@@ -43,5 +63,15 @@
     .theme-dark {
         --link-color: var(--link-color-dark);
         --link-hover: var(--link-hover-dark);
+    }
+
+    .dark .theme-default {
+        --link-color: var(--color-blue-400);
+        --link-hover: var(--color-blue-300);
+    }
+    
+    .dark .theme-notes {
+        --link-color: var(--color-lime-400);
+        --link-hover: var(--color-lime-300);
     }
 }

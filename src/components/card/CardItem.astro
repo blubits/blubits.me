@@ -18,8 +18,8 @@ const {
 } = Astro.props;
 
 const themeClasses = {
-  default: 'bg-transparent hover:bg-white active:bg-white text-black hover:text-black active:text-black',
-  disabled: '-z-50 cursor-not-allowed opacity-50',
+  default: 'border border-transparent hover:border-white/25 dark:hover:border-gray-600/40 hover:bg-white/15 active:bg-white/20 dark:hover:bg-black/20 dark:active:bg-black/30 hover:backdrop-blur-md hover:backdrop-saturate-150 hover:shadow-2xl text-black dark:text-white hover:text-black dark:hover:text-white active:text-black dark:active:text-white',
+  disabled: 'border border-transparent text-black dark:text-white opacity-50 cursor-not-allowed',
 };
 
 const height = customHeight || CARD_DIMENSIONS.height;
@@ -27,17 +27,24 @@ const height = customHeight || CARD_DIMENSIONS.height;
 
 <a
   class:list={[
-    "z-50 flex flex-col gap-4",
+    "relative flex flex-col gap-4",
     height,
-    "rounded py-6 px-6",
+    "py-6 px-6",
     "snap-start",
-    "transition duration-300 ease-in-out",
-    themeClasses[theme],
     theme === 'default' && [
-      "hover:z-50 hover:scale-105 hover:shadow",
-      "active:z-50 active:scale-105 active:shadow",
+      // Ensure proper z-index stacking for hover states
+      "z-20 hover:z-50",
+      "rounded-none hover:rounded-xl",
+      "transition-all duration-500 ease-out",
+      "transform translate-y-0 hover:-translate-y-4",
+      "hover:scale-105",
       "cursor-pointer",
     ],
+    theme === 'disabled' && [
+      "z-20",
+      "rounded-none",
+    ],
+    themeClasses[theme],
     "first:ml-2 scroll-ml-2",
     "md:first:ml-10 md:scroll-ml-10",
     "lg:first:ml-26 lg:scroll-ml-26",
