@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import ThemeToggle from "../ThemeToggle";
+import ThemeToggle from "../ThemeToggle.tsx";
 
 const NavItem = ({ href, children, dark, onHover, isHovered, isActive, itemRef }) => {
   const getTextClasses = () => {
@@ -149,9 +149,7 @@ const Navbar = (props) => {
       
       <nav className="flex items-center space-x-4">
         {/* Theme Toggle */}
-        <div className="flex items-center">
-          <ThemeToggle />
-        </div>
+        <ThemeToggle />
         
         <div
           className={`

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { MdLightMode, MdDarkMode } from 'react-icons/md';
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
@@ -41,7 +42,7 @@ const ThemeToggle = () => {
       aria-label="Toggle dark mode"
     >
       <motion.span
-        className="h-4 w-4 transform rounded-full bg-white transition flex items-center justify-center text-xs"
+        className="h-4 w-4 transform rounded-full bg-white transition flex items-center justify-center shadow-sm"
         animate={{
           x: isDark ? 24 : 4,
         }}
@@ -51,7 +52,11 @@ const ThemeToggle = () => {
           damping: 30,
         }}
       >
-        {isDark ? '🌙' : '☀️'}
+        {isDark ? (
+          <MdDarkMode className="h-3 w-3 text-gray-700" />
+        ) : (
+          <MdLightMode className="h-3 w-3 text-yellow-500" />
+        )}
       </motion.span>
     </button>
   );
