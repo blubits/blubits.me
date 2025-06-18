@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import ThemeToggle from "../ui/ThemeToggle.tsx";
 
-const NavItem = ({ href, children, dark, onHover, isHovered, isActive, itemRef }) => {
+const NavItem = ({ href, children, onHover, isHovered, isActive, itemRef }) => {
   const getTextClasses = () => {
     if (isActive) {
       return "text-opacity-100 font-medium";
@@ -210,7 +210,6 @@ const Navbar = (props) => {
                 <NavItem 
                   key={item.href}
                   href={item.href} 
-                  dark={props.dark}
                   onHover={() => handleItemHover(index)}
                   isHovered={hoveredItem === index}
                   isActive={activeItem === index}
