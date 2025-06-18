@@ -1,23 +1,35 @@
 ---
 import { getCollection } from "astro:content";
+import { sortPostsByDate } from "@/utils/content";
 import "katex/dist/katex.min.css";
+
 import Layout from "../layouts/Layout.astro";
-import "@blubits/styles/themes.css";
-import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
-import DefaultPage from "@blubits/layouts/DefaultPage.astro";
-import Container from "@blubits/layouts/containers/Container.astro";
+import DefaultPage from "@/layouts/DefaultPage.astro";
+import Container from "@/layouts/containers/Container.astro";
+import InlineBlogPost from "@/components/blog/InlineBlogPost.astro";
+import RelativeTimestampJS from "@/js/RelativeTimestampJS.astro";
+
+import "@/styles/themes.css";
+
+const blogposts = await getCollection("blogposts");
+const all_posts = sortPostsByDate(blogposts);
 ---
 
-<Layout title="Blog">
-  <DefaultPage>
+<Layout 
+  title="Blog"
+  themeColorLight="#f3f4f6"
+  themeColorDark="#1e293b"
+>
+  <DefaultPage customTheme={{ background: "bg-slate-50" }}>
     <Container>
         <h1
-            class="font-sanstight mb-8 text-5xl leading-none font-bold md:text-6xl"
+            class="font-sanstight mb-12 text-5xl leading-none font-bold md:text-6xl"
         >
         Blog
       </h1>
+      
+      {all_posts.map((post) => <InlineBlogPost post={post} />)}
     </Container>
-    <ContainerFull>
-    </ContainerFull>
-</DefaultPage>
+  </DefaultPage>
+  <RelativeTimestampJS />
 </Layout>

@@ -1,10 +1,11 @@
 ---
-import CardContainer from "@blubits/components/card/CardContainer.astro";
-import CardItem from "@blubits/components/card/CardItem.astro";
-import CardThumbIcon from "@blubits/components/card/CardThumbIcon.astro";
-import Container from "@blubits/layouts/containers/Container.astro";
-import DefaultPage from "@blubits/layouts/DefaultPage.astro";
-import Layout from "@blubits/layouts/Layout.astro";
+import CardContainer from "@/components/card/CardContainer.astro";
+import CardItem from "@/components/card/CardItem.astro";
+import CardThumbIcon from "@/components/card/CardThumbIcon.astro";
+import Container from "@/layouts/containers/Container.astro";
+import DefaultPage from "@/layouts/DefaultPage.astro";
+import Layout from "@/layouts/Layout.astro";
+import Button from "@/components/ui/Button.astro";
 
 const cardData = [
   {
@@ -66,7 +67,11 @@ const cardData = [
 ];
 ---
 
-<Layout title="Get tutorials">
+<Layout 
+  title="Tutoring"
+  themeColorLight="#ddd6fe"
+  themeColorDark="#581c87"
+>
   <DefaultPage theme="tutoring">
     <Container>
       <h1
@@ -78,17 +83,19 @@ const cardData = [
       <section
         class="mb-16 flex flex-col flex-wrap items-center md:items-start gap-y-4 text-xl sm:flex-col md:flex-row md:gap-x-4"
       >
-        <a
-          data-obfuscation="0"
+        <Button
+          variant="primary"
+          background="#3b82f6"
           href="mailto:tutoring@login.blubits.me"
-          class="inline-block rounded-4xl bg-blue-500 text-white px-6 py-2 transition duration-300 hover:scale-102"
-          >Send me an email</a
         >
-        <a
+          Send me an email
+        </Button>
+        <Button
+          variant="secondary"
           href="https://www.teacheron.com/tutor/67qr"
-          class="inline-block rounded-4xl border border-black px-6 py-2 transition duration-300 hover:scale-102 hover:border-transparent hover:text-white hover:bg-blue-500 hover:shadow"
-          >Go to TeacherOn</a
         >
+          Go to TeacherOn
+        </Button>
       </section>
     </Container>
 
@@ -129,8 +136,7 @@ const cardData = [
         </h2>
         <p class="max-w-prose leading-normal">
           When you get me as a tutor, you get results. My students have gone on
-          to pass and excel in their exams, succeed in their classes, and even
-          win competitions. We'll work together to achieve the results you want.
+          to pass and excel in their exams, succeed in their classes, and even win competitions. We'll work together to achieve the results you want.
         </p>
       </div>
       <div class="col-span-4 max-w-prose md:col-span-5 md:col-end-12">

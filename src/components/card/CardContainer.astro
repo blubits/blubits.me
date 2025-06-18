@@ -1,5 +1,5 @@
 ---
-import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
+import Container from "@/layouts/containers/Container.astro";
 
 interface Props {
   height?: string;
@@ -10,7 +10,7 @@ const { height = "h-96" } = Astro.props;
 
 <!-- Use a wrapper with explicit overflow handling -->
 <div class="w-full overflow-visible">
-  <ContainerFull class="relative overflow-visible">
+  <Container full class="relative overflow-visible">
     <!-- Cards container with generous space for hover effects -->
     <div
       class:list={[
@@ -41,7 +41,7 @@ const { height = "h-96" } = Astro.props;
         <div class="min-w-8 flex-shrink-0"></div>
       </div>
     </div>
-  </ContainerFull>
+  </Container>
 </div>
 
 <style>

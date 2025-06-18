@@ -1,0 +1,70 @@
+---
+// ContactButton.astro
+import { Icon } from 'astro-icon/components';
+import ContactModal from './ContactModal.astro';
+import Button from '../ui/Button.astro';
+
+interface ContactMethod {
+  label: string;
+  value: string;
+  action: string;
+  icon: string;
+  obfuscate?: boolean; // Add optional obfuscation flag
+}
+
+interface Props {
+  contactMethods?: ContactMethod[];
+  modalId?: string;
+}
+
+// Default contact information
+const defaultContactMethods: ContactMethod[] = [
+  {
+    label: 'General inquiries',
+    value: 'hi@contact.blubits.me',
+    action: 'mailto:hi@contact.blubits.me',
+    icon: 'mdi:email',
+    obfuscate: true // Enable obfuscation for email
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/blubits',
+    action: 'https://linkedin.com/in/blubits',
+    icon: 'mdi:linkedin'
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/blubits',
+    action: 'https://github.com/blubits',
+    icon: 'mdi:github'
+  },
+  {
+    label: 'Twitter',
+    value: '@blubits_',
+    action: 'https://twitter.com/blubits_',
+    icon: 'mdi:twitter'
+  },
+  {
+    label: 'Schedule a call',
+    value: 'Book a 30-minute chat',
+    action: 'https://calendly.com/blubits',
+    icon: 'mdi:calendar'
+  }
+];
+
+const { 
+  contactMethods = defaultContactMethods, 
+  modalId = "contact-modal"
+} = Astro.props;
+---
+
+<Button
+  variant="primary"
+  background="linear-gradient(to right, #3b82f6, #8b5cf6)"
+  onclick={`document.getElementById('${modalId}').classList.remove('hidden')`}
+>
+  <Icon name="mdi:email-outline" class="h-5 w-5" />
+  Get in touch
+</Button>
+
+<ContactModal contactMethods={contactMethods} modalId={modalId} />

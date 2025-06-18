@@ -1,17 +1,54 @@
 ---
-import memojiImage from "@blubits/assets/memoji.webp";
-import sampleThumb from "@blubits/assets/sample_thumb.jpg";
-import CardContainer from "@blubits/components/card/CardContainer.astro";
-import CardItem from "@blubits/components/card/CardItem.astro";
-import CardThumbIcon from "@blubits/components/card/CardThumbIcon.astro";
-import CardThumbImage from "@blubits/components/card/CardThumbImage.astro";
-import Container from "@blubits/layouts/containers/Container.astro";
-import DefaultPage from "@blubits/layouts/DefaultPage.astro";
-import Layout from "@blubits/layouts/Layout.astro";
+import memojiImage from "@/assets/memoji.webp";
+import sampleThumb from "@/assets/sample_thumb.jpg";
+import CardContainer from "@/components/card/CardContainer.astro";
+import CardItem from "@/components/card/CardItem.astro";
+import CardThumbIcon from "@/components/card/CardThumbIcon.astro";
+import CardThumbImage from "@/components/card/CardThumbImage.astro";
+import ContactButton from "@/components/layout/ContactButton.astro";
+import ProjectChip from "@/components/layout/ProjectChip.astro";
+import Container from "@/layouts/containers/Container.astro";
+import DefaultPage from "@/layouts/DefaultPage.astro";
+import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+// Fetch projects
+const projects = await getCollection("projects");
+const visibleProjects = projects.filter(project => !project.data.hidden);
+
+// Handle project image loading for cards
+const projectImages: Record<string, any> = {};
+const projectPreviewImages: Record<string, any> = {};
+if (visibleProjects.length > 0) {
+  try {
+    const images = import.meta.glob('/content/projects/**/*.{png,jpg,jpeg,webp,gif,svg}', { eager: true }) as Record<string, { default: any }>;
+    for (const project of visibleProjects) {
+      // Load preview image if specified
+      if (project.data.preview_image) {
+        const previewPath = `/content/projects/${project.id}/${project.data.preview_image}`;
+        if (images[previewPath]) {
+          projectPreviewImages[project.data.slug] = images[previewPath].default;
+        }
+      }
+      // Load main image (fallback for cards and main article)
+      if (project.data.image) {
+        const imagePath = `/content/projects/${project.id}/${project.data.image}`;
+        if (images[imagePath]) {
+          projectImages[project.data.slug] = images[imagePath].default;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('Could not load project images for cards');
+  }
+}
 ---
 
-<Layout>
+<Layout 
+  themeColorLight="#f3f4f6"
+  themeColorDark="#111827"
+>
   <DefaultPage
     customTheme={{
       logoBackground: "bg-transparent",
@@ -38,6 +75,11 @@ import { Image } from "astro:assets";
             the Philippines. When I'm not coding, I like writing, learning about
             new stuff, video games, and exploring.
           </p>
+          
+          {/* Contact Button */}
+          <div class="mt-4">
+            <ContactButton />
+          </div>
         </div>
         <div
           class="order-first flex grow flex-col md:order-last md:items-center md:justify-center"
@@ -65,6 +107,18 @@ import { Image } from "astro:assets";
             icon_color="text-white"
           />
         </CardItem>
+        <!-- <CardItem
+          title="Blog"
+          description="Thoughts on building, learning, and shipping."
+          href="/blog"
+        >
+          <CardThumbIcon
+            slot="thumbnail"
+            icon_name="mdi:pencil"
+            bg_color="bg-gradient-to-tr from-slate-700 via-slate-600 to-slate-500"
+            icon_color="text-white"
+          />
+        </CardItem> -->
         <CardItem
           title="Compet prog notes"
           description="On data structures, algorithms, and more."
@@ -76,39 +130,43 @@ import { Image } from "astro:assets";
             icon_name="mdi:code"
           />
         </CardItem>
-        <CardItem
-          title="Under construction"
-          description="More to come later."
-          theme="disabled"
-        >
-          <CardThumbImage
-            slot="thumbnail"
-            src={sampleThumb}
-            alt="Sample thumbnail"
-          />
-        </CardItem>
-        <CardItem
-          title="Under construction"
-          description="More to come later."
-          theme="disabled"
-        >
-          <CardThumbImage
-            slot="thumbnail"
-            src={sampleThumb}
-            alt="Sample thumbnail"
-          />
-        </CardItem>
-        <CardItem
-          title="Under construction"
-          description="More to come later."
-          theme="disabled"
-        >
-          <CardThumbImage
-            slot="thumbnail"
-            src={sampleThumb}
-            alt="Sample thumbnail"
-          />
-        </CardItem>
+        {visibleProjects.map((project) => (
+          <CardItem
+            title={project.data.title}
+            description={project.data["short-description"]}
+            href={`/projects/${project.data.slug}`}
+          >
+            <ProjectChip slot="tag" />
+            {projectPreviewImages[project.data.slug] ? (
+              <CardThumbImage
+                slot="thumbnail"
+                src={projectPreviewImages[project.data.slug]}
+                alt={`${project.data.title} thumbnail`}
+              />
+            ) : project.data.preview_icon ? (
+              <CardThumbIcon
+                slot="thumbnail"
+                icon_name={project.data.preview_icon}
+                bg_color={project.data.preview_icon_background || "bg-gradient-to-tr from-purple-600 via-purple-500 to-purple-400"}
+                icon_color={project.data.preview_icon_foreground || "text-white"}
+              />
+            ) : projectImages[project.data.slug] ? (
+              <CardThumbImage
+                slot="thumbnail"
+                src={projectImages[project.data.slug]}
+                alt={`${project.data.title} thumbnail`}
+              />
+            ) : (
+              <CardThumbIcon
+                slot="thumbnail"
+                icon_name="mdi:folder-outline"
+                bg_color="bg-gradient-to-tr from-purple-600 via-purple-500 to-purple-400"
+                icon_color="text-white"
+              />
+            )}
+          </CardItem>
+        ))}
+
       </Fragment>
     </CardContainer>
   </DefaultPage>

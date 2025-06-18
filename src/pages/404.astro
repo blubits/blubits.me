@@ -1,11 +1,14 @@
 ---
-import Chip from "@blubits/components/Chip.astro";
-import DefaultPage from "@blubits/layouts/DefaultPage.astro";
-import Layout from "@blubits/layouts/Layout.astro";
-import "@blubits/styles/themes.css";
+import Chip from "@/components/ui/Chip.astro";
+import DefaultPage from "@/layouts/DefaultPage.astro";
+import Layout from "@/layouts/Layout.astro";
+import "@/styles/themes.css";
 ---
 
-<Layout>
+<Layout 
+  themeColorLight="#fee2e2"
+  themeColorDark="#7f1d1d"
+>
   <DefaultPage theme="error">
     <div class="flex flex-col items-center justify-center gap-y-4">
       <img

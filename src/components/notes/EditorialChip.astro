@@ -1,11 +1,8 @@
 ---
-import Chip from "@blubits/components/Chip.astro";
+import Tag from "../ui/Tag.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<Chip
-    className="text-sm"
-    backgroundColor="bg-orange-500 text-white"
->
-    <Icon name="mdi:graduation-cap" /> Editorial
-</Chip>
+<Tag variant="solid" size="sm" background="#f97316" icon="mdi:graduation-cap">
+  Editorial
+</Tag>

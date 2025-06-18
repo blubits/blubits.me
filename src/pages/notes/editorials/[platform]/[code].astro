@@ -1,16 +1,21 @@
 ---
 import { markdown } from "@astropub/md";
-import Chip from "@blubits/components/Chip.astro";
-import Details from "@blubits/components/Details.astro";
-import MarkdownBody from "@blubits/components/MarkdownBody.astro";
-import EditorialChip from "@blubits/components/notes/EditorialChip.astro";
-import Container from "@blubits/layouts/containers/Container.astro";
-import Layout from "@blubits/layouts/Layout.astro";
-import NotesPage from "@blubits/layouts/NotesPage.astro";
-import "@blubits/styles/themes.css";
 import { Icon } from "astro-icon/components";
 import { getCollection, render } from "astro:content";
 import "katex/dist/katex.min.css";
+
+import Chip from "@/components/ui/Chip.astro";
+import Details from "@/components/layout/Details.astro";
+import MarkdownBody from "@/components/content/MarkdownBody.astro";
+import EditorialChip from "@/components/notes/EditorialChip.astro";
+
+import Container from "@/layouts/containers/Container.astro";
+import Layout from "@/layouts/Layout.astro";
+import NotesPage from "@/layouts/NotesPage.astro";
+
+import { getPlatformDisplayName } from "@/utils/content";
+
+import "@/styles/themes.css";
 
 export async function getStaticPaths() {
   const posts = await getCollection("editorials");
@@ -23,19 +28,11 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const fullnames: { [key: string]: string } = {
-  oj: "Online Judge",
-  cf: "Codeforces",
-};
+const platformName = getPlatformDisplayName(post.data.platform);
 ---
 
 <Layout
-  title={"Editorial: " +
-    fullnames[post.data.platform] +
-    " " +
-    post.data.code +
-    " | " +
-    post.data.title}
+  title={`Editorial: ${platformName} ${post.data.code} | ${post.data.title}`}
 >
   <NotesPage customTheme={{ background: "bg-slate-50" }}>
     <Container>
@@ -43,7 +40,7 @@ const fullnames: { [key: string]: string } = {
         <Details>
           <EditorialChip />
           <p>•</p>
-          <p class="flex items-center">{fullnames[post.data.platform]}</p>
+          <p class="flex items-center">{platformName}</p>
           <p>•</p>
           <Chip variant="code">{post.data.code}</Chip>
         </Details>
@@ -61,7 +58,7 @@ const fullnames: { [key: string]: string } = {
           </MarkdownBody>
           <dl class="mt-12 flex flex-col gap-y-4 text-sm text-slate-600 dark:text-slate-300">
             <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">Module created</dt>
+              <dt class="font-semibold">Editorial created</dt>
               <dd class="rel-timestamp">
                 {post.data["date-created"].toISOString()}
               </dd>
@@ -102,7 +99,7 @@ const fullnames: { [key: string]: string } = {
                 "inline-flex items-center gap-x-2 text-lime-600 underline underline-offset-4 hover:text-lime-700",
               ]}
               href={post.data["problem-link"]}
-              >On {fullnames[post.data.platform]}<Icon
+              >On {platformName}<Icon
                 name="mdi:external-link"
               /></a
             >

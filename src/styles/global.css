@@ -3,6 +3,47 @@
 @config "../../tailwind.config.mjs";
 @custom-variant hover (&:hover);
 
+/* View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+/* Smooth transitions for the main content area */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Logo transition - maintains position and smoothly morphs */
+::view-transition-old(logo),
+::view-transition-new(logo) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Navbar transitions - maintains sticky position */
+::view-transition-old(navbar),
+::view-transition-new(navbar) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Theme toggle smooth transitions */
+::view-transition-old(theme-toggle),
+::view-transition-new(theme-toggle) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Disable transitions for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+  }
+}
+
 @layer components {
     .bg-grid {
         --s: 222px;

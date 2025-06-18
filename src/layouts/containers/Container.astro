@@ -1,6 +1,16 @@
 ---
-const { class: className } = Astro.props;
+interface Props {
+  class?: string;
+  full?: boolean;
+}
+
+const { class: className, full = false } = Astro.props;
 ---
-<section class:list={["mx-8 md:mx-16 lg:mx-32 2xl:mx-auto 2xl:max-w-7xl", className]}>
+<section class:list={[
+  full 
+    ? "m-auto w-full" 
+    : "mx-8 md:mx-16 lg:mx-32 2xl:mx-auto 2xl:max-w-7xl", 
+  className
+]}>
   <slot />
 </section>

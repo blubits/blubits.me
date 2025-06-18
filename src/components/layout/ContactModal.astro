@@ -1,0 +1,299 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface ContactMethod {
+  label: string;
+  value: string;
+  action: string;
+  icon: string;
+  obfuscate?: boolean; // Add optional obfuscation flag
+}
+
+interface Props {
+  contactMethods: ContactMethod[];
+  modalId?: string;
+}
+
+const { contactMethods, modalId = "contact-modal" } = Astro.props;
+---
+
+<!-- Modal Backdrop -->
+<div 
+  id={modalId} 
+  class="modal fixed inset-0 z-50 hidden bg-black/40 backdrop-blur-sm"
+  onclick="if (event.target === this) this.classList.add('hidden')"
+>
+  <!-- Desktop Modal -->
+  <div class="items-center justify-center p-4 h-full hidden lg:flex">
+    <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-4xl shadow-lg transform transition-all">
+      <!-- Header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+          Get in touch
+        </h2>
+        <button
+          onclick={`document.getElementById('${modalId}').classList.add('hidden')`}
+          class="inline-flex items-center justify-center w-8 h-8 rounded-2xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+        >
+          <Icon name="mdi:close" class="h-5 w-5" />
+        </button>
+      </div>
+
+      <!-- Contact List -->
+      <div class="p-6">
+        <div class="space-y-4">
+          {contactMethods.map((method) => (
+            <a
+              href={method.action}
+              target={method.action.startsWith('http') ? '_blank' : undefined}
+              rel={method.action.startsWith('http') ? 'noopener noreferrer' : undefined}
+              data-obfuscation={method.obfuscate ? "0" : undefined}
+              class="flex items-center gap-3 p-3 rounded-3xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Icon name={method.icon} class="h-5 w-5 text-gray-600 dark:text-gray-400" />
+              <div class="flex-1">
+                <div class="font-medium text-gray-900 dark:text-white">
+                  {method.label}
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                  {method.value}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sheet -->
+  <div 
+    class="mobile-sheet fixed inset-x-0 bottom-0 z-50 bg-white dark:bg-gray-800 rounded-t-4xl shadow-lg block lg:hidden transform translate-y-full transition-transform duration-200"
+  >
+    <!-- Draggable Handle -->
+    <div 
+      class="handle flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing touch-none"
+    >
+      <div class="w-8 h-1 bg-gray-300 dark:bg-gray-600 rounded-full" />
+    </div>
+    
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 pb-4">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+        Get in touch
+      </h2>
+      <button
+        onclick={`document.getElementById('${modalId}').classList.add('hidden')`}
+        class="inline-flex items-center justify-center w-8 h-8 rounded-2xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+      >
+        <Icon name="mdi:close" class="h-5 w-5" />
+      </button>
+    </div>
+
+    <!-- Contact List -->
+    <div class="px-6 pb-6">
+      <div class="space-y-4">
+        {contactMethods.map((method) => (
+          <a
+            href={method.action}
+            target={method.action.startsWith('http') ? '_blank' : undefined}
+            rel={method.action.startsWith('http') ? 'noopener noreferrer' : undefined}
+            data-obfuscation={method.obfuscate ? "0" : undefined}
+            class="flex items-center gap-3 p-3 rounded-3xl active:bg-gray-50 dark:active:bg-gray-700 transition-all duration-300 active:scale-[0.98]"
+          >
+            <Icon name={method.icon} class="h-5 w-5 text-gray-600 dark:text-gray-400" />
+            <div class="flex-1">
+              <div class="font-medium text-gray-900 dark:text-white">
+                {method.label}
+              </div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">
+                {method.value}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ modalId }}>
+  let isDragging = false;
+  let startY = 0;
+  let currentY = 0;
+  let sheetElement = null;
+  let backdropElement = null;
+
+  function initializeModal() {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    sheetElement = modal.querySelector('.mobile-sheet');
+    backdropElement = modal;
+    const handle = modal.querySelector('.handle');
+
+    if (!sheetElement || !handle) return;
+
+    // Touch event handlers
+    handle.addEventListener('touchstart', handleTouchStart, { passive: false });
+    handle.addEventListener('touchmove', handleTouchMove, { passive: false });
+    handle.addEventListener('touchend', handleTouchEnd);
+
+    // Mouse event handlers for desktop testing
+    handle.addEventListener('mousedown', handleMouseStart);
+  }
+
+  function handleTouchStart(e) {
+    isDragging = true;
+    startY = e.touches[0].clientY;
+    sheetElement.style.transition = 'none';
+  }
+
+  function handleTouchMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    currentY = e.touches[0].clientY;
+    const deltaY = Math.max(0, currentY - startY); // Only allow dragging down
+    
+    sheetElement.style.transform = `translateY(${deltaY}px)`;
+    
+    // Fade backdrop based on drag distance
+    const opacity = Math.max(0.4 - (deltaY / 300), 0.1);
+    backdropElement.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+  }
+
+  function handleTouchEnd() {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    const deltaY = currentY - startY;
+    
+    sheetElement.style.transition = 'transform 0.2s ease-out';
+    
+    // If dragged down more than 100px, close the sheet
+    if (deltaY > 100) {
+      closeModal();
+    } else {
+      // Snap back to original position
+      sheetElement.style.transform = 'translateY(0)';
+      backdropElement.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+    }
+  }
+
+  function handleMouseStart(e) {
+    isDragging = true;
+    startY = e.clientY;
+    sheetElement.style.transition = 'none';
+    
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+      
+      currentY = e.clientY;
+      const deltaY = Math.max(0, currentY - startY);
+      
+      sheetElement.style.transform = `translateY(${deltaY}px)`;
+      
+      const opacity = Math.max(0.4 - (deltaY / 300), 0.1);
+      backdropElement.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+    };
+    
+    const handleMouseUp = () => {
+      if (!isDragging) return;
+      
+      isDragging = false;
+      const deltaY = currentY - startY;
+      
+      sheetElement.style.transition = 'transform 0.2s ease-out';
+      
+      if (deltaY > 100) {
+        closeModal();
+      } else {
+        sheetElement.style.transform = 'translateY(0)';
+        backdropElement.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+      }
+      
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  }
+
+  function closeModal() {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('hidden');
+      // Reset sheet position when closed
+      if (sheetElement) {
+        sheetElement.style.transform = 'translateY(100%)';
+        sheetElement.style.transition = 'transform 0.2s ease-out';
+      }
+      if (backdropElement) {
+        backdropElement.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+      }
+    }
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Show sheet animation when modal opens
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        const modal = mutation.target;
+        if (!modal.classList.contains('hidden') && sheetElement) {
+          // Modal opened - animate sheet up
+          setTimeout(() => {
+            sheetElement.style.transform = 'translateY(0)';
+          }, 10);
+        } else if (modal.classList.contains('hidden') && sheetElement) {
+          // Modal closed - reset sheet position
+          sheetElement.style.transform = 'translateY(100%)';
+        }
+      }
+    });
+  });
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeModal);
+  } else {
+    initializeModal();
+  }
+
+  // Observe modal visibility changes
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    observer.observe(modal, { attributes: true });
+  }
+</script>
+
+<style>
+  .modal {
+    animation: fadeIn 0.15s ease-out;
+  }
+  
+  .modal.hidden {
+    display: none !important;
+  }
+  
+  .mobile-sheet {
+    touch-action: none;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

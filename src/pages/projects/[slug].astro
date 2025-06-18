@@ -1,0 +1,121 @@
+---
+import MarkdownBody from "@/components/content/MarkdownBody.astro";
+import ProjectTag from "@/components/layout/ProjectTag.astro";
+import Container from "@/layouts/containers/Container.astro";
+import Layout from "@/layouts/Layout.astro";
+import DefaultPage from "@/layouts/DefaultPage.astro";
+import "@/styles/themes.css";
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import RelativeTimestampJS from "@/js/RelativeTimestampJS.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+// Handle project image loading
+let projectImage;
+if (project.data.image) {
+  try {
+    // Use Vite's glob import to get the image
+    const images = import.meta.glob('/content/projects/**/*.{png,jpg,jpeg,webp,gif,svg}', { eager: true }) as Record<string, { default: any }>;
+    const imagePath = `/content/projects/${project.id}/${project.data.image}`;
+    projectImage = images[imagePath]?.default;
+  } catch (e) {
+    console.warn(`Could not load image: ${project.data.image} for project ${project.data.slug}`);
+  }
+}
+---
+
+<Layout title={project.data.title}>
+  <DefaultPage customTheme={{ background: "bg-slate-50" }}>
+    <Container>
+      <section class="mb-8 space-y-2">
+        {projectImage && (
+          <div class="mb-4">
+            <Image 
+              src={projectImage} 
+              alt={`${project.data.title} preview`}
+              class="rounded-lg shadow-lg max-w-[800px] w-full h-auto"
+            />
+          </div>
+        )}
+        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600 dark:text-slate-300">
+          <div class="inline-flex items-center gap-x-2 rounded-full bg-slate-500/10 px-3 py-1 text-xs font-medium">
+            Project
+          </div>
+        </div>
+        <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
+          {project.data.title}
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300">
+          {project.data["short-description"]}
+        </p>
+      </section>
+
+      <section class="flex flex-col gap-16 lg:flex-row xl:justify-between">
+        <div class="flex-1">
+          <MarkdownBody>
+            <Content />
+          </MarkdownBody>
+        </div>
+        
+        <aside class="lg:w-64 lg:flex-shrink-0">
+          <div class="sticky top-8 space-y-6">
+            
+            {project.data.link && (
+              <div class="flex flex-col gap-y-2">
+                <h3 class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  Project link
+                </h3>
+                <a
+                  class="inline-flex items-center gap-x-2 text-slate-600 dark:text-slate-300 underline underline-offset-4 hover:text-slate-800 dark:hover:text-slate-100"
+                  href={project.data.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit project <Icon name="mdi:external-link" />
+                </a>
+              </div>
+            )}
+            
+            <div>
+              <h3 class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-3">
+                Technologies
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {project.data.tags.map((tag) => (
+                  <ProjectTag tag={tag} />
+                ))}
+              </div>
+            </div>
+            
+            <dl class="flex flex-col gap-y-4 text-sm text-slate-600 dark:text-slate-300">
+              <div class="flex flex-col gap-y-2">
+                <dt class="font-semibold">Created</dt>
+                <dd class="rel-timestamp">
+                  {project.data["date-created"].toISOString()}
+                </dd>
+              </div>
+              <div class="flex flex-col gap-y-2">
+                <dt class="font-semibold">Last updated</dt>
+                <dd class="rel-timestamp">
+                  {project.data["date-updated"].toISOString()}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </section>
+    </Container>
+    <RelativeTimestampJS />
+  </DefaultPage>
+</Layout>

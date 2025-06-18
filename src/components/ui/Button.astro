@@ -1,0 +1,64 @@
+---
+import { BUTTON_STYLES } from '@/constants/ui';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  radius?: 'primary' | 'secondary' | 'compact';
+  background?: string; // For custom backgrounds on primary variant
+  href?: string;
+  onclick?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  radius = 'primary',
+  background,
+  href,
+  onclick,
+  type = 'button',
+  disabled = false,
+  class: className = '',
+} = Astro.props;
+
+// Combine all button styles
+const buttonClasses = [
+  ...BUTTON_STYLES.base,
+  BUTTON_STYLES.radius[radius],
+  BUTTON_STYLES.size[size],
+  ...BUTTON_STYLES.variant[variant],
+  disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
+  className,
+].filter(Boolean);
+
+// Apply custom background for primary variant
+const customStyles = variant === 'primary' && background 
+  ? { background } 
+  : {};
+---
+
+{href ? (
+  <a
+    href={href}
+    class:list={buttonClasses}
+    style={customStyles}
+    onclick={onclick}
+    data-obfuscation="0"
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class:list={buttonClasses}
+    style={customStyles}
+    onclick={onclick}
+    disabled={disabled}
+  >
+    <slot />
+  </button>
+)}

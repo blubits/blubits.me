@@ -1,0 +1,104 @@
+---
+import { Icon } from "astro-icon/components";
+import Tag from "../ui/Tag.astro";
+
+interface Props {
+  tag: string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'solid' | 'glass' | 'subtle' | 'code';
+}
+
+const { tag, size = 'md', variant = 'solid' } = Astro.props;
+
+// Technology mapping with display names and icons
+const techMapping: Record<string, { name: string; icon: string; color: string }> = {
+  // Frontend Frameworks
+  'react': { name: 'React', icon: 'mdi:react', color: '#61dafb' },
+  'react-router': { name: 'React Router', icon: 'mdi:react', color: '#ca4245' },
+  'vue': { name: 'Vue.js', icon: 'mdi:vuejs', color: '#4fc08d' },
+  'angular': { name: 'Angular', icon: 'mdi:angular', color: '#dd0031' },
+  'svelte': { name: 'Svelte', icon: 'mdi:svelte', color: '#ff3e00' },
+  'next.js': { name: 'Next.js', icon: 'mdi:nextjs', color: '#000000' },
+  'nuxt': { name: 'Nuxt.js', icon: 'mdi:nuxt', color: '#00dc82' },
+  'astro': { name: 'Astro', icon: 'mdi:rocket-launch', color: '#ff5d01' },
+  
+  // Backend Frameworks
+  'flask': { name: 'Flask', icon: 'mdi:flask', color: '#000000' },
+  'django': { name: 'Django', icon: 'mdi:django', color: '#092e20' },
+  'fastapi': { name: 'FastAPI', icon: 'mdi:fast-forward', color: '#009688' },
+  'express': { name: 'Express.js', icon: 'mdi:nodejs', color: '#339933' },
+  'spring': { name: 'Spring', icon: 'mdi:leaf', color: '#6db33f' },
+  'rails': { name: 'Ruby on Rails', icon: 'mdi:train', color: '#cc0000' },
+  
+  // Programming Languages
+  'python': { name: 'Python', icon: 'mdi:language-python', color: '#3776ab' },
+  'javascript': { name: 'JavaScript', icon: 'mdi:language-javascript', color: '#f7df1e' },
+  'typescript': { name: 'TypeScript', icon: 'mdi:language-typescript', color: '#007acc' },
+  'java': { name: 'Java', icon: 'mdi:language-java', color: '#ed8b00' },
+  'c++': { name: 'C++', icon: 'mdi:language-cpp', color: '#00599c' },
+  'c#': { name: 'C#', icon: 'mdi:language-csharp', color: '#239120' },
+  'rust': { name: 'Rust', icon: 'mdi:language-rust', color: '#000000' },
+  'go': { name: 'Go', icon: 'mdi:language-go', color: '#00add8' },
+  'php': { name: 'PHP', icon: 'mdi:language-php', color: '#777bb4' },
+  'ruby': { name: 'Ruby', icon: 'mdi:language-ruby', color: '#cc342d' },
+  
+  // Databases
+  'postgresql': { name: 'PostgreSQL', icon: 'mdi:database', color: '#336791' },
+  'mysql': { name: 'MySQL', icon: 'mdi:database', color: '#4479a1' },
+  'mongodb': { name: 'MongoDB', icon: 'mdi:leaf', color: '#47a248' },
+  'redis': { name: 'Redis', icon: 'mdi:database-outline', color: '#dc382d' },
+  'sqlite': { name: 'SQLite', icon: 'mdi:database', color: '#003b57' },
+  
+  // Cloud & DevOps
+  'aws': { name: 'AWS', icon: 'mdi:aws', color: '#ff9900' },
+  'gcp': { name: 'Google Cloud', icon: 'mdi:google-cloud', color: '#4285f4' },
+  'azure': { name: 'Azure', icon: 'mdi:microsoft-azure', color: '#0078d4' },
+  'docker': { name: 'Docker', icon: 'mdi:docker', color: '#2496ed' },
+  'kubernetes': { name: 'Kubernetes', icon: 'mdi:kubernetes', color: '#326ce5' },
+  'terraform': { name: 'Terraform', icon: 'mdi:terraform', color: '#623ce4' },
+  
+  // Data & Analytics
+  'data-science': { name: 'Data Science', icon: 'mdi:chart-line', color: '#ff6b6b' },
+  'machine-learning': { name: 'Machine Learning', icon: 'mdi:brain', color: '#4ecdc4' },
+  'tensorflow': { name: 'TensorFlow', icon: 'mdi:tensorflow', color: '#ff6f00' },
+  'pytorch': { name: 'PyTorch', icon: 'mdi:fire', color: '#ee4c2c' },
+  'pandas': { name: 'Pandas', icon: 'mdi:panda', color: '#150458' },
+  'numpy': { name: 'NumPy', icon: 'mdi:numeric', color: '#013243' },
+  'd3.js': { name: 'D3.js', icon: 'mdi:chart-bubble', color: '#f68e56' },
+  
+  // Web Technologies
+  'html': { name: 'HTML', icon: 'mdi:language-html5', color: '#e34f26' },
+  'css': { name: 'CSS', icon: 'mdi:language-css3', color: '#1572b6' },
+  'sass': { name: 'Sass', icon: 'mdi:sass', color: '#cc6699' },
+  'tailwind': { name: 'Tailwind CSS', icon: 'mdi:tailwind', color: '#06b6d4' },
+  'bootstrap': { name: 'Bootstrap', icon: 'mdi:bootstrap', color: '#7952b3' },
+  
+  // Testing
+  'jest': { name: 'Jest', icon: 'mdi:test-tube', color: '#c21325' },
+  'cypress': { name: 'Cypress', icon: 'mdi:test-tube-outline', color: '#17202c' },
+  'pytest': { name: 'pytest', icon: 'mdi:test-tube', color: '#0a9edc' },
+  
+  // Tools
+  'git': { name: 'Git', icon: 'mdi:git', color: '#f05032' },
+  'github': { name: 'GitHub', icon: 'mdi:github', color: '#181717' },
+  'gitlab': { name: 'GitLab', icon: 'mdi:gitlab', color: '#fc6d26' },
+  'vscode': { name: 'VS Code', icon: 'mdi:microsoft-visual-studio-code', color: '#007acc' },
+  'figma': { name: 'Figma', icon: 'mdi:figma', color: '#f24e1e' },
+};
+
+// Get the tech info or use fallback
+const techInfo = techMapping[tag.toLowerCase()] || {
+  name: tag.charAt(0).toUpperCase() + tag.slice(1).replace(/[-_]/g, ' '),
+  icon: 'mdi:tag',
+  color: '#6b7280'
+};
+---
+
+<Tag 
+  variant={variant}
+  size={size}
+  background={variant === 'solid' ? techInfo.color : undefined}
+  icon={techInfo.icon}
+>
+  {techInfo.name}
+</Tag>

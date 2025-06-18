@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import ThemeToggle from "../ThemeToggle.tsx";
+import ThemeToggle from "../ui/ThemeToggle.tsx";
 
 const NavItem = ({ href, children, dark, onHover, isHovered, isActive, itemRef }) => {
   const getTextClasses = () => {
@@ -44,6 +44,7 @@ const Navbar = (props) => {
 
   // Navigation items data
   const navItems = [
+    // { href: "/blog", label: "Blog" },
     { href: "/tutoring", label: "Tutoring" },
     { href: "/notes", label: "Notes" }
   ];
@@ -95,61 +96,71 @@ const Navbar = (props) => {
   return (
     <header
       className={`
-        -z-50 mx-auto flex max-w-7xl flex-col space-y-4 
+        -z-50 mx-auto flex max-w-7xl flex-col
         rounded-4xl bg-white/20 dark:bg-black/20 border border-white/30 dark:border-gray-700/30
         px-8 py-2 shadow-2xl backdrop-blur-xl backdrop-saturate-150 
         md:flex-row md:items-center md:justify-between md:space-y-0 
         transition-all duration-300 ease-out
-        ${isOpen ? "mb-12" : "mb-4"} 
-        md:mb-16
+        ${isOpen ? "mb-12 space-y-4" : "mb-4"} 
+        md:mb-16 md:space-y-0
         ${isHovered ? 'shadow-3xl border-white/40 dark:border-gray-600/40' : ''}
         hover:backdrop-blur-2xl
       `}
+      style={{ viewTransitionName: "navbar" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex items-center space-x-2">
-        <a 
-          href="/"
-          className="transition-all duration-200 ease-out transform-gpu hover:scale-110 active:scale-95"
-        >
-          {props.children}
-        </a>
-        <button
-          className={`
-            focus:outline-none md:hidden
-            rounded-full p-1
-            transition-all duration-200 ease-out transform-gpu
-            hover:scale-110 active:scale-90
-            ${isOpen ? 'bg-white/10 dark:bg-gray-700/20' : 'hover:bg-white/10 dark:hover:bg-gray-700/20'}
-          `}
-          aria-label="Toggle Navigation"
-          onClick={toggleMenu}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            className={`
-              h-4 w-4 
-              transition-all duration-300 ease-out
-              ${isOpen ? "rotate-180" : "rotate-0"}
-            `}
+      <div className="flex items-center justify-between w-full md:w-auto">
+        <div className="flex items-center space-x-2">
+          <a 
+            href="/"
+            className="transition-all duration-200 ease-out transform-gpu hover:scale-110 active:scale-95"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
+            {props.children}
+          </a>
+          <button
+            className={`
+              focus:outline-none md:hidden
+              rounded-full p-1
+              transition-all duration-200 ease-out transform-gpu
+              hover:scale-110 active:scale-90
+              ${isOpen ? 'bg-white/10 dark:bg-gray-700/20' : 'hover:bg-white/10 dark:hover:bg-gray-700/20'}
+            `}
+            aria-label="Toggle Navigation"
+            onClick={toggleMenu}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              className={`
+                h-4 w-4 
+                transition-all duration-300 ease-out
+                ${isOpen ? "rotate-180" : "rotate-0"}
+              `}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+        
+        {/* Theme Toggle - Always visible on top row */}
+        <div className="md:hidden">
+          <ThemeToggle />
+        </div>
       </div>
       
-      <nav className="flex items-center space-x-4">
-        {/* Theme Toggle */}
-        <ThemeToggle />
+      <nav className={`flex items-center space-x-4 ${!isOpen ? 'hidden md:flex' : ''}`}>
+        {/* Theme Toggle for desktop */}
+        <div className="hidden md:block">
+          <ThemeToggle />
+        </div>
         
         <div
           className={`

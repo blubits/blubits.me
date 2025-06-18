@@ -1,35 +1,31 @@
 ---
-import { getCollection, render } from "astro:content";
-import "katex/dist/katex.min.css";
-
 import MarkdownBody from "@/components/content/MarkdownBody.astro";
-import ModuleChip from "@/components/notes/ModuleChip.astro";
-import TableOfContents from "@/components/content/TableOfContents.astro";
-
 import Container from "@/layouts/containers/Container.astro";
 import Layout from "@/layouts/Layout.astro";
-import NotesPage from "@/layouts/NotesPage.astro";
-
+import DefaultPage from "@/layouts/DefaultPage.astro";
 import "@/styles/themes.css";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("modules");
+  const posts = await getCollection("blogposts");
   return posts.map((post) => ({
-    params: { level: post.data.id[0], id: post.data.id },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const { Content, headings } = await render(post);
+const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title}>
-  <NotesPage customTheme={{ background: "bg-slate-50" }}>
+  <DefaultPage customTheme={{ background: "bg-slate-50" }}>
     <Container>
       <section class="mb-8 space-y-2">
         <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600 dark:text-slate-300">
-          <ModuleChip />
+          <div class="inline-flex items-center gap-x-2 rounded-full bg-slate-500/10 px-3 py-1 text-xs font-medium">
+            Blog post
+          </div>
         </div>
         <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
           {post.data.title}
@@ -43,7 +39,7 @@ const { Content, headings } = await render(post);
           </MarkdownBody>
           <dl class="mt-12 flex flex-col gap-y-4 text-sm text-slate-600 dark:text-slate-300">
             <div class="flex flex-col gap-y-2">
-              <dt class="font-semibold">Module created</dt>
+              <dt class="font-semibold">Published</dt>
               <dd class="rel-timestamp">
                 {post.data["date-created"].toISOString()}
               </dd>
@@ -56,14 +52,7 @@ const { Content, headings } = await render(post);
             </div>
           </dl>
         </div>
-        <div class="hidden mr-40 lg:block lg:order-last">
-          {
-            headings.length > 0 && (
-              <TableOfContents headings={headings} />
-            )
-          }
-        </div>
       </section>
     </Container>
-  </NotesPage>
+  </DefaultPage>
 </Layout>

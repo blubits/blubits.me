@@ -1,11 +1,18 @@
 ---
-import "@blubits/styles/global.css";
+import "@/styles/global.css";
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
+  themeColorLight?: string;
+  themeColorDark?: string;
 }
 
-const { title } = Astro.props;
+const { 
+  title,
+  themeColorLight = "#f8fafc", // Default light theme color (slate-50)
+  themeColorDark = "#1f2937"   // Default dark theme color (gray-800)
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +23,19 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title ? `${title} | @blubits` : "@blubits"}</title>
-    <script is:inline>
+    
+    <!-- Basic favicon links -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-md.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-sm.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-lg.png" />
+    
+    <!-- Theme color meta tags -->
+    <meta name="theme-color" content={themeColorLight} media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content={themeColorDark} media="(prefers-color-scheme: dark)" />
+    
+    <ClientRouter />
+    
+    <script is:inline define:vars={{ themeColorLight, themeColorDark }}>
       // Initialize dark mode before page renders to prevent flash
       (function() {
         const savedTheme = localStorage.getItem('theme');
@@ -26,6 +45,38 @@ const { title } = Astro.props;
         if (shouldBeDark) {
           document.documentElement.classList.add('dark');
         }
+        
+        // Function to update theme-color meta tag
+        function updateThemeColor() {
+          const isDark = document.documentElement.classList.contains('dark');
+          const themeColorMeta = document.querySelector('meta[name="theme-color"]:not([media])');
+          
+          if (!themeColorMeta) {
+            const meta = document.createElement('meta');
+            meta.name = 'theme-color';
+            document.head.appendChild(meta);
+          }
+          
+          const meta = document.querySelector('meta[name="theme-color"]:not([media])');
+          meta.content = isDark ? themeColorDark : themeColorLight;
+        }
+        
+        // Set initial theme color
+        updateThemeColor();
+        
+        // Listen for theme changes
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              updateThemeColor();
+            }
+          });
+        });
+        
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
       })();
     </script>
   </head>

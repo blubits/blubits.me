@@ -1,0 +1,63 @@
+---
+import MarkdownBody from "@/components/content/MarkdownBody.astro";
+import Details from "@/components/layout/Details.astro";
+import Chip from "@/components/ui/Chip.astro";
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import { generateBlogUrl } from "@/utils/content";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  post: CollectionEntry<"blogposts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const blogUrl = generateBlogUrl(post);
+---
+
+<article class="grid grid-cols-4 gap-8 mb-60 last:mb-0 md:grid-cols-6 lg:grid-cols-7 lg:px-4">
+  <!-- Left column: Date and metadata -->
+  <div class="col-span-4 md:col-span-6 lg:col-span-1">
+    <Details direction="column">
+      <p class="rel-timestamp text-sm">
+        {post.data["date-created"].toISOString()}
+      </p>
+    </Details>
+  </div>
+  
+  <!-- Main content column -->
+  <div class="col-span-2 space-y-1 md:col-span-4">
+    <header>
+      <h2 class="text-3xl font-semibold">
+        <a 
+          href={blogUrl}
+          class="text-slate-900 dark:text-slate-100 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+        >
+          {post.data.title}
+        </a>
+      </h2>
+    </header>
+    
+    <div class="prose prose-slate dark:prose-invert max-w-none">
+      <MarkdownBody>
+        <Content />
+      </MarkdownBody>
+    </div>
+  </div>
+  
+  <!-- Right column: Blog info -->
+  <div class="col-span-4 md:col-span-2">
+    <Details direction="column">
+      <Chip backgroundColor="bg-slate-500/10" className="text-slate-600 dark:text-slate-400">
+        Blog post
+      </Chip>
+      <a 
+        href={blogUrl}
+        class="inline-flex items-center gap-x-2 text-sm text-slate-500 underline underline-offset-4 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+      >
+        Permalink<Icon name="mdi:external-link" />
+      </a>
+    </Details>
+  </div>
+</article>

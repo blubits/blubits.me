@@ -3,7 +3,7 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "dev",
+            "script": "dev-host",
             "group": "build",
             "label": "Start Astro Dev Server",
             "detail": "Runs the Astro development server with hot reloading",

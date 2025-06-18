@@ -1,21 +1,27 @@
 ---
-import NotePostItem from "@blubits/components/notes/NotePostItem.astro";
+import NotePostItem from "@/components/notes/NotePostItem.astro";
 import { getCollection } from "astro:content";
-import { sortPostsByDate } from "@blubits/utils/content";
+import { sortPostsByDate } from "@/utils/content";
 import "katex/dist/katex.min.css";
 import Layout from "../layouts/Layout.astro";
 import NotesPage from "../layouts/NotesPage.astro";
-import ContainerFull from "@blubits/layouts/containers/ContainerFull.astro";
+import Container from "@/layouts/containers/Container.astro";
+import RelativeTimestampJS from "@/js/RelativeTimestampJS.astro";
 
 const editorials = await getCollection("editorials");
 const modules = await getCollection("modules");
 const all_posts = sortPostsByDate([...editorials, ...modules]);
 ---
 
-<Layout title="Notes">
+<Layout 
+  title="Notes"
+  themeColorLight="#dcfce7"
+  themeColorDark="#14532d"
+>
   <NotesPage large>
-    <ContainerFull>
+    <Container full>
       {all_posts.map((post) => <NotePostItem post={post} />)}
-    </ContainerFull>
+    </Container>
   </NotesPage>
+  <RelativeTimestampJS />
 </Layout>

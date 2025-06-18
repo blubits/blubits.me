@@ -40,6 +40,7 @@ const ThemeToggle = () => {
       role="switch"
       aria-checked={isDark}
       aria-label="Toggle dark mode"
+      style={{ viewTransitionName: "theme-toggle" }}
     >
       <motion.span
         className="h-4 w-4 transform rounded-full bg-white transition flex items-center justify-center shadow-sm"

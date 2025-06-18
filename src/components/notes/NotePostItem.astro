@@ -1,10 +1,10 @@
 ---
 import { markdown } from "@astropub/md";
-import Chip from "@blubits/components/Chip.astro";
-import Details from "@blubits/components/Details.astro";
-import PostItem from "@blubits/components/PostItem.astro";
+import Chip from "../ui/Chip.astro";
+import Details from "../layout/Details.astro";
+import PostItem from "../content/PostItem.astro";
 import type { CollectionEntry } from "astro:content";
-import { generateEditorialUrl, generateModuleUrl, getPlatformDisplayName } from "@blubits/utils/content";
+import { generateEditorialUrl, generateModuleUrl, getPlatformDisplayName } from "@/utils/content";
 import ModuleChip from "./ModuleChip.astro";
 import EditorialChip from "./EditorialChip.astro";
 

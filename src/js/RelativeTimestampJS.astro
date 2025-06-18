@@ -1,7 +1,12 @@
 <script>
-    import { parseISO, formatDistanceToNow } from "date-fns";
+    import { parseISO, formatDistanceToNow, format } from "date-fns";
     Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
-        const relativeDate = formatDistanceToNow(parseISO(el.innerHTML.trim()));
+        const isoDate = el.innerHTML.trim();
+        const parsedDate = parseISO(isoDate);
+        const relativeDate = formatDistanceToNow(parsedDate);
+        const formattedDate = format(parsedDate, "PP"); // Full date and time format
+        
         el.innerHTML = `${relativeDate} ago`;
+        (el as HTMLElement).title = formattedDate; // This creates the hover tooltip
     });
 </script>

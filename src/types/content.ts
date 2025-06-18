@@ -50,4 +50,17 @@ export interface BlogPost {
   };
 }
 
-export type Post = EditorialPost | ModulePost | BlogPost;
+export interface Project {
+  collection: 'projects';
+  data: {
+    title: string;
+    slug: string;
+    'date-created': Date;
+    'date-updated': Date;
+    image?: string;
+    'short-description': string;
+    tags: string[];
+  };
+}
+
+export type Post = EditorialPost | ModulePost | BlogPost | Project;

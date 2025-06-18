@@ -7,16 +7,11 @@ import { defineConfig } from "astro/config";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { remarkObsidianLink } from "remark-obsidian-link";
+import expressiveCode from "astro-expressive-code";
+import tailwindcss from "@tailwindcss/vite";
 import remarkRemoveFirstH1 from "./remark-remove-heading.mjs";
 import remarkTikzjax from "./remark-tikzjax.ts";
 import remarkRemoveComments from "./remark-remove-comments.mjs";
-import { readFile } from "fs/promises"
-
-import expressiveCode from "astro-expressive-code";
-
-import tailwindcss from "@tailwindcss/vite";
-
-import favicons from "astro-favicons";
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,17 +38,28 @@ export default defineConfig({
         codeFontFamily: "JetBrains Mono",
       },
     }),
-    favicons({
-      input: {
-        favicons: [
-          await readFile("public/favicon-ty.png"),
-          await readFile("public/favicon-xs.png"),
-          await readFile("public/favicon-sm.png"),
-          await readFile("public/favicon-md.png"),
-          await readFile("public/favicon-lg.png"),
-        ],
-      }
-    }),
+    // Temporarily commented out to test theme-color functionality
+    // favicons({
+    //   input: {
+    //     favicons: [
+    //       await readFile("public/favicon-ty.png"),
+    //       await readFile("public/favicon-xs.png"),
+    //       await readFile("public/favicon-sm.png"),
+    //       await readFile("public/favicon-md.png"),
+    //       await readFile("public/favicon-lg.png"),
+    //     ],
+    //   },
+    //   config: {
+    //     manifestMaskable: false,
+    //     themeColor: false, // Completely disable theme-color generation
+    //     appleTouch: {
+    //       themeColor: false,
+    //     },
+    //     manifest: {
+    //       themeColor: false,
+    //     }
+    //   }
+    // }),
   ],
 
   vite: {
