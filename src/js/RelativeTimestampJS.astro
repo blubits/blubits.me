@@ -1,12 +1,64 @@
 <script>
     import { parseISO, formatDistanceToNow, format } from "date-fns";
-    Array.from(document.querySelectorAll(".rel-timestamp")).forEach((el) => {
-        const isoDate = el.innerHTML.trim();
-        const parsedDate = parseISO(isoDate);
-        const relativeDate = formatDistanceToNow(parsedDate);
-        const formattedDate = format(parsedDate, "PP"); // Full date and time format
-        
-        el.innerHTML = `${relativeDate} ago`;
-        (el as HTMLElement).title = formattedDate; // This creates the hover tooltip
+    
+    function processTimestamps() {
+        Array.from(document.querySelectorAll(".rel-timestamp:not([data-processed])")).forEach((el) => {
+            const isoDate = el.innerHTML.trim();
+            try {
+                const parsedDate = parseISO(isoDate);
+                const relativeDate = formatDistanceToNow(parsedDate);
+                const formattedDate = format(parsedDate, "PP"); // Full date and time format
+                
+                el.innerHTML = `${relativeDate} ago`;
+                (el as HTMLElement).title = formattedDate; // This creates the hover tooltip
+                (el as HTMLElement).setAttribute('data-processed', 'true'); // Mark as processed
+            } catch (error) {
+                console.warn('Failed to parse timestamp:', isoDate, error);
+            }
+        });
+    }
+    
+    // Process timestamps immediately
+    processTimestamps();
+    
+    // Process timestamps after DOM content loads (in case script runs before content)
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', processTimestamps);
+    }
+    
+    // Process timestamps after Astro page transitions
+    document.addEventListener('astro:page-load', processTimestamps);
+    
+    // Fallback: Use MutationObserver to detect new timestamp elements
+    const observer = new MutationObserver((mutations) => {
+        let shouldProcess = false;
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        const element = node as Element;
+                        if (element.classList?.contains('rel-timestamp') || 
+                            element.querySelector?.('.rel-timestamp')) {
+                            shouldProcess = true;
+                        }
+                    }
+                });
+            }
+        });
+        if (shouldProcess) {
+            // Delay processing slightly to ensure DOM is stable
+            setTimeout(processTimestamps, 100);
+        }
+    });
+    
+    // Start observing
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    // Clean up observer when page unloads
+    document.addEventListener('astro:before-preparation', () => {
+        observer.disconnect();
     });
 </script>
