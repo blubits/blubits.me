@@ -1,10 +1,6 @@
-@import "@fontsource/inter";
-@import "@fontsource/inter-tight";
-@import "@fontsource/jetbrains-mono";
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "./themes.css";
-@config "../../tailwind.config.mjs";
-@custom-variant hover (&:hover);
 
 /* View Transitions */
 @view-transition {

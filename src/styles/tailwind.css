@@ -1,0 +1,13 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/inter-tight";
+@import "@fontsource-variable/jetbrains-mono";
+
+:root {
+  --font-sans: "Inter Variable", sans-serif;
+  --font-sans-tight: "Inter Variable", sans-serif;
+  --font-mono: "JetBrains Mono Variable", monospace;
+}
+
+@variant prose-inline-code {
+  &.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *)) {}
+}
