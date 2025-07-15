@@ -8,10 +8,6 @@ export function generateModuleUrl(post: CollectionEntry<'modules'>) {
   return `/notes/modules/l${post.data.id[0]}/${post.data.id}`;
 }
 
-export function generateBlogUrl(post: CollectionEntry<'blogposts'>) {
-  return `/blog/${post.id}`;
-}
-
 export function sortPostsByDate<T extends { data: { 'date-created': Date } }>(posts: T[]): T[] {
   return posts.sort((a, b) => 
     new Date(b.data['date-created']).getTime() - 

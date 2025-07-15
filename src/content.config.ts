@@ -25,13 +25,6 @@ const modules = defineCollection({
   }),
 });
 
-const blogposts = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./content/blog" }),
-  schema: baseFrontmatterSchema.extend({
-    inline: z.boolean().default(false),
-  }),
-});
-
 const projects = defineCollection({
   loader: glob({ pattern: "**/PROJECT.md", base: "./content/projects" }),
   schema: baseFrontmatterSchema.extend({
@@ -48,4 +41,4 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { editorials, modules, blogposts, projects };
+export const collections = { editorials, modules, projects };

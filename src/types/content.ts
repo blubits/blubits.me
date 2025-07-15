@@ -39,17 +39,6 @@ export interface ModulePost {
   };
 }
 
-export interface BlogPost {
-  collection: 'blogposts';
-  data: {
-    title: string;
-    'date-created': Date;
-    'date-updated': Date;
-    inline: boolean;
-    image?: string;
-  };
-}
-
 export interface Project {
   collection: 'projects';
   data: {
@@ -63,4 +52,4 @@ export interface Project {
   };
 }
 
-export type Post = EditorialPost | ModulePost | BlogPost | Project;
+export type Post = EditorialPost | ModulePost | Project;

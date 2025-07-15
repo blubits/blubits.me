@@ -44,7 +44,6 @@ const Navbar = (props) => {
 
   // Navigation items data
   const navItems = [
-    // { href: "/blog", label: "Blog" },
     { href: "/tutoring", label: "Tutoring" },
     { href: "/notes", label: "Notes" }
   ];
