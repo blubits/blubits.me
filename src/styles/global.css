@@ -1,3 +1,6 @@
+@import "@fontsource/inter";
+@import "@fontsource/inter-tight";
+@import "@fontsource/jetbrains-mono";
 @import "tailwindcss";
 @import "./themes.css";
 @config "../../tailwind.config.mjs";

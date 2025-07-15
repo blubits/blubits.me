@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        sanstight: ["Inter Tight", ...defaultTheme.fontFamily.sans],
-        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
+        sans: ["Inter"],
+        sanstight: ["Inter"],
+        mono: ["JetBrains Mono"],
       },
       typography: {
         DEFAULT: {
