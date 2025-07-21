@@ -2,6 +2,8 @@
 @import "@fontsource-variable/inter-tight";
 @import "@fontsource-variable/jetbrains-mono";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --font-sans: "Inter Variable", sans-serif;
   --font-sans-tight: "Inter Variable", sans-serif;
