@@ -42,12 +42,36 @@ if (visibleProjects.length > 0) {
     console.warn('Could not load project images for cards');
   }
 }
+
+// SEO meta tags
+const pageTitle = "Maded Batara III | Maded | @blubits";
+const pageDescription = "Maded Batara III (Maded) – personal website, portfolio, and tutoring by Maded Batara III. Developer, tutor, and storyteller.";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Maded Batara III",
+  "alternateName": "Maded",
+  "url": "https://blubits.me/",
+  "sameAs": [
+    "https://blubits.me/"
+  ],
+  "description": pageDescription
+};
 ---
 
 <Layout 
+  title={pageTitle}
   themeColorLight="#f3f4f6"
   themeColorDark="#111827"
 >
+  <head slot="head">
+    <meta name="description" content={pageDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://blubits.me/" />
+    <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+  </head>
   <DefaultPage
     customTheme={{
       logoBackground: "bg-transparent",
@@ -57,7 +81,7 @@ if (visibleProjects.length > 0) {
       <h1
         class="font-sans-tight mb-2 text-5xl leading-none font-bold md:text-6xl"
       >
-        Hi there! I'm Maded.
+        Hi there! I'm Maded Batara III (Maded).
       </h1>
       <div class="flex flex-col gap-6 md:flex-row">
         <div class="flex flex-col gap-6">

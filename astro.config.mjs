@@ -12,9 +12,11 @@ import tailwindcss from "@tailwindcss/vite";
 import remarkRemoveFirstH1 from "./remark-remove-heading.mjs";
 import remarkTikzjax from "./remark-tikzjax.ts";
 import remarkRemoveComments from "./remark-remove-comments.mjs";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://blubits.me",
   markdown: {
     remarkPlugins: [
       remarkTikzjax,
@@ -38,6 +40,7 @@ export default defineConfig({
         codeFontFamily: "JetBrains Mono",
       },
     }),
+    sitemap(),
     // Temporarily commented out to test theme-color functionality
     // favicons({
     //   input: {
