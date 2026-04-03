@@ -114,71 +114,71 @@ const jsonLd = {
 
     <Container class="mt-16">
       <h2 class="text-2xl font-semibold">What I'm working on</h2>
-    </Container>
-
-    <CardContainer>
-      <Fragment slot="cards">
-        <CardItem
-          title="Tutoring"
-          description="Helping you succeed in math and computer science."
-          href="/tutoring"
-        >
-          <CardThumbIcon
-            slot="thumbnail"
-            icon_name="mdi:graduation-cap"
-            bg_color="bg-gradient-to-tr from-blue-600 via-blue-500 to-blue-400"
-            icon_color="text-white"
-          />
-        </CardItem>
-        <CardItem
-          title="Compet prog notes"
-          description="On data structures, algorithms, and more."
-          href="/notes"
-        >
-          <CardThumbIcon
-            slot="thumbnail"
-            bg_color="bg-gradient-to-tr from-lime-700 via-lime-600 to-lime-500"
-            icon_name="mdi:code"
-          />
-        </CardItem>
-        {visibleProjects.map((project) => (
-          <CardItem
-            title={project.data.title}
-            description={project.data["short-description"]}
-            href={`/projects/${project.data.slug}`}
-          >
-            <ProjectChip slot="tag" />
-            {projectPreviewImages[project.data.slug] ? (
-              <CardThumbImage
-                slot="thumbnail"
-                src={projectPreviewImages[project.data.slug]}
-                alt={`${project.data.title} thumbnail`}
-              />
-            ) : project.data.preview_icon ? (
+      <div class="mt-6">
+        <CardContainer>
+          <Fragment slot="cards">
+            <CardItem
+              title="Tutoring"
+              description="Helping you succeed in math and computer science."
+              href="/tutoring"
+            >
               <CardThumbIcon
                 slot="thumbnail"
-                icon_name={project.data.preview_icon}
-                bg_color={project.data.preview_icon_background || "bg-gradient-to-tr from-purple-600 via-purple-500 to-purple-400"}
-                icon_color={project.data.preview_icon_foreground || "text-white"}
-              />
-            ) : projectImages[project.data.slug] ? (
-              <CardThumbImage
-                slot="thumbnail"
-                src={projectImages[project.data.slug]}
-                alt={`${project.data.title} thumbnail`}
-              />
-            ) : (
-              <CardThumbIcon
-                slot="thumbnail"
-                icon_name="mdi:folder-outline"
-                bg_color="bg-gradient-to-tr from-purple-600 via-purple-500 to-purple-400"
+                icon_name="mdi:graduation-cap"
+                bg_color="bg-gradient-to-tr from-blue-600 via-blue-500 to-blue-400"
                 icon_color="text-white"
               />
-            )}
-          </CardItem>
-        ))}
-
-      </Fragment>
-    </CardContainer>
+            </CardItem>
+            <CardItem
+              title="Compet prog notes"
+              description="On data structures, algorithms, and more."
+              href="/notes"
+            >
+              <CardThumbIcon
+                slot="thumbnail"
+                bg_color="bg-gradient-to-tr from-lime-700 via-lime-600 to-lime-500"
+                icon_name="mdi:code"
+              />
+            </CardItem>
+            {visibleProjects.map((project) => (
+              <CardItem
+                title={project.data.title}
+                description={project.data["short-description"]}
+                href={`/projects/${project.data.slug}`}
+              >
+                <ProjectChip slot="tag" />
+                {projectPreviewImages[project.data.slug] ? (
+                  <CardThumbImage
+                    slot="thumbnail"
+                    src={projectPreviewImages[project.data.slug]}
+                    alt={`${project.data.title} thumbnail`}
+                  />
+                ) : project.data.preview_icon ? (
+                  <CardThumbIcon
+                    slot="thumbnail"
+                    icon_name={project.data.preview_icon}
+                    bg_color={project.data.preview_icon_background || "bg-gradient-to-tr from-purple-600 via-purple-500 to-purple-400"}
+                    icon_color={project.data.preview_icon_foreground || "text-white"}
+                  />
+                ) : projectImages[project.data.slug] ? (
+                  <CardThumbImage
+                    slot="thumbnail"
+                    src={projectImages[project.data.slug]}
+                    alt={`${project.data.title} thumbnail`}
+                  />
+                ) : (
+                  <CardThumbIcon
+                    slot="thumbnail"
+                    icon_name="mdi:folder-outline"
+                    bg_color="bg-gradient-to-tr from-purple-600 via-purple-500 to-purple-400"
+                    icon_color="text-white"
+                  />
+                )}
+              </CardItem>
+            ))}
+          </Fragment>
+        </CardContainer>
+      </div>
+    </Container>
   </DefaultPage>
 </Layout>

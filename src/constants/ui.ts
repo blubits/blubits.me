@@ -1,7 +1,7 @@
 export const CARD_DIMENSIONS = {
   height: 'h-88',
   thumbnailHeight: 'h-48',
-  width: 'w-64',
+  width: 'w-full',
 } as const;
 
 export const GRID_BREAKPOINTS = {
