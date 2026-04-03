@@ -33,7 +33,7 @@ const { contactMethods, modalId = "contact-modal" } = Astro.props;
         </h2>
         <button
           onclick={`document.getElementById('${modalId}').classList.add('hidden')`}
-          class="inline-flex items-center justify-center w-8 h-8 rounded-2xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+          class="inline-flex items-center justify-center w-8 h-8 rounded-2xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 ease-out"
         >
           <Icon name="mdi:close" class="h-5 w-5" />
         </button>
@@ -48,7 +48,7 @@ const { contactMethods, modalId = "contact-modal" } = Astro.props;
               target={method.action.startsWith('http') ? '_blank' : undefined}
               rel={method.action.startsWith('http') ? 'noopener noreferrer' : undefined}
               data-obfuscation={method.obfuscate ? "0" : undefined}
-              class="flex items-center gap-3 p-3 rounded-3xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              class="flex items-center gap-3 p-3 rounded-3xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
             >
               <Icon name={method.icon} class="h-5 w-5 text-gray-600 dark:text-gray-400" />
               <div class="flex-1">
