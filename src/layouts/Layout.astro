@@ -1,6 +1,5 @@
 ---
 import "@/styles/global.css";
-import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -32,9 +31,7 @@ const {
     <!-- Theme color meta tags -->
     <meta name="theme-color" content={themeColorLight} media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content={themeColorDark} media="(prefers-color-scheme: dark)" />
-    
-    <ClientRouter />
-    
+
     <!-- Umami Analytics: Privacy-first tracking -->
     <script defer is:inline data-astro-rerun src="https://cloud.umami.is/script.js" data-website-id="7103101e-3352-462b-8378-e9fc2721ed5d"></script>
     
