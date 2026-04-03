@@ -6,6 +6,7 @@ import CardThumbIcon from "@/components/card/CardThumbIcon.astro";
 import CardThumbImage from "@/components/card/CardThumbImage.astro";
 import ContactButton from "@/components/layout/ContactButton.astro";
 import ProjectChip from "@/components/layout/ProjectChip.astro";
+import PageTitle from "@/components/layout/PageTitle.astro";
 import Container from "@/layouts/containers/Container.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -78,11 +79,7 @@ const jsonLd = {
     }}
   >
     <Container>
-      <h1
-        class="font-sans-tight mb-2 text-5xl leading-none font-bold md:text-6xl"
-      >
-        Hi there! I'm Maded.
-      </h1>
+      <PageTitle class="mb-2">Hi there! I'm Maded.</PageTitle>
       <div class="flex flex-col gap-6 md:flex-row">
         <div class="flex flex-col gap-6">
           <h2 class="font-sans text-2xl font-semibold">

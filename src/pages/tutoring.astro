@@ -6,6 +6,7 @@ import Container from "@/layouts/containers/Container.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
 import Layout from "@/layouts/Layout.astro";
 import Button from "@/components/ui/Button.astro";
+import PageTitle from "@/components/layout/PageTitle.astro";
 
 const cardData = [
   {
@@ -74,11 +75,7 @@ const cardData = [
 >
   <DefaultPage theme="tutoring">
     <Container>
-      <h1
-        class="font-sans-tight mb-4 text-5xl leading-none font-bold md:text-6xl"
-      >
-        Expert tutoring in mathematics and computer science.
-      </h1>
+      <PageTitle class="mb-4">Expert tutoring in mathematics and computer science.</PageTitle>
 
       <section
         class="mb-16 flex flex-col flex-wrap items-center md:items-start gap-y-4 text-xl sm:flex-col md:flex-row md:gap-x-4"

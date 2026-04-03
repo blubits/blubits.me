@@ -1,0 +1,36 @@
+---
+/**
+ * PageTitle — canonical page-level heading component.
+ *
+ * Sizes:
+ *   lg  – 5xl/6xl bold   (hero pages: index, tutoring)
+ *   md  – 4xl bold        (error pages)
+ *   sm  – lg/xl semibold  (notes sub-pages with back-arrow)
+ *
+ * Font features intentionally set for display headings:
+ *   ON  – calt (contextual alternates), ss07 (square punctuation),
+ *          ss08 (square quotes)
+ *   OFF – ss01 (alt digits), ss02 (disambiguation), zero (slashed zero)
+ *         These are useful for body/code but visually noisy in large titles.
+ */
+
+interface Props {
+  size?: "lg" | "md" | "sm";
+  class?: string;
+}
+
+const { size = "lg", class: className } = Astro.props;
+---
+
+<h1
+  class:list={[
+    "font-sans-tight tracking-tight",
+    size === "lg" && "text-5xl md:text-6xl leading-none font-bold",
+    size === "md" && "text-4xl leading-none font-bold",
+    size === "sm" && "text-lg md:text-xl font-semibold",
+    className,
+  ]}
+  style="font-feature-settings: 'calt' 1, 'ss07' 1, 'ss08' 1, 'ss01' 0, 'ss02' 0, 'zero' 0;"
+>
+  <slot />
+</h1>

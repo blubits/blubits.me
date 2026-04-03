@@ -2,6 +2,7 @@
 import Chip from "@/components/ui/Chip.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
 import Layout from "@/layouts/Layout.astro";
+import PageTitle from "@/components/layout/PageTitle.astro";
 import "@/styles/themes.css";
 ---
 
@@ -16,7 +17,7 @@ import "@/styles/themes.css";
         class="h-64 w-64"
         alt="Sad version of blubits.me logo"
       />
-      <h1 class="text-4xl font-bold font-sans-tight">Page not found</h1>
+      <PageTitle size="md">Page not found</PageTitle>
       <p>HTTP error code: <Chip variant="code">404</Chip></p>
     </div>
   </DefaultPage>
