@@ -80,11 +80,11 @@ const platformName = getPlatformDisplayName(post.data.platform);
                 <dt class="inline-flex items-center gap-x-2 font-semibold">
                   <Icon name="mdi:information" /> Solution summary
                 </dt>
-                <dd>{markdown(post.data["solution-summary"])}</dd>
+                <dd set:html={markdown(post.data["solution-summary"])} />
               </div>
               <div class="flex flex-row gap-x-2">
                 <dt class="font-medium">Running time</dt>
-                <dd>{markdown(post.data["running-time"])}</dd>
+                <dd set:html={markdown(post.data["running-time"])} />
               </div>
             </dl>
           </div>

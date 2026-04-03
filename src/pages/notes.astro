@@ -19,7 +19,7 @@ const all_posts = sortPostsByDate([...editorials, ...modules]);
   themeColorDark="#14532d"
 >
   <NotesPage large>
-    <Container full>
+    <Container class="flex flex-col gap-6">
       {all_posts.map((post) => <NotePostItem post={post} />)}
     </Container>
   </NotesPage>

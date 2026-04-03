@@ -1,7 +1,29 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@config "../../tailwind.config.mjs";
+@import "./tailwind.css";
 @import "./themes.css";
+
+@layer base {
+    .prose :where(code):not(:where([class~="not-prose"] *))::before,
+    .prose :where(code):not(:where([class~="not-prose"] *))::after {
+        content: none;
+    }
+
+    .prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"] *))::before,
+    .prose :where(blockquote p:last-of-type):not(:where([class~="not-prose"] *))::after {
+        content: none;
+    }
+
+    #markdown-body :where(:not(pre) > code):not(:where([class~="not-prose"] *)) {
+        border-radius: 0.125rem;
+        background-color: var(--color-slate-300);
+        padding: 0.125rem 0.5rem;
+    }
+
+    .dark #markdown-body :where(:not(pre) > code):not(:where([class~="not-prose"] *)) {
+        background-color: var(--color-slate-600);
+    }
+}
 
 @layer components {
     .bg-grid {

@@ -30,12 +30,12 @@ const href = post.collection === "modules"
   <div
     slot="description"
     class="prose prose-sm dark:prose-invert"
-  >
-    {
+    set:html={
       post.collection === "editorials"
         ? markdown(post.data["problem-description"])
         : markdown(post.data.summary)
     }
+  >
   </div>
   <Fragment slot="details-right">
     <Details direction="column">
