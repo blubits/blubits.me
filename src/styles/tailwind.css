@@ -8,6 +8,7 @@
   --font-sans: "Inter Variable", sans-serif;
   --font-sans-tight: "Inter Variable", sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
+  font-feature-settings: "ss01" 1, "ss02" 1, "ss07" 1, "ss08" 1, "zero" 1;
 }
 
 @variant prose-inline-code {
