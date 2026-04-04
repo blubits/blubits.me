@@ -65,10 +65,10 @@ export const BUTTON_STYLES = {
     // Primary - solid colored buttons
     primary: [
       "text-white",
-      "shadow-lg hover:shadow-xl",
       "bg-white/10 dark:bg-black/10",
       "border border-transparent",
       "hover:bg-white/15 dark:hover:bg-black/15",
+      "hover:backdrop-blur-md hover:backdrop-saturate-150",
       "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
       "focus:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
       "focus:ring-blue-500",
@@ -80,9 +80,10 @@ export const BUTTON_STYLES = {
       "border border-white/30 dark:border-gray-700/30",
       "backdrop-blur-xl backdrop-saturate-150",
       "text-black dark:text-white",
-      "shadow-lg hover:shadow-xl",
+      "shadow-none hover:backdrop-blur-md hover:backdrop-saturate-150",
       "hover:bg-white/25 dark:hover:bg-black/25",
       "hover:border-white/40 dark:hover:border-gray-600/40",
+      "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.18)]",
       "focus:ring-blue-500",
     ],
 
@@ -91,6 +92,7 @@ export const BUTTON_STYLES = {
       "text-gray-700 dark:text-gray-300",
       "hover:bg-gray-100 dark:hover:bg-gray-800",
       "hover:text-gray-900 dark:hover:text-gray-100",
+      "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.10),0_12px_28px_rgba(59,130,246,0.12)]",
       "focus:ring-gray-500",
     ],
 
@@ -98,7 +100,7 @@ export const BUTTON_STYLES = {
     danger: [
       "bg-red-500 hover:bg-red-600",
       "text-white",
-      "shadow-lg hover:shadow-xl",
+      "shadow-none hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(239,68,68,0.22)]",
       "focus:ring-red-500",
     ],
   },

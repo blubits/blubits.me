@@ -26,6 +26,11 @@ const {
 } = Astro.props;
 
 const hasCustomBackground = variant === 'primary' && Boolean(background);
+const glowClasses = [
+  "transition-all duration-300 ease-out",
+  "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
+  "focus-within:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
+].join(' ');
 
 // Combine all button styles
 const buttonClasses = [
@@ -49,7 +54,7 @@ const customStyles = hasCustomBackground
 
 {href ? (
   hasCustomBackground ? (
-    <span class="inline-block rounded-xl p-px" style={wrapperStyle}>
+    <span class:list={["group inline-block rounded-xl p-px", glowClasses]} style={wrapperStyle}>
       <a
         href={href}
         class:list={buttonClasses}
@@ -73,7 +78,7 @@ const customStyles = hasCustomBackground
   )
 ) : (
   hasCustomBackground ? (
-    <span class="inline-block rounded-xl p-px" style={wrapperStyle}>
+    <span class:list={["group inline-block rounded-xl p-px", glowClasses]} style={wrapperStyle}>
       <button
         type={type}
         class:list={buttonClasses}
