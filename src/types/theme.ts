@@ -1,5 +1,5 @@
 export interface ThemeConfig {
-  name: 'default' | 'notes' | 'tutoring' | 'error';
+  name: 'default' | 'notes' | 'error';
   background: string;
   foreground: string;
   logoBackground: string;
@@ -21,14 +21,6 @@ export const themes: Record<ThemeConfig['name'], ThemeConfig> = {
     background: 'bg-gradient-to-b from-lime-100 via-slate-50 to-white dark:from-lime-900 dark:via-gray-800 dark:to-gray-900',
     foreground: 'text-black dark:text-white',
     logoBackground: 'bg-lime-600 dark:bg-lime-500',
-    logoForeground: 'stroke-white',
-    darkNavbar: false,
-  },
-  tutoring: {
-    name: 'tutoring',
-    background: 'bg-gradient-to-b from-violet-100 via-slate-50 to-white dark:from-violet-900 dark:via-gray-800 dark:to-gray-900',
-    foreground: 'text-black dark:text-white',
-    logoBackground: 'bg-violet-600 dark:bg-violet-500',
     logoForeground: 'stroke-white',
     darkNavbar: false,
   },

@@ -46,11 +46,11 @@ export const BUTTON_STYLES = {
   // Border radius matching navbar design language
   radius: {
     // Primary radius - matches navbar curvature
-    primary: "rounded-4xl",
+    primary: "rounded-xl",
     // Secondary radius - slightly less curved
-    secondary: "rounded-3xl",
+    secondary: "rounded-lg",
     // Compact radius - for smaller buttons
-    compact: "rounded-2xl",
+    compact: "rounded-md",
   },
 
   // Size variants
@@ -63,7 +63,16 @@ export const BUTTON_STYLES = {
   // Visual variants
   variant: {
     // Primary - solid colored buttons
-    primary: ["text-white", "shadow-lg hover:shadow-xl", "focus:ring-blue-500"],
+    primary: [
+      "text-white",
+      "shadow-lg hover:shadow-xl",
+      "bg-white/10 dark:bg-black/10",
+      "border border-transparent",
+      "hover:bg-white/15 dark:hover:bg-black/15",
+      "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
+      "focus:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
+      "focus:ring-blue-500",
+    ],
 
     // Secondary - outlined buttons matching navbar glass style
     secondary: [

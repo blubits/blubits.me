@@ -25,6 +25,8 @@ const {
   class: className = '',
 } = Astro.props;
 
+const hasCustomBackground = variant === 'primary' && Boolean(background);
+
 // Combine all button styles
 const buttonClasses = [
   ...BUTTON_STYLES.base,
@@ -35,30 +37,62 @@ const buttonClasses = [
   className,
 ].filter(Boolean);
 
-// Apply custom background for primary variant
-const customStyles = variant === 'primary' && background 
-  ? { background } 
+// Apply a gradient wrapper when a primary button has a custom background.
+const wrapperStyle = hasCustomBackground
+  ? { background }
+  : {};
+
+const customStyles = hasCustomBackground
+  ? { background: "transparent" }
   : {};
 ---
 
 {href ? (
-  <a
-    href={href}
-    class:list={buttonClasses}
-    style={customStyles}
-    onclick={onclick}
-    data-obfuscation="0"
-  >
-    <slot />
-  </a>
+  hasCustomBackground ? (
+    <span class="inline-block rounded-xl p-px" style={wrapperStyle}>
+      <a
+        href={href}
+        class:list={buttonClasses}
+        style={customStyles}
+        onclick={onclick}
+        data-obfuscation="0"
+      >
+        <slot />
+      </a>
+    </span>
+  ) : (
+    <a
+      href={href}
+      class:list={buttonClasses}
+      style={customStyles}
+      onclick={onclick}
+      data-obfuscation="0"
+    >
+      <slot />
+    </a>
+  )
 ) : (
-  <button
-    type={type}
-    class:list={buttonClasses}
-    style={customStyles}
-    onclick={onclick}
-    disabled={disabled}
-  >
-    <slot />
-  </button>
+  hasCustomBackground ? (
+    <span class="inline-block rounded-xl p-px" style={wrapperStyle}>
+      <button
+        type={type}
+        class:list={buttonClasses}
+        style={customStyles}
+        onclick={onclick}
+        disabled={disabled}
+      >
+        <slot />
+      </button>
+    </span>
+  ) : (
+    <button
+      type={type}
+      class:list={buttonClasses}
+      style={customStyles}
+      onclick={onclick}
+      disabled={disabled}
+    >
+      <slot />
+    </button>
+  )
 )}
