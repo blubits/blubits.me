@@ -1,36 +1,36 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
+import {
+  applyThemePreference,
+  getResolvedThemePreference,
+} from '@/utils/theme';
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    return getResolvedThemePreference({ preferDocument: true }) === 'dark';
+  });
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    const shouldBeDark = getResolvedThemePreference({ preferDocument: true }) === 'dark';
     setIsDark(shouldBeDark);
-    
-    if (shouldBeDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    applyThemePreference(shouldBeDark ? 'dark' : 'light');
   }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    
+
     if (newTheme) {
-      document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
+
+    applyThemePreference(newTheme ? 'dark' : 'light');
   };
 
   return (
@@ -41,24 +41,12 @@ const ThemeToggle = () => {
       aria-checked={isDark}
       aria-label="Toggle dark mode"
       style={{ viewTransitionName: "theme-toggle" }}
+      suppressHydrationWarning
     >
-      <motion.span
-        className="h-4 w-4 transform rounded-full bg-white transition flex items-center justify-center shadow-sm"
-        animate={{
-          x: isDark ? 24 : 4,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 30,
-        }}
-      >
-        {isDark ? (
-          <MdDarkMode className="h-3 w-3 text-gray-700" />
-        ) : (
-          <MdLightMode className="h-3 w-3 text-yellow-500" />
-        )}
-      </motion.span>
+      <span className="absolute left-1 top-1/2 inline-flex h-4 w-4 -translate-y-1/2 transform items-center justify-center rounded-full bg-white shadow-sm transition-transform duration-300 ease-out dark:translate-x-5">
+        <MdLightMode className="h-3 w-3 text-yellow-500 dark:hidden" aria-hidden="true" />
+        <MdDarkMode className="hidden h-3 w-3 text-gray-700 dark:block" aria-hidden="true" />
+      </span>
     </button>
   );
 };
