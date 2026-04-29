@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button.astro";
 import Container from "@/layouts/containers/Container.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
 import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
@@ -124,14 +125,24 @@ const jsonLd = {
                 organizations that need technical training.
               </p>
             </div>
-            <Button
+            <div class="flex flex-row items-center gap-x-6">
+              <Button
               variant="primary"
               radius="primary"
               background="linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)"
               href="mailto:tutoring@login.blubits.me?subject=Tutoring%20Inquiry"
-            >
-              Reach out
-            </Button>
+              >
+                Reach out
+              </Button>
+              <a
+                class:list={[
+                  "extlink",
+                ]}
+                href={"/terms/tutoring"}
+                >Terms</a
+              >
+            </div>
+            
           </div>
 
           <div class="space-y-4">
@@ -143,14 +154,23 @@ const jsonLd = {
                 bugs, or turn ideas into working products.
               </p>
             </div>
-            <Button
-              variant="primary"
-              radius="primary"
-              background="linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)"
-              href="mailto:hi@contact.blubits.me?subject=Development%20Inquiry"
-            >
-              Let's talk
-            </Button>
+            <div class="flex flex-row items-center gap-x-6">
+              <Button
+                variant="primary"
+                radius="primary"
+                background="linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)"
+                href="mailto:hi@contact.blubits.me?subject=Development%20Inquiry"
+              >
+                Let's talk
+              </Button>
+              <a
+                class:list={[
+                  "extlink",
+                ]}
+                href={"/terms/development"}
+                >Terms</a
+              >
+            </div>
           </div>
         </div>
       </section>
