@@ -38,6 +38,12 @@ I may use pre-existing materials created by other authors. These materials will 
 I may use self-made materials that have already been made available to the public. These materials will be clearly labeled as such.
 These materials can be freely used by the client for any purpose, as long as they are clearly attributed to me as the original author.
 
+## Liability
+
+I will not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to the training and development services provided under this agreement. This includes, but is not limited to, any loss of profits, data, or business opportunities.
+
+Errors or omissions in the training materials or sessions will be corrected as soon as reasonably possible, but I will not be liable for any damages resulting from such errors or omissions.
+
 ## Changes
 
 These terms may be updated from time to time. The terms in effect when work is accepted apply to that work unless otherwise agreed upon.

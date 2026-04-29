@@ -6,6 +6,8 @@ date-updated: 2026-04-29
 summary: Terms and expectations for software development work.
 ---
 
+This master service agreement governs the provision of software development services to institutional or enterprise clients. By engaging in these services, clients agree to the terms outlined herein.
+
 ## Scope
 
 Development work covers the deliverables, timeline, and responsibilities agreed before work begins. Any material change to scope, priorities, integrations, content, or design may require a revised estimate or schedule.
@@ -38,4 +40,4 @@ Ongoing maintenance, monitoring, hosting support, bug fixes, and feature updates
 
 ## Changes
 
-These terms may be updated from time to time. The terms in effect when work is accepted apply to that work unless otherwise agreed.
+These terms may be updated from time to time. The terms in effect when work is accepted apply to that work unless otherwise agreed upon.
