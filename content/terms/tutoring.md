@@ -1,35 +1,43 @@
 ---
-title: Tutoring Terms
+title: Master Service Agreement for Training & Development
 slug: tutoring
 date-created: 2026-04-29
 date-updated: 2026-04-29
-summary: Terms and expectations for tutoring sessions.
 ---
+
+This master service agreement governs the provision of training and development services to institutional or enterprise clients. By engaging in these services, clients agree to the terms outlined herein.
+
+This agreement does not govern any services provided to individual clients, which are not subject to any specific terms and conditions. For individual clients, the services are provided on an as-is basis without any warranties or guarantees.
 
 ## Scope
 
-Tutoring sessions cover the topics agreed on before or during each booking. Sessions may include concept review, guided problem solving, code review, study planning, and practice feedback.
+Training and development services include, but are not limited to, workshops, courses, coaching sessions, curriculum development, and related deliverables. This includes both the actual development and delivery of training materials, as well as any associated support and follow-up activities. The specific scope of work will be defined in separate statements of work or project proposals.
 
-Tutoring does not include completing graded assignments, exams, take-home tests, or work that must be submitted as the student's own independent output.
+## Client Responsibilities
 
-## Scheduling
+The client is responsible for providing accurate requirements, timely feedback, necessary access, brand assets, account credentials, third-party service approvals, and any content needed to complete the work.
 
-Sessions are scheduled by mutual agreement. Please arrive on time and share any relevant materials before the session when possible.
-
-If a session needs to be moved, give notice as early as possible. Missed sessions or late cancellations may be billed unless a different arrangement has been agreed in writing.
+Delays in providing required information, access, or approvals may affect delivery dates.
 
 ## Payment
 
-Fees, payment method, and due dates are agreed before sessions begin. Unless otherwise agreed, payment is due on or before the scheduled session.
+Fees, milestones, payment methods, and due dates are agreed before work begins. Work may be paused when invoices are overdue.
 
-## Materials
+Unless otherwise agreed in writing, third-party costs such as transportation, venue rental, materials, software licenses, or other expenses are billed separately or paid directly by the client.
 
-Session notes, examples, and exercises may be shared for personal learning use. They may not be resold, redistributed, or published without permission.
+## Revisions
 
-## Academic Integrity
+Reasonable revisions are included when they are within the agreed scope. Requests that introduce new topics, new sessions, new materials, or major changes to the curriculum may be treated as additional work.
 
-Tutoring is intended to support learning. Students remain responsible for following the academic integrity rules of their school, course, contest, or program.
+## Ownership
+
+All training materials and deliverables, whether created specifically for the project or have already been created, are owned by me, and are licensed to the client for their use. The client may use the materials for their internal purposes, but may not distribute, resell, or share the materials with third parties without prior written consent.
+
+I may use pre-existing materials created by other authors. These materials will be clearly labeled as such. These materials are the expressed property of their respective owners and are licensed to the client for use in the training sessions. The client may not use these materials outside of the training sessions without prior written consent.
+
+I may use self-made materials that have already been made available to the public. These materials will be clearly labeled as such.
+These materials can be freely used by the client for any purpose, as long as they are clearly attributed to me as the original author.
 
 ## Changes
 
-These terms may be updated from time to time. The terms in effect at the time a session is booked apply to that session unless otherwise agreed.
+These terms may be updated from time to time. The terms in effect when work is accepted apply to that work unless otherwise agreed upon.
