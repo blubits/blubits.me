@@ -41,4 +41,12 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { editorials, modules, projects };
+const terms = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./content/terms" }),
+  schema: baseFrontmatterSchema.extend({
+    slug: z.string(),
+    summary: z.string().optional(),
+  }),
+});
+
+export const collections = { editorials, modules, projects, terms };

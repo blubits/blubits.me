@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from "astro:content";
+
+import MarkdownBody from "@/components/content/MarkdownBody.astro";
+import Container from "@/layouts/containers/Container.astro";
+import DefaultPage from "@/layouts/DefaultPage.astro";
+import Layout from "@/layouts/Layout.astro";
+
+import "@/styles/themes.css";
+
+export async function getStaticPaths() {
+  const terms = await getCollection("terms");
+  return terms.map((term) => ({
+    params: { slug: term.data.slug },
+    props: { term },
+  }));
+}
+
+const { term } = Astro.props;
+const { Content } = await render(term);
+---
+
+<Layout title={term.data.title}>
+  <DefaultPage customTheme={{ background: "bg-slate-50" }}>
+    <Container>
+      <section class="mb-8 space-y-2">
+        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600 dark:text-slate-300">
+          <div class="inline-flex items-center gap-x-2 rounded-full bg-slate-500/10 px-3 py-1 text-xs font-medium">
+            Terms
+          </div>
+        </div>
+        <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
+          {term.data.title}
+        </h2>
+        {term.data.summary && (
+          <p class="text-lg text-slate-600 dark:text-slate-300">
+            {term.data.summary}
+          </p>
+        )}
+      </section>
+
+      <section class="max-w-3xl">
+        <MarkdownBody>
+          <Content />
+        </MarkdownBody>
+      </section>
+    </Container>
+  </DefaultPage>
+</Layout>
