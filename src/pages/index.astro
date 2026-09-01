@@ -1,5 +1,4 @@
 ---
-import memojiImage from "@/assets/memoji.webp";
 import CardContainer from "@/components/card/CardContainer.astro";
 import CardItem from "@/components/card/CardItem.astro";
 import CardThumbIcon from "@/components/card/CardThumbIcon.astro";
@@ -10,7 +9,6 @@ import Container from "@/layouts/containers/Container.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
 import Layout from "@/layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 // Fetch projects
@@ -80,8 +78,7 @@ const jsonLd = {
   >
     <Container>
       <PageTitle class="mb-2">Hi there! I'm Maded.</PageTitle>
-      <div class="flex flex-col gap-6 md:flex-row">
-        <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-6">
           <h2 class="font-sans text-2xl font-semibold">
             I tell stories and solve problems through code.
           </h2>
@@ -95,12 +92,6 @@ const jsonLd = {
             the Philippines. When I'm not coding, I like writing, learning about
             new stuff, video games, and exploring.
           </p>
-        </div>
-        <div
-          class="order-first flex grow flex-col md:order-last md:items-center md:justify-center"
-        >
-          <Image src={memojiImage} class="w-64" alt="Memoji of Maded" />
-        </div>
       </div>
 
       <section class="mt-14">
