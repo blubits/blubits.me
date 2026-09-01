@@ -1,41 +1,19 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useState } from "react";
 
-const NavItem = ({ href, children, onHover, isHovered, isActive, itemRef }) => {
-  const getTextClasses = () => {
-    if (isActive) {
-      return "text-opacity-100 font-medium";
-    }
-    if (isHovered) {
-      return "text-opacity-90";
-    }
-    return "text-opacity-75";
-  };
-
-  return (
-    <li
-      ref={itemRef}
-      className="relative cursor-pointer px-4 py-2"
-      onMouseEnter={onHover}
+const NavItem = ({ href, children, isActive }) => (
+  <li className="cursor-pointer px-4 py-2">
+    <a
+      href={href}
+      className={`block text-slate-600 transition-colors duration-200 ease-out hover:text-black ${isActive ? "font-medium text-black underline underline-offset-4" : ""}`}
     >
-      <a
-        href={href}
-        className={`relative z-10 block transition-opacity duration-200 ease-out ${getTextClasses()} `}
-      >
-        {children}
-      </a>
-    </li>
-  );
-};
+      {children}
+    </a>
+  </li>
+);
 
-const Navbar = (props) => {
+const Navbar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [indicatorStyle, setIndicatorStyle] = useState({});
-  const navRef = useRef(null);
-  const itemRefs = useRef([]);
 
   // Navigation items data
   const navItems = [
@@ -52,58 +30,20 @@ const Navbar = (props) => {
     setActiveItem(activeIndex >= 0 ? activeIndex : null);
   }, []);
 
-  useEffect(() => {
-    // Calculate indicator position based on actual element dimensions
-    const targetIndex = hoveredItem !== null ? hoveredItem : activeItem;
-
-    if (
-      targetIndex !== null &&
-      navRef.current &&
-      itemRefs.current[targetIndex]
-    ) {
-      const targetElement = itemRefs.current[targetIndex];
-      const navRect = navRef.current.getBoundingClientRect();
-      const targetRect = targetElement.getBoundingClientRect();
-
-      setIndicatorStyle({
-        left: targetRect.left - navRect.left,
-        width: targetRect.width,
-        opacity: 1,
-      });
-    } else {
-      setIndicatorStyle({ opacity: 0 });
-    }
-  }, [hoveredItem, activeItem]);
-
-  const handleItemHover = (index) => {
-    setHoveredItem(index);
-  };
-
-  const handleNavLeave = () => {
-    setHoveredItem(null);
-  };
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Determine which item should show the indicator
-  const targetItem = hoveredItem !== null ? hoveredItem : activeItem;
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <header
-      className={`-z-50 mx-auto flex max-w-7xl flex-col rounded-4xl border border-white/30 bg-white/20 px-8 py-2 shadow-2xl backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out md:flex-row md:items-center md:justify-between md:space-y-0 ${isOpen ? "mb-12 space-y-4" : "mb-4"} md:mb-16 md:space-y-0 ${isHovered ? "shadow-3xl border-white/40" : ""} hover:backdrop-blur-2xl`}
+      className={`mx-auto flex max-w-7xl flex-col border-b border-slate-200 pb-4 md:flex-row md:items-center md:justify-between ${isOpen ? "mb-12 space-y-4" : "mb-4"} md:mb-16 md:space-y-0`}
       style={{ viewTransitionName: "navbar" }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex w-full items-center justify-between md:w-auto">
         <div className="flex items-center space-x-2">
           <a href="/" className="transition-all duration-200 ease-out">
-            {props.children}
+            {children}
           </a>
           <button
-            className={`rounded-full p-1 transition-all duration-200 ease-out focus:outline-none md:hidden ${isOpen ? "bg-white/10" : "hover:bg-white/10"} `}
+            className="p-1 text-slate-600 transition-colors duration-200 ease-out hover:text-black focus:outline-none md:hidden"
             aria-label="Toggle Navigation"
             onClick={toggleMenu}
           >
@@ -136,42 +76,13 @@ const Navbar = (props) => {
               : "h-0 -translate-y-2 opacity-0"
           } md:h-auto md:translate-y-0 md:opacity-100`}
         >
-          <div className="relative">
-            {/* Sliding hover indicator */}
-            <AnimatePresence>
-              {targetItem !== null && (
-                <motion.div
-                  className="pointer-events-none absolute top-0 h-full rounded-lg bg-black/20 shadow-lg shadow-black/10 backdrop-blur-md"
-                  layoutId="nav-indicator"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: indicatorStyle.opacity || 1,
-                    x: indicatorStyle.left || 0,
-                    width: indicatorStyle.width || "auto",
-                  }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 30,
-                  }}
-                />
-              )}
-            </AnimatePresence>
-
-            <ul
-              ref={navRef}
-              className="relative flex space-x-1"
-              onMouseLeave={handleNavLeave}
-            >
+          <div>
+            <ul className="flex space-x-1">
               {navItems.map((item, index) => (
                 <NavItem
                   key={item.href}
                   href={item.href}
-                  onHover={() => handleItemHover(index)}
-                  isHovered={hoveredItem === index}
                   isActive={activeItem === index}
-                  itemRef={(el) => (itemRefs.current[index] = el)}
                 >
                   {item.label}
                 </NavItem>
