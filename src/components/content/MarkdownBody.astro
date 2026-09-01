@@ -3,7 +3,7 @@ interface Props {
   link_color?: string;
 }
 
-const { link_color = "prose-a:text-blue-600 hover:prose-a:text-blue-700 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300" } =
+const { link_color = "prose-a:text-blue-600 hover:prose-a:text-blue-700" } =
   Astro.props;
 ---
 
@@ -11,7 +11,7 @@ const { link_color = "prose-a:text-blue-600 hover:prose-a:text-blue-700 dark:pro
   id="markdown-body"
   class:list={[
     "shrink-0 grow",
-    "prose prose-slate dark:prose-invert",
+    "prose prose-slate",
     link_color,
     "prose-h5:text-md prose-h5:font-medium prose-h5:underline prose-h5:underline-offset-4",
     "prose-p:text-justify",

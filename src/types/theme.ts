@@ -4,32 +4,28 @@ export interface ThemeConfig {
   foreground: string;
   logoBackground: string;
   logoForeground: string;
-  darkNavbar?: boolean;
 }
 
 export const themes: Record<ThemeConfig['name'], ThemeConfig> = {
   default: {
     name: 'default',
-    background: 'bg-gradient-to-b from-gray-100 via-slate-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900',
-    foreground: 'text-black dark:text-white',
-    logoBackground: 'bg-slate-200 dark:bg-slate-700',
-    logoForeground: 'stroke-black dark:stroke-white',
-    darkNavbar: false,
+    background: 'bg-white',
+    foreground: 'text-black',
+    logoBackground: 'bg-slate-200',
+    logoForeground: 'stroke-black',
   },
   notes: {
     name: 'notes',
-    background: 'bg-gradient-to-b from-lime-100 via-slate-50 to-white dark:from-lime-900 dark:via-gray-800 dark:to-gray-900',
-    foreground: 'text-black dark:text-white',
-    logoBackground: 'bg-lime-600 dark:bg-lime-500',
+    background: 'bg-white',
+    foreground: 'text-black',
+    logoBackground: 'bg-lime-600',
     logoForeground: 'stroke-white',
-    darkNavbar: false,
   },
   error: {
     name: 'error',
-    background: 'bg-gradient-to-b from-red-100 via-slate-50 to-white dark:from-red-900 dark:via-gray-800 dark:to-gray-900',
-    foreground: 'text-black dark:text-white',
-    logoBackground: 'bg-red-600 dark:bg-red-500',
+    background: 'bg-white',
+    foreground: 'text-black',
+    logoBackground: 'bg-red-600',
     logoForeground: 'stroke-white',
-    darkNavbar: false,
   },
 };

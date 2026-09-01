@@ -29,7 +29,7 @@ const href = post.collection === "modules"
   </Fragment>
   <div
     slot="description"
-    class="prose prose-sm dark:prose-invert"
+    class="prose prose-sm"
     set:html={
       post.collection === "editorials"
         ? markdown(post.data["problem-description"])

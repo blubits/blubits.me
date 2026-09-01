@@ -48,7 +48,7 @@ if (project.data.image) {
             />
           </div>
         )}
-        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600 dark:text-slate-300">
+        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600">
           <div class="inline-flex items-center gap-x-2 rounded-full bg-slate-500/10 px-3 py-1 text-xs font-medium">
             Project
           </div>
@@ -56,7 +56,7 @@ if (project.data.image) {
         <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
           {project.data.title}
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300">
+        <p class="text-lg text-slate-600">
           {project.data["short-description"]}
         </p>
       </section>
@@ -73,11 +73,11 @@ if (project.data.image) {
             
             {project.data.link && (
               <div class="flex flex-col gap-y-2">
-                <h3 class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <h3 class="font-semibold text-sm uppercase tracking-wide text-slate-500">
                   Project link
                 </h3>
                 <a
-                  class="inline-flex items-center gap-x-2 text-slate-600 dark:text-slate-300 underline underline-offset-4 hover:text-slate-800 dark:hover:text-slate-100"
+                class="inline-flex items-center gap-x-2 text-slate-600 underline underline-offset-4 hover:text-slate-800"
                   href={project.data.link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -88,7 +88,7 @@ if (project.data.image) {
             )}
             
             <div>
-              <h3 class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-3">
+              <h3 class="font-semibold text-sm uppercase tracking-wide text-slate-500 mb-3">
                 Technologies
               </h3>
               <div class="flex flex-wrap gap-2">
@@ -98,7 +98,7 @@ if (project.data.image) {
               </div>
             </div>
             
-            <dl class="flex flex-col gap-y-4 text-sm text-slate-600 dark:text-slate-300">
+            <dl class="flex flex-col gap-y-4 text-sm text-slate-600">
               <div class="flex flex-col gap-y-2">
                 <dt class="font-semibold">Created</dt>
                 <dd class="rel-timestamp">

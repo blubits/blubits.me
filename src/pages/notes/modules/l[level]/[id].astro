@@ -28,7 +28,7 @@ const { Content, headings } = await render(post);
   <NotesPage customTheme={{ background: "bg-slate-50" }}>
     <Container>
       <section class="mb-8 space-y-2">
-        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600 dark:text-slate-300">
+        <div class="flex items-center gap-x-2 py-1 text-sm text-slate-600">
           <ModuleChip />
         </div>
         <h2 class="flex items-center gap-x-4 text-3xl font-semibold">
@@ -38,10 +38,10 @@ const { Content, headings } = await render(post);
 
       <section class="flex flex-col gap-16 lg:flex-row xl:justify-between">
         <div>
-          <MarkdownBody link_color="prose-a:text-lime-600 hover:prose-a:text-lime-700 dark:prose-a:text-lime-400 dark:hover:prose-a:text-lime-300">
+          <MarkdownBody link_color="prose-a:text-lime-600 hover:prose-a:text-lime-700">
             <Content />
           </MarkdownBody>
-          <dl class="mt-12 flex flex-col gap-y-4 text-sm text-slate-600 dark:text-slate-300">
+          <dl class="mt-12 flex flex-col gap-y-4 text-sm text-slate-600">
             <div class="flex flex-col gap-y-2">
               <dt class="font-semibold">Module created</dt>
               <dd class="rel-timestamp">

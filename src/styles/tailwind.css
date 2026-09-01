@@ -8,7 +8,6 @@
   --font-mono: "JetBrains Mono Variable", monospace;
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   font-feature-settings: "ss01" 1, "ss02" 1, "ss07" 1, "ss08" 1, "zero" 1;

@@ -65,9 +65,9 @@ export const BUTTON_STYLES = {
     // Primary - solid colored buttons
     primary: [
       "text-white",
-      "bg-white/10 dark:bg-black/10",
+      "bg-white/10",
       "border border-transparent",
-      "hover:bg-white/15 dark:hover:bg-black/15",
+      "hover:bg-white/15",
       "hover:backdrop-blur-md hover:backdrop-saturate-150",
       "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
       "focus:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
@@ -76,22 +76,22 @@ export const BUTTON_STYLES = {
 
     // Secondary - outlined buttons matching navbar glass style
     secondary: [
-      "bg-white/20 dark:bg-black/20",
-      "border border-white/30 dark:border-gray-700/30",
+      "bg-white/20",
+      "border border-white/30",
       "backdrop-blur-xl backdrop-saturate-150",
-      "text-black dark:text-white",
+      "text-black",
       "shadow-none hover:backdrop-blur-md hover:backdrop-saturate-150",
-      "hover:bg-white/25 dark:hover:bg-black/25",
-      "hover:border-white/40 dark:hover:border-gray-600/40",
+      "hover:bg-white/25",
+      "hover:border-white/40",
       "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.18)]",
       "focus:ring-blue-500",
     ],
 
     // Ghost - minimal buttons
     ghost: [
-      "text-gray-700 dark:text-gray-300",
-      "hover:bg-gray-100 dark:hover:bg-gray-800",
-      "hover:text-gray-900 dark:hover:text-gray-100",
+      "text-gray-700",
+      "hover:bg-gray-100",
+      "hover:text-gray-900",
       "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.10),0_12px_28px_rgba(59,130,246,0.12)]",
       "focus:ring-gray-500",
     ],
@@ -131,28 +131,28 @@ export const TAG_STYLES = {
 
     // Glass - matching navbar glassmorphism
     glass: [
-      "bg-white/20 dark:bg-black/20",
-      "border border-white/30 dark:border-gray-700/30",
+      "bg-white/20",
+      "border border-white/30",
       "backdrop-blur-md backdrop-saturate-150",
-      "text-black dark:text-white",
-      "hover:bg-white/25 dark:hover:bg-black/25",
-      "hover:border-white/40 dark:hover:border-gray-600/40",
+      "text-black",
+      "hover:bg-white/25",
+      "hover:border-white/40",
     ],
 
     // Subtle - minimal tags
     subtle: [
-      "bg-gray-100 dark:bg-gray-800",
-      "text-gray-700 dark:text-gray-300",
-      "hover:bg-gray-200 dark:hover:bg-gray-700",
-      "hover:text-gray-900 dark:hover:text-gray-100",
+      "bg-gray-100",
+      "text-gray-700",
+      "hover:bg-gray-200",
+      "hover:text-gray-900",
     ],
 
     // Code - for code-related tags
     code: [
-      "bg-gray-800 dark:bg-gray-200",
-      "text-gray-100 dark:text-gray-800",
+      "bg-gray-800",
+      "text-gray-100",
       "font-mono",
-      "hover:bg-gray-700 dark:hover:bg-gray-300",
+      "hover:bg-gray-700",
     ],
   },
 

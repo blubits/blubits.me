@@ -3,15 +3,9 @@ import "@/styles/global.css";
 
 interface Props {
   title?: string;
-  themeColorLight?: string;
-  themeColorDark?: string;
 }
 
-const { 
-  title,
-  themeColorLight = "#f8fafc", // Default light theme color (slate-50)
-  themeColorDark = "#1f2937"   // Default dark theme color (gray-800)
-} = Astro.props;
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,56 +22,10 @@ const {
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-sm.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-lg.png" />
     
-    <!-- Theme color meta tags -->
-    <meta name="theme-color" content={themeColorLight} media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content={themeColorDark} media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" />
 
     <!-- Umami Analytics: Privacy-first tracking -->
     <script defer is:inline data-astro-rerun src="https://cloud.umami.is/script.js" data-website-id="7103101e-3352-462b-8378-e9fc2721ed5d"></script>
-    <script is:inline define:vars={{ themeColorLight, themeColorDark }}>
-      // Initialize dark mode before page renders to prevent flash
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-        
-        if (shouldBeDark) {
-          document.documentElement.classList.add('dark');
-        }
-        
-        // Function to update theme-color meta tag
-        function updateThemeColor() {
-          const isDark = document.documentElement.classList.contains('dark');
-          const themeColorMeta = document.querySelector('meta[name="theme-color"]:not([media])');
-          
-          if (!themeColorMeta) {
-            const meta = document.createElement('meta');
-            meta.name = 'theme-color';
-            document.head.appendChild(meta);
-          }
-          
-          const meta = document.querySelector('meta[name="theme-color"]:not([media])');
-          meta.content = isDark ? themeColorDark : themeColorLight;
-        }
-        
-        // Set initial theme color
-        updateThemeColor();
-        
-        // Listen for theme changes
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-              updateThemeColor();
-            }
-          });
-        });
-        
-        observer.observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ['class']
-        });
-      })();
-    </script>
   </head>
   <slot />
 </html>

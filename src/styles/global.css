@@ -20,9 +20,6 @@
         padding: 0.125rem 0.5rem;
     }
 
-    .dark #markdown-body :where(:not(pre) > code):not(:where([class~="not-prose"] *)) {
-        background-color: var(--color-slate-600);
-    }
 }
 
 @layer components {

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import ThemeToggle from "../ui/ThemeToggle.tsx";
 
 const NavItem = ({ href, children, onHover, isHovered, isActive, itemRef }) => {
   const getTextClasses = () => {
@@ -93,7 +92,7 @@ const Navbar = (props) => {
 
   return (
     <header
-      className={`-z-50 mx-auto flex max-w-7xl flex-col rounded-4xl border border-white/30 bg-white/20 px-8 py-2 shadow-2xl backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out md:flex-row md:items-center md:justify-between md:space-y-0 dark:border-gray-700/30 dark:bg-black/20 ${isOpen ? "mb-12 space-y-4" : "mb-4"} md:mb-16 md:space-y-0 ${isHovered ? "shadow-3xl border-white/40 dark:border-gray-600/40" : ""} hover:backdrop-blur-2xl`}
+      className={`-z-50 mx-auto flex max-w-7xl flex-col rounded-4xl border border-white/30 bg-white/20 px-8 py-2 shadow-2xl backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out md:flex-row md:items-center md:justify-between md:space-y-0 ${isOpen ? "mb-12 space-y-4" : "mb-4"} md:mb-16 md:space-y-0 ${isHovered ? "shadow-3xl border-white/40" : ""} hover:backdrop-blur-2xl`}
       style={{ viewTransitionName: "navbar" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -104,7 +103,7 @@ const Navbar = (props) => {
             {props.children}
           </a>
           <button
-            className={`rounded-full p-1 transition-all duration-200 ease-out focus:outline-none md:hidden ${isOpen ? "bg-white/10 dark:bg-gray-700/20" : "hover:bg-white/10 dark:hover:bg-gray-700/20"} `}
+            className={`rounded-full p-1 transition-all duration-200 ease-out focus:outline-none md:hidden ${isOpen ? "bg-white/10" : "hover:bg-white/10"} `}
             aria-label="Toggle Navigation"
             onClick={toggleMenu}
           >
@@ -125,20 +124,11 @@ const Navbar = (props) => {
           </button>
         </div>
 
-        {/* Theme Toggle - Always visible on top row */}
-        <div className="md:hidden">
-          <ThemeToggle />
-        </div>
       </div>
 
       <nav
         className={`flex items-center space-x-4 ${!isOpen ? "hidden md:flex" : ""}`}
       >
-        {/* Theme Toggle for desktop */}
-        <div className="hidden md:block">
-          <ThemeToggle />
-        </div>
-
         <div
           className={`relative overflow-hidden transition-all duration-300 ease-out ${
             isOpen
@@ -151,7 +141,7 @@ const Navbar = (props) => {
             <AnimatePresence>
               {targetItem !== null && (
                 <motion.div
-                  className={`pointer-events-none absolute top-0 h-full rounded-lg ${props.dark ? "bg-white/20 shadow-lg shadow-white/10" : "bg-black/20 shadow-lg shadow-black/10 dark:bg-white/20 dark:shadow-white/10"} backdrop-blur-md`}
+                  className="pointer-events-none absolute top-0 h-full rounded-lg bg-black/20 shadow-lg shadow-black/10 backdrop-blur-md"
                   layoutId="nav-indicator"
                   initial={{ opacity: 0 }}
                   animate={{
