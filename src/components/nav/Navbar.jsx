@@ -34,7 +34,7 @@ const Navbar = ({ children }) => {
 
   return (
     <header
-      className={`mx-auto flex max-w-7xl flex-col border-b border-slate-200 pb-4 md:flex-row md:items-center md:justify-between ${isOpen ? "mb-12 space-y-4" : "mb-4"} md:mb-16 md:space-y-0`}
+      className={`mx-auto flex max-w-7xl flex-col pb-4 md:flex-row md:items-center md:justify-between ${isOpen ? "mb-12 space-y-4" : "mb-4"} md:mb-16 md:space-y-0`}
       style={{ viewTransitionName: "navbar" }}
     >
       <div className="flex w-full items-center justify-between md:w-auto">
