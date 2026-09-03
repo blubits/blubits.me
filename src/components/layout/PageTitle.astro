@@ -3,8 +3,9 @@
  * PageTitle — canonical page-level heading component.
  *
  * Sizes:
- *   xl  – 6xl/7xl/8xl bold (homepage hero)
- *   lg  – 5xl/6xl bold     (hero pages)
+ *   xl  – 6xl/7xl/8xl bold (large hero pages)
+ *   lead – 5xl/6xl/7xl bold (homepage hero)
+ *   lg  – 5xl/6xl bold      (hero pages)
  *   md  – 4xl bold        (error pages)
  *   sm  – lg/xl semibold  (notes sub-pages with back-arrow)
  *
@@ -13,7 +14,7 @@
  */
 
 interface Props {
-  size?: "xl" | "lg" | "md" | "sm";
+  size?: "xl" | "lead" | "lg" | "md" | "sm";
   class?: string;
 }
 
@@ -24,6 +25,7 @@ const { size = "lg", class: className } = Astro.props;
   class:list={[
     "font-display tracking-tight",
     size === "xl" && "text-6xl md:text-7xl lg:text-8xl leading-none font-bold",
+    size === "lead" && "text-5xl md:text-6xl lg:text-7xl leading-none font-bold",
     size === "lg" && "text-5xl md:text-6xl leading-none font-bold",
     size === "md" && "text-4xl leading-none font-bold",
     size === "sm" && "text-lg md:text-xl font-semibold",
