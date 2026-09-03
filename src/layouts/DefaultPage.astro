@@ -9,11 +9,13 @@ import { LOGO_STYLES } from "@/constants/ui";
 interface Props {
   theme?: ThemeConfig['name'];
   customTheme?: Partial<ThemeConfig>;
+  backgroundLogo?: boolean;
 }
 
 const {
   theme = 'default',
   customTheme,
+  backgroundLogo = false,
 } = Astro.props;
 
 const themeConfig = customTheme 
@@ -23,30 +25,39 @@ const themeConfig = customTheme
 
 <body
   class:list={[
-    "m-auto min-h-screen pt-8 pb-12 md:pt-16",
+    "relative m-auto min-h-screen pt-8 pb-12 md:pt-16",
     themeConfig.background,
     themeConfig.foreground,
     `theme-${themeConfig.name}`,
   ]}
 >
-  <Container>
-    <Navbar client:load>
-      <Logo
-        class:list={[
-          LOGO_STYLES.base,
-          themeConfig.logoBackground,
-          themeConfig.logoForeground,
-          LOGO_STYLES.hover,
-        ]}
-      />
-    </Navbar>
-  </Container>
+  {backgroundLogo && (
+    <Logo
+      class="pointer-events-none fixed right-[-6rem] bottom-[-8rem] z-0 size-[min(26rem,85vw)] stroke-stone-300 opacity-60 md:right-[-8rem] md:bottom-[-10rem] md:size-[min(42rem,58vw)]"
+      decorative
+    />
+  )}
 
-  <main class="overflow-visible">
-    <slot />
-  </main>
+  <div class="relative z-10">
+    <Container>
+      <Navbar client:load>
+        <Logo
+          class:list={[
+            LOGO_STYLES.base,
+            themeConfig.logoBackground,
+            themeConfig.logoForeground,
+            LOGO_STYLES.hover,
+          ]}
+        />
+      </Navbar>
+    </Container>
 
-  <Container>
-    <Footer />
-  </Container>
+    <main class="overflow-visible">
+      <slot />
+    </main>
+
+    <Container>
+      <Footer />
+    </Container>
+  </div>
 </body>

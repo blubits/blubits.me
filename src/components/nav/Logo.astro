@@ -1,5 +1,5 @@
 ---
-const { class: className, ...rest } = Astro.props;
+const { class: className, decorative = false, ...rest } = Astro.props;
 ---
 
 <svg
@@ -9,9 +9,10 @@ const { class: className, ...rest } = Astro.props;
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   class={className}
-  style="view-transition-name: logo"
-  aria-label="Logo for Maded Batara III (Maded) personal website"
-  role="img"
+  style={decorative ? undefined : "view-transition-name: logo"}
+  aria-hidden={decorative ? "true" : undefined}
+  aria-label={decorative ? undefined : "Logo for Maded Batara III (Maded) personal website"}
+  role={decorative ? "presentation" : "img"}
   {...rest}
 >
   <path
