@@ -1,14 +1,9 @@
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/inter-tight";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/instrument-sans";
 @import "@fontsource-variable/jetbrains-mono";
 
 @theme {
-  --font-sans: "Inter Variable", sans-serif;
-  --font-sans-tight: "Inter Variable", sans-serif;
+  --font-sans: "Geist Variable", sans-serif;
+  --font-display: "Instrument Sans Variable", sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
-}
-
-
-:root {
-  font-feature-settings: "ss01" 1, "ss02" 1, "ss07" 1, "ss08" 1, "zero" 1;
 }
