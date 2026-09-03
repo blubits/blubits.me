@@ -4,7 +4,6 @@ import CardItem from "@/components/card/CardItem.astro";
 import CardThumbIcon from "@/components/card/CardThumbIcon.astro";
 import CardThumbImage from "@/components/card/CardThumbImage.astro";
 import PageTitle from "@/components/layout/PageTitle.astro";
-import Button from "@/components/ui/Button.astro";
 import Container from "@/layouts/containers/Container.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -94,77 +93,6 @@ const jsonLd = {
           </p>
       </div>
 
-      <section class="mt-14 border-t border-slate-200 pt-10">
-        <div class="max-w-2xl">
-          <h2 class="text-2xl font-semibold">
-            Here's what I'm spending my time on
-          </h2>
-          <p class="mt-3 text-lg leading-normal">
-            I split my time between teaching and building. If you're looking for
-            help with either, here's the quickest way to reach me.
-          </p>
-        </div>
-
-        <div class="mt-8 grid gap-10 md:grid-cols-2 md:gap-12">
-          <div class="space-y-4">
-            <div class="space-y-2">
-              <h3 class="text-xl font-semibold">Tutoring</h3>
-              <p class="text-base leading-normal">
-                I love teaching mathematics, computer science, and programming.
-                I help students and self-learners build a solid understanding
-                and make consistent progress. I also work with teams or
-                organizations that need technical training.
-              </p>
-            </div>
-            <div class="flex flex-row items-center gap-x-6">
-              <Button
-              variant="primary"
-              radius="primary"
-              background="linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)"
-              href="mailto:tutoring@login.blubits.me?subject=Tutoring%20Inquiry"
-              >
-                Reach out
-              </Button>
-              <a
-                class:list={[
-                  "extlink",
-                ]}
-                href={"/terms/tutoring"}
-                >Terms</a
-              >
-            </div>
-            
-          </div>
-
-          <div class="space-y-4">
-            <div class="space-y-2">
-              <h3 class="text-xl font-semibold">Development</h3>
-              <p class="text-base leading-normal">
-                I develop for clients that want to solve high-impact, real-world
-                problems. I can help architect systems, institute processes, fix
-                bugs, or turn ideas into working products.
-              </p>
-            </div>
-            <div class="flex flex-row items-center gap-x-6">
-              <Button
-                variant="primary"
-                radius="primary"
-                background="linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)"
-                href="mailto:hi@contact.blubits.me?subject=Development%20Inquiry"
-              >
-                Let's talk
-              </Button>
-              <a
-                class:list={[
-                  "extlink",
-                ]}
-                href={"/terms/development"}
-                >Terms</a
-              >
-            </div>
-          </div>
-        </div>
-      </section>
     </Container>
 
     <Container class="mt-16 border-t border-slate-200 pt-10">
