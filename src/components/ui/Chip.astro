@@ -45,7 +45,7 @@ const isCode = variant === 'code';
         <span
           class:list={[
             ...baseClasses,
-            size === 'large' && 'shadow' in sizeConfig && sizeConfig.shadow,
+            size === 'large' && 'border' in sizeConfig && sizeConfig.border,
           ]}
         >
           <slot />

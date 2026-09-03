@@ -23,7 +23,7 @@ export const CHIP_SIZES = {
   large: {
     padding: "px-4 py-2",
     borderRadius: "rounded-3xl", // Updated to match design language
-    shadow: "shadow-sm",
+    border: "border border-slate-300",
   },
 } as const;
 
@@ -69,21 +69,20 @@ export const BUTTON_STYLES = {
       "border border-transparent",
       "hover:bg-white/15",
       "hover:backdrop-blur-md hover:backdrop-saturate-150",
-      "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
-      "focus:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.22)]",
+      "hover:border-slate-300",
+      "focus:border-slate-400",
       "focus:ring-blue-500",
     ],
 
     // Secondary - outlined buttons matching navbar glass style
     secondary: [
       "bg-white/20",
-      "border border-white/30",
+      "border border-slate-300",
       "backdrop-blur-xl backdrop-saturate-150",
       "text-black",
-      "shadow-none hover:backdrop-blur-md hover:backdrop-saturate-150",
+      "hover:backdrop-blur-md hover:backdrop-saturate-150",
       "hover:bg-white/25",
-      "hover:border-white/40",
-      "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(59,130,246,0.18)]",
+      "hover:border-slate-400",
       "focus:ring-blue-500",
     ],
 
@@ -92,7 +91,7 @@ export const BUTTON_STYLES = {
       "text-gray-700",
       "hover:bg-gray-100",
       "hover:text-gray-900",
-      "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.10),0_12px_28px_rgba(59,130,246,0.12)]",
+      "border border-transparent hover:border-slate-300",
       "focus:ring-gray-500",
     ],
 
@@ -100,7 +99,7 @@ export const BUTTON_STYLES = {
     danger: [
       "bg-red-500 hover:bg-red-600",
       "text-white",
-      "shadow-none hover:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_16px_34px_rgba(239,68,68,0.22)]",
+      "border border-transparent hover:border-red-300",
       "focus:ring-red-500",
     ],
   },
@@ -113,7 +112,7 @@ export const TAG_STYLES = {
     "inline-flex items-center gap-x-1.5 self-start",
     "font-medium text-sm",
     "transition-all duration-300 ease-out",
-    "shadow-sm hover:shadow-md",
+    "border border-slate-200",
     "-webkit-tap-highlight-color: transparent",
   ],
 
@@ -132,11 +131,11 @@ export const TAG_STYLES = {
     // Glass - matching navbar glassmorphism
     glass: [
       "bg-white/20",
-      "border border-white/30",
+      "border border-slate-300",
       "backdrop-blur-md backdrop-saturate-150",
       "text-black",
       "hover:bg-white/25",
-      "hover:border-white/40",
+      "hover:border-slate-400",
     ],
 
     // Subtle - minimal tags
