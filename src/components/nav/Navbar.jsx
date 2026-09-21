@@ -34,10 +34,10 @@ const Navbar = ({ children }) => {
 
   return (
     <header
-      className="relative mx-auto mb-4 flex max-w-7xl flex-col pb-4 md:mb-16 md:flex-row md:items-center md:justify-start md:space-x-3"
+      className="relative -mx-8 mb-4 flex max-w-7xl flex-col bg-transparent px-8 pb-4 md:mx-auto md:mb-16 md:flex-row md:items-center md:justify-start md:space-x-3 md:px-0"
       style={{ viewTransitionName: "navbar" }}
     >
-      <div className="flex w-full items-center justify-between md:w-auto">
+      <div className="relative z-30 flex w-full items-center justify-between md:w-auto">
         <div className="flex items-center space-x-2">
           <a href="/" className="transition-all duration-200 ease-out">
             {children}
@@ -70,13 +70,13 @@ const Navbar = ({ children }) => {
         className={`absolute left-1/2 top-full z-20 w-screen -translate-x-1/2 ${!isOpen ? "hidden" : ""} md:static md:z-auto md:flex md:w-auto md:translate-x-0 md:items-center`}
       >
         <div
-          className={`overflow-hidden bg-white/60 backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out ${
+          className={`-mt-16 overflow-hidden bg-transparent pt-16 backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out ${
             isOpen
-              ? "h-auto translate-y-0 border-b border-slate-900/5 opacity-100 shadow-[0_12px_24px_-12px_rgba(15,23,42,0.2)]"
+              ? "h-auto translate-y-0 border-b border-white/80 opacity-100 shadow-[0_1px_0_rgba(15,23,42,0.08),0_12px_24px_-12px_rgba(15,23,42,0.2)]"
               : "h-0 -translate-y-2 opacity-0"
-          } md:h-auto md:translate-y-0 md:overflow-visible md:border-none md:bg-transparent md:opacity-100 md:shadow-none md:backdrop-blur-none md:backdrop-saturate-100`}
+          } md:mt-0 md:h-auto md:translate-y-0 md:overflow-visible md:border-none md:bg-transparent md:opacity-100 md:shadow-none md:backdrop-blur-none md:backdrop-saturate-100 md:pt-0`}
         >
-          <ul className="flex flex-col divide-y divide-slate-900/10 px-8 md:flex-row md:items-center md:space-x-1 md:divide-y-0 md:px-0">
+          <ul className="flex flex-col divide-y divide-slate-900/10 px-4 md:flex-row md:items-center md:space-x-1 md:divide-y-0 md:px-0">
             {navItems.map((item, index) => (
               <NavItem
                 key={item.href}
