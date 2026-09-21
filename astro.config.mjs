@@ -1,5 +1,5 @@
 import react from "@astrojs/react";
-import markdownIntegration from "@astropub/md";
+import markdownIntegration from "@mashehu/astropub-md";
 import remarkCallout from "@r4ai/remark-callout";
 import icon from "astro-icon";
 import mailObfuscation from "astro-mail-obfuscation";
