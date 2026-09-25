@@ -1,5 +1,6 @@
 ---
 import PageTitle from "@/components/layout/PageTitle.astro";
+import Button from "@/components/ui/Button.astro";
 import Container from "@/layouts/containers/Container.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -51,9 +52,10 @@ const jsonLd = {
           <p class="max-w-xl text-lg leading-normal">
             I graduated with a degree in computer science from the University of
             the Philippines. When I'm not coding, I like writing, learning about
-            new stuff, video games, and exploring.
+            new stuff, video games, and exploring the city.
           </p>
       </div>
+      <Button href="mailto:dev@contact.blubits.me" class="mt-6">Contact me</Button>
 
     </Container>
   </DefaultPage>

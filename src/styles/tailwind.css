@@ -1,9 +1,8 @@
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/instrument-sans";
+@import "@fontsource-variable/schibsted-grotesk";
 @import "@fontsource-variable/jetbrains-mono";
 
 @theme {
-  --font-sans: "Geist Variable", sans-serif;
-  --font-display: "Instrument Sans Variable", sans-serif;
+  --font-sans: "Schibsted Grotesk Variable", sans-serif;
+  --font-display: "Schibsted Grotesk Variable", sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
 }
