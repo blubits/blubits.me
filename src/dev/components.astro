@@ -1,0 +1,71 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Chip from "@/components/ui/Chip.astro";
+import PageTitle from "@/components/layout/PageTitle.astro";
+import ProjectTag from "@/components/layout/ProjectTag.astro";
+import Tag from "@/components/ui/Tag.astro";
+import Container from "@/layouts/containers/Container.astro";
+import DefaultPage from "@/layouts/DefaultPage.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Components">
+  <head slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <DefaultPage>
+    <Container>
+      <PageTitle size="lg" class="mb-2">Component showcase</PageTitle>
+      <p class="mb-10 text-slate-600">Development preview of the site's shared UI.</p>
+
+      <section class="mb-10">
+        <h2 class="mb-4 text-2xl font-semibold">Buttons</h2>
+        <div class="flex flex-wrap items-center gap-3">
+          <Button>Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="danger">Danger</Button>
+          <Button disabled>Disabled</Button>
+        </div>
+        <div class="mt-4 flex flex-wrap items-center gap-3">
+          <Button size="sm">Small</Button>
+          <Button size="md">Medium</Button>
+          <Button size="lg">Large</Button>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="mb-4 text-2xl font-semibold">Chips</h2>
+        <div class="flex flex-wrap items-center gap-3">
+          <Chip>Default chip</Chip>
+          <Chip backgroundColor="bg-lime-200">Colored chip</Chip>
+          <Chip variant="code" backgroundColor="bg-slate-200">code sample</Chip>
+          <Chip size="large" backgroundColor="bg-sky-100">Large chip</Chip>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="mb-4 text-2xl font-semibold">Tags</h2>
+        <div class="flex flex-wrap items-center gap-3">
+          <Tag>Solid</Tag>
+          <Tag variant="glass">Glass</Tag>
+          <Tag variant="subtle">Subtle</Tag>
+          <Tag variant="code">Code</Tag>
+          <ProjectTag tag="astro" />
+          <ProjectTag tag="typescript" variant="glass" />
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="mb-4 text-2xl font-semibold">Page titles</h2>
+        <div class="space-y-4 rounded-xl border border-slate-200 p-6">
+          <PageTitle size="xl">Extra large</PageTitle>
+          <PageTitle size="lead">Lead</PageTitle>
+          <PageTitle size="lg">Large</PageTitle>
+          <PageTitle size="md">Medium</PageTitle>
+          <PageTitle size="sm">Small</PageTitle>
+        </div>
+      </section>
+    </Container>
+  </DefaultPage>
+</Layout>

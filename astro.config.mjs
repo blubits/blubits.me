@@ -33,6 +33,19 @@ export default defineConfig({
   },
 
   integrations: [
+    {
+      name: "dev-component-showcase",
+      hooks: {
+        "astro:config:setup"({ command, injectRoute }) {
+          if (command === "dev") {
+            injectRoute({
+              pattern: "/components",
+              entrypoint: new URL("./src/dev/components.astro", import.meta.url),
+            });
+          }
+        },
+      },
+    },
     icon(),
     react(),
     mailObfuscation(),
