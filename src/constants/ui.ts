@@ -65,10 +65,9 @@ export const BUTTON_STYLES = {
     // Primary - solid colored buttons
     primary: [
       "text-white",
-      "bg-white/10",
+      "bg-slate-900",
       "border border-transparent",
-      "hover:bg-white/15",
-      "hover:backdrop-blur-md hover:backdrop-saturate-150",
+      "hover:bg-slate-800",
       "hover:border-slate-300",
       "focus:border-slate-400",
       "focus:ring-blue-500",
@@ -126,7 +125,7 @@ export const TAG_STYLES = {
   // Visual variants
   variant: {
     // Solid - traditional colored tags
-    solid: ["text-white"],
+    solid: ["bg-slate-800", "text-white"],
 
     // Glass - matching navbar glassmorphism
     glass: [

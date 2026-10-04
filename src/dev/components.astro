@@ -1,8 +1,9 @@
 ---
-import Button from "@/components/ui/Button.astro";
-import Chip from "@/components/ui/Chip.astro";
 import PageTitle from "@/components/layout/PageTitle.astro";
 import ProjectTag from "@/components/layout/ProjectTag.astro";
+import Button from "@/components/ui/Button.astro";
+import Chip from "@/components/ui/Chip.astro";
+import MarkdownBody from "@/components/content/MarkdownBody.astro";
 import Tag from "@/components/ui/Tag.astro";
 import Container from "@/layouts/containers/Container.astro";
 import DefaultPage from "@/layouts/DefaultPage.astro";
@@ -15,8 +16,7 @@ import Layout from "@/layouts/Layout.astro";
   </head>
   <DefaultPage>
     <Container>
-      <PageTitle size="lg" class="mb-2">Component showcase</PageTitle>
-      <p class="mb-10 text-slate-600">Development preview of the site's shared UI.</p>
+      <PageTitle size="lg" class="mb-12">Component showcase</PageTitle>
 
       <section class="mb-10">
         <h2 class="mb-4 text-2xl font-semibold">Buttons</h2>
@@ -57,10 +57,33 @@ import Layout from "@/layouts/Layout.astro";
       </section>
 
       <section class="mb-10">
+        <h2 class="mb-4 text-2xl font-semibold">Typography and lists</h2>
+        <MarkdownBody>
+          <h2>Section heading</h2>
+          <p>
+            Body text shows <strong>strong emphasis</strong>, <em>subtle emphasis</em>,
+            <a class="extlink" href="#typography">a text link</a>, and <code>inline code</code>.
+          </p>
+          <h3>Unordered list</h3>
+          <ul>
+            <li>First list item</li>
+            <li>Second item with <strong>emphasis</strong></li>
+            <li>Third list item</li>
+          </ul>
+          <h3>Ordered list</h3>
+          <ol>
+            <li>First step</li>
+            <li>Second step</li>
+            <li>Third step</li>
+          </ol>
+          <blockquote><p>A short blockquote to preview longer-form content.</p></blockquote>
+        </MarkdownBody>
+      </section>
+
+      <section class="mb-10">
         <h2 class="mb-4 text-2xl font-semibold">Page titles</h2>
         <div class="space-y-4 rounded-xl border border-slate-200 p-6">
           <PageTitle size="xl">Extra large</PageTitle>
-          <PageTitle size="lead">Lead</PageTitle>
           <PageTitle size="lg">Large</PageTitle>
           <PageTitle size="md">Medium</PageTitle>
           <PageTitle size="sm">Small</PageTitle>
