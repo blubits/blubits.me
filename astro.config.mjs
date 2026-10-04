@@ -13,20 +13,23 @@ import remarkRemoveFirstH1 from "./remark-remove-heading.mjs";
 import remarkTikzjax from "./remark-tikzjax.ts";
 import remarkRemoveComments from "./remark-remove-comments.mjs";
 import sitemap from "@astrojs/sitemap";
+import { unified } from "@astrojs/markdown-remark";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://blubits.me",
   markdown: {
-    remarkPlugins: [
-      remarkTikzjax,
-      remarkRemoveFirstH1,
-      remarkRemoveComments,
-      remarkCallout,
-      remarkMath,
-      remarkObsidianLink,
-    ],
-    rehypePlugins: [rehypeKatex],
+    processor: unified({
+      remarkPlugins: [
+        remarkTikzjax,
+        remarkRemoveFirstH1,
+        remarkRemoveComments,
+        remarkCallout,
+        remarkMath,
+        remarkObsidianLink,
+      ],
+      rehypePlugins: [rehypeKatex],
+    }),
   },
 
   integrations: [
